@@ -1,0 +1,494 @@
+[
+    {
+        "id": "a-04ch-r",
+        "category": "demiseason",
+        "popularity": "1",
+        "date": "2024-01-01",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "blue": "синій"
+        },
+        "model": "Кросівки",
+        "material": "Шкіра",
+        "style": "Повсякденний",
+        "size": ["40", "41", "42", "43"],
+        "images": {
+            "img": "img/a-04ch-r/cholovichi-krosivky-adidas1.webp",
+            "alt": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+            "imgPopap1": "img/a-04ch-r/cholovichi-krosivky-adidas2.webp",
+            "altPopap1": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+            "imgPopap2": "img/a-04ch-r/cholovichi-krosivky-adidas3.webp",
+            "altPopap2": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+            "imgPopap3": "img/a-04ch-r/cholovichi-krosivky-adidas4.webp",
+            "altPopap3": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black"
+        },
+        "head": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+        "descript": "До вашої уваги  чоловічі демісезонні кросівки Ads Originals Ozelia Black виготовлені з якісних матеріалів в Україні. Спортивне взуття цієї моделі відмінно підійде на кожен день, зайняття спортом. Під яас довгих прогулянок ваша стопа не буде втомлюватися. ви зможете насолодитися краєвидами свого міста. Верх зроблений з натуральної шкіри чорного кольору. З рельєфним візерунком, який підкреслює актуальність та смак даного взуття. До речі, задники кросівок цієї моделі оброблені шкіряною  вставкою.",
+        "list1": "Виріб зроблено з високоякісної шкіри від українського виробника.",
+        "list2": "На носку і задника нашиті елементи товстої шкіри для міцності.",
+        "list3": "Рельєфна підошва ТЕП.",
+        "list4": "Cтильний дизайн",
+        "bottomDescript": "Вибирайте саме чоловічі шкіряні кросівки Adidas Originals Ozelia Black в нашому інтернет магазині.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "демісезон",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "текстиль",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний" 
+        },
+        "saleprice": "2300 грн",
+        "price": "1890 грн"
+    },
+    {
+        "id": "a_04_ch_kr",
+        "category": "demiseason",
+        "popularity": "2",
+        "date": "2023-01-01",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "brown": "коричневий"
+        },
+        "model": "Кросівки",
+        "material": "Шкіра",
+        "style": "Спортивний",
+        "size": ["40", "41", "42", "43", "44"],
+        "images": {
+            "img": "img/a-04-ch-kr/cholovichi-shkiriani-krosivky1.webp",
+            "alt": "Чоловічі шкіряні кросівки Ads  Originals Ozelia",
+            "imgPopap1": "img/a-04-ch-kr/cholovichi-shkiriani-krosivky2.webp",
+            "altPopap1": "Чоловічі шкіряні кросівки Ads  Originals Ozelia",
+            "imgPopap2": "img/a-04-ch-kr/cholovichi-shkiriani-krosivky3.webp",
+            "altPopap2": "Чоловічі шкіряні кросівки Ads  Originals Ozelia",
+            "imgPopap3": "img/a-04-ch-kr/cholovichi-shkiriani-krosivky4.webp",
+            "altPopap3": "Чоловічі шкіряні кросівки Ads  Originals Ozelia"
+        },
+        "head": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  ",
+        "descript": "До вашої уваги  чоловічі демісезонні кросівки Ads Originals Ozelia Black виготовлені з якісних матеріалів в Україні. Спортивне взуття цієї моделі відмінно підійде на кожен день, зайняття спортом. Під яас довгих прогулянок ваша стопа не буде втомлюватися. ви зможете насолодитися краєвидами свого міста. Верх зроблений з натуральної шкіри чорного кольору. З рельєфним візерунком, який підкреслює актуальність та смак даного взуття. До речі, задники кросівок цієї моделі оброблені шкіряною  вставкою.",
+        "list1": "Виріб зроблено з високоякісної шкіри від українського виробника.",
+        "list2": "На носку і задника нашиті елементи товстої шкіри для міцності.",
+        "list3": "Рельєфна підошва ТЕП.",
+        "list4": "Cтильний дизайн",
+        "bottomDescript": "Вибирайте саме чоловічі шкіряні кросівки Adidas Originals Ozelia Black в нашому інтернет магазині.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "демісезон",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "текстиль",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний" 
+        },
+        "saleprice": "2300 грн",
+        "price": "1890 грн"
+    },
+    {
+        "id": "a-04chs",
+        "category": "demiseason",
+        "popularity": "5",
+        "date": "2024-01-10",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "red": "червоний"
+        },
+        "model": "Кросівки",
+        "material": "Шкіра",
+        "style": "Спортивний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/a-04chs/cholovichi-shkiriani-cherevyky1.webp",
+            "alt": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+            "imgPopap1": "img/a-04chs/cholovichi-shkiriani-cherevyky2.webp",
+            "altPopap1": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+            "imgPopap2": "img/a-04chs/cholovichi-shkiriani-cherevyky3.webp",
+            "altPopap2": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+            "imgPopap3": "img/a-04chs/cholovichi-shkiriani-cherevyky4.webp",
+            "altPopap3": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black"
+        },
+        "descript": "До вашої уваги  чоловічі демісезонні кросівки Ads Originals Ozelia Black виготовлені з якісних матеріалів в Україні. Спортивне взуття цієї моделі відмінно підійде на кожен день, зайняття спортом. Під яас довгих прогулянок ваша стопа не буде втомлюватися. ви зможете насолодитися краєвидами свого міста. Верх зроблений з натуральної шкіри чорного кольору. З рельєфним візерунком, який підкреслює актуальність та смак даного взуття. До речі, задники кросівок цієї моделі оброблені шкіряною  вставкою.",
+        "list1": "Виріб зроблено з високоякісної шкіри від українського виробника.",
+        "list2": "На носку і задника нашиті елементи товстої шкіри для міцності.",
+        "list3": "Рельєфна підошва ТЕП.",
+        "list4": "Cтильний дизайн",
+        "bottomDescript": "Вибирайте саме чоловічі шкіряні кросівки Adidas Originals Ozelia Black в нашому інтернет магазині.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "демісезон",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "текстиль",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний" 
+        },
+        "head": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Black",
+        "saleprice": "2300 грн",
+        "price": "1890 грн"
+    },
+    {
+        "id": "a-04-ol",
+        "category": "demiseason",
+        "popularity": "2",
+        "date": "2024-01-11",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "white": "білий"
+        },
+        "model": "Кросівки",
+        "material": "Шкіра",
+        "style": "Спортивний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/a-04-ol/cholovichi-shkiriani-crosivky1.webp",
+            "alt": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Mokko",
+            "imgPopap1": "img/a-04-ol/cholovichi-shkiriani-crosivky2.webp",
+            "altPopap1": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Mokko",
+            "imgPopap2": "img/a-04-ol/cholovichi-shkiriani-crosivky3.webp",
+            "altPopap2": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Mokko",
+            "imgPopap3": "img/a-04-ol/cholovichi-shkiriani-crosivky4.webp",
+            "altPopap3": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Mokko"
+        },
+        "head": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Mokko",
+        "descript": "До вашої уваги  чоловічі демісезонні кросівки Ads Originals Ozelia Black виготовлені з якісних матеріалів в Україні. Спортивне взуття цієї моделі відмінно підійде на кожен день, зайняття спортом. Під яас довгих прогулянок ваша стопа не буде втомлюватися. ви зможете насолодитися краєвидами свого міста. Верх зроблений з натуральної шкіри чорного кольору. З рельєфним візерунком, який підкреслює актуальність та смак даного взуття. До речі, задники кросівок цієї моделі оброблені шкіряною  вставкою.",
+        "list1": "Виріб зроблено з високоякісної шкіри від українського виробника.",
+        "list2": "На носку і задника нашиті елементи товстої шкіри для міцності.",
+        "list3": "Рельєфна підошва ТЕП.",
+        "list4": "Cтильний дизайн",
+        "bottomDescript": "Вибирайте саме чоловічі шкіряні кросівки Adidas Originals Ozelia Black в нашому інтернет магазині.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "демісезон",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "текстиль",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний" 
+        },
+        "saleprice": "2300 грн",
+        "price": "1890 грн"
+    },
+    {
+        "id": "a-04shok",
+        "category": "demiseason",
+        "popularity": "4",
+        "date": "2024-01-21",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "gray": "сірий"
+        },
+        "model": "Кросівки",
+        "material": "Шкіра",
+        "style": "Спортивний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/a-04shok/cholovichi-shkiriani-cherevyky1.webp",
+            "alt": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Brown",
+            "imgPopap1": "img/a-04shok/cholovichi-shkiriani-cherevyky2.webp",
+            "altPopap1": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Brown",
+            "imgPopap2": "img/a-04shok/cholovichi-shkiriani-cherevyky3.webp",
+            "altPopap2": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Brown",
+            "imgPopap3": "img/a-04shok/cholovichi-shkiriani-cherevyky4.webp",
+            "altPopap3": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Brown"
+        },
+        "head": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Brown",
+        "descript": "До вашої уваги  чоловічі демісезонні кросівки Ads Originals Ozelia Black виготовлені з якісних матеріалів в Україні. Спортивне взуття цієї моделі відмінно підійде на кожен день, зайняття спортом. Під яас довгих прогулянок ваша стопа не буде втомлюватися. ви зможете насолодитися краєвидами свого міста. Верх зроблений з натуральної шкіри чорного кольору. З рельєфним візерунком, який підкреслює актуальність та смак даного взуття. До речі, задники кросівок цієї моделі оброблені шкіряною  вставкою.",
+        "list1": "Виріб зроблено з високоякісної шкіри від українського виробника.",
+        "list2": "На носку і задника нашиті елементи товстої шкіри для міцності.",
+        "list3": "Рельєфна підошва ТЕП.",
+        "list4": "Cтильний дизайн",
+        "bottomDescript": "Вибирайте саме чоловічі шкіряні кросівки Adidas Originals Ozelia Black в нашому інтернет магазині.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "демісезон",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "текстиль",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний" 
+        },
+        "saleprice": "2300 грн",
+        "price": "1890 грн"
+    },
+    {
+        "id": "a-04-haki",
+        "category": "demiseason",
+        "popularity": "6",
+        "date": "2024-01-17",
+        "color": {
+            "black": "чорний"
+        },
+        "model": "Кросівки",
+        "material": "Шкіра",
+        "style": "Спортивний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/a-04-haki/cholovichi-shkiriani-crosivky1.webp",
+            "alt": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Green",
+            "imgPopap1": "img/a-04-haki/cholovichi-shkiriani-crosivky2.webp",
+            "altPopap1": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Green",
+            "imgPopap2": "img/a-04-haki/cholovichi-shkiriani-crosivky3.webp",
+            "altPopap2": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Green",
+            "imgPopap3": "img/a-04-haki/cholovichi-shkiriani-crosivky4.webp",
+            "altPopap3": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Green"
+        },
+        "head": "Чоловічі шкіряні кросівки Ads  Originals Ozelia  Green",
+        "descript": "До вашої уваги  чоловічі демісезонні кросівки Ads Originals Ozelia Black виготовлені з якісних матеріалів в Україні. Спортивне взуття цієї моделі відмінно підійде на кожен день, зайняття спортом. Під яас довгих прогулянок ваша стопа не буде втомлюватися. ви зможете насолодитися краєвидами свого міста. Верх зроблений з натуральної шкіри чорного кольору. З рельєфним візерунком, який підкреслює актуальність та смак даного взуття. До речі, задники кросівок цієї моделі оброблені шкіряною  вставкою.",
+        "list1": "Виріб зроблено з високоякісної шкіри від українського виробника.",
+        "list2": "На носку і задника нашиті елементи товстої шкіри для міцності.",
+        "list3": "Рельєфна підошва ТЕП.",
+        "list4": "Cтильний дизайн",
+        "bottomDescript": "Вибирайте саме чоловічі шкіряні кросівки Adidas Originals Ozelia Black в нашому інтернет магазині.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "демісезон",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "текстиль",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний" 
+        },
+        "saleprice": "2300 грн",
+        "price": "1890 грн"
+    },
+    {
+        "id": "bot-523-ol",
+        "category": "winter",
+        "popularity": "8",
+        "date": "2024-01-19",
+        "color": {
+            "green": "зелений"
+        },
+        "model": "Черевики",
+        "material": "Шкіра",
+        "style": "Класичний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/bot-523-ol/adidashaki1.webp",
+            "alt": "Чоловічі шкіряні черевики Ads Terrex Green",
+            "imgPopap1": "img/bot-523-ol/adidashaki2.webp",
+            "altPopap1": "Чоловічі шкіряні черевики Ads Terrex Green",
+            "imgPopap2": "img/bot-523-ol/adidashaki3.webp",
+            "altPopap2": "Чоловічі шкіряні черевики Ads Terrex Green",
+            "imgPopap3": "img/bot-523-ol/adidashaki4.webp",
+            "altPopap3": "Чоловічі шкіряні черевики Ads Terrex Green"
+        },
+        "head": "Чоловічі шкіряні черевики Ads Terrex Green",
+        "descript": "Чоловічі шкіряні черевики зеленого кольору від Ads Terrex – стильний та функціональний вибір для активного способу життя. Їх спортивний дизайн поєднується з високоякісним матеріалом, надаючи вам комфорт та довговічність. Ці черевики вирізняються не лише модним відтінком зеленого, але й технологічними рішеннями, такими як підошва з підвищеним зчепленням, яка забезпечує відмінну стійкість на різних поверхнях. З Ads Terrex ви отримуєте не тільки стильний аксесуар, але й відмінний захист та комфорт для вашого активного образу життя.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "зима",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "Набивна вовна",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний"
+        },
+        "saleprice": "2510 грн",
+        "price": "2170 грн"
+    },
+    {
+        "id": "bot-520",
+        "category": "winter",
+        "popularity": "10",
+        "date": "2024-01-19",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "gray": "сірий"
+        },
+        "model": "Кеди",
+        "material": "Шкіра",
+        "style": "Класичний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/bot-520/adidasblack1.webp",
+            "alt": "Чоловічі шкіряні черевики Ads Terrex Black",
+            "imgPopap1": "img/bot-520/adidasblack2.webp",
+            "altPopap1": "Чоловічі шкіряні черевики Ads Terrex Black",
+            "imgPopap2": "img/bot-520/adidasblack3.webp",
+            "altPopap2": "Чоловічі шкіряні черевики Ads Terrex Black",
+            "imgPopap3": "img/bot-520/adidasblack4.webp",
+            "altPopap3": "Чоловічі шкіряні черевики Ads Terrex Black"
+        },
+        "head": "Чоловічі шкіряні черевики Ads Terrex Black",
+        "descript": "Чоловічі шкіряні сандалі чорного кольору забезпечують стиль та комфорт. Виготовлені з високоякісної шкіри як зовні, так і всередині, вони забезпечують тривалу зносостійкість та приємний контакт із шкірою ніг. Липучка дозволяє легко регулювати посадку, а підошва з термопластичного еластомеру (ТЕП) надає гнучкість та добре амортизує кроки, роблячи їх ідеальними для активного використання у різних умовах.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "черевики",
+            "seasonHaract": "зима",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "Набивна вовна",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний"
+        },
+        "saleprice": "2510 грн",
+        "price": "2170 грн"
+    },
+    {
+        "id": "90-ch-lito",
+        "category": "summer",
+        "popularity": "12",
+        "date": "2024-01-21",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "gray": "сірий"
+        },
+        "model": "Сандалі",
+        "material": "Шкіра",
+        "style": "Повсякденний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/90-ch-lito/cholovichi-shkiriani-bosonizky1.webp",
+            "alt": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap1": "img/90-ch-lito/cholovichi-shkiriani-bosonizky2.webp",
+            "altPopap1": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap2": "img/90-ch-lito/cholovichi-shkiriani-bosonizky3.webp",
+            "altPopap2": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap3": "img/90-ch-lito/cholovichi-shkiriani-bosonizky4.webp",
+            "altPopap3": "чоловічі шкіряні сандалі на липучці "
+        },
+        "head": "чоловічі шкіряні сандалі на липучці ",
+        "descript": "Чоловічі шкіряні сандалі чорного кольору забезпечують стиль та комфорт. Виготовлені з високоякісної шкіри як зовні, так і всередині, вони забезпечують тривалу зносостійкість та приємний контакт із шкірою ніг. Липучка дозволяє легко регулювати посадку, а підошва з термопластичного еластомеру (ТЕП) надає гнучкість та добре амортизує кроки, роблячи їх ідеальними для активного використання у різних умовах.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "сандалі",
+            "seasonHaract": "літо",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "натуральна шкіра",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний"
+        },
+        "saleprice": "",
+        "price": "950 грн"
+    },
+    {
+        "id": "90-kor-lito",
+        "category": "summer",
+        "popularity": "13",
+        "date": "2024-01-22",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "gray": "сірий"
+        },
+        "model": "Сандалі",
+        "material": "Шкіра",
+        "style": "Повсякденний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/90-kor-lito/cholovichi-shkiriani-bosonizky1.webp",
+            "alt": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap1": "img/90-kor-lito/cholovichi-shkiriani-bosonizky2.webp",
+            "altPopap1": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap2": "img/90-kor-lito/cholovichi-shkiriani-bosonizky3.webp",
+            "altPopap2": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap3": "img/90-kor-lito/cholovichi-shkiriani-bosonizky4.webp",
+            "altPopap3": "чоловічі шкіряні сандалі на липучці "
+        },
+        "head": "чоловічі шкіряні сандалі на липучці ",
+        "descript": "Чоловічі шкіряні сандалі коричневого кольору забезпечують стиль та комфорт. Виготовлені з високоякісної шкіри як зовні, так і всередині, вони забезпечують тривалу зносостійкість та приємний контакт із шкірою ніг. Липучка дозволяє легко регулювати посадку, а підошва з термопластичного еластомеру (ТЕП) надає гнучкість та добре амортизує кроки, роблячи їх ідеальними для активного використання у різних умовах..",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "сандалі",
+            "seasonHaract": "літо",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "натуральна шкіра",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний"
+        },
+        "saleprice": "",
+        "price": "950 грн"
+    },
+    {
+        "id": "90-s-lito",
+        "category": "summer",
+        "popularity": "5",
+        "date": "2024-01-23",
+        "color": {
+            "black": "чорний", 
+            "green": "зелений", 
+            "gray": "сірий"
+        },
+        "model": "Сандалі",
+        "material": "Шкіра",
+        "style": "Повсякденний",
+        "size": ["45"],
+        "images": {
+            "img": "img/90-s-lito/Чоловічі шкіряні черевики(1).jpg",
+            "alt": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap1": "img/90-s-lito/Чоловічі шкіряні черевики(2).jpg",
+            "altPopap1": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap2": "img/90-s-lito/Чоловічі шкіряні черевики(3).jpg",
+            "altPopap2": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap3": "img/90-s-lito/Чоловічі шкіряні черевики(4).jpg",
+            "altPopap3": "чоловічі шкіряні сандалі на липучці "
+        },
+        "head": "чоловічі шкіряні сандалі на липучці ",
+        "descript": "Чоловічі шкіряні сандалі синього кольору забезпечують стиль та комфорт. Виготовлені з високоякісної шкіри як зовні, так і всередині, вони забезпечують тривалу зносостійкість та приємний контакт із шкірою ніг. Липучка дозволяє легко регулювати посадку, а підошва з термопластичного еластомеру (ТЕП) надає гнучкість та добре амортизує кроки, роблячи їх ідеальними для активного використання у різних умовах.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "сандалі",
+            "seasonHaract": "літо",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "натуральна шкіра",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний"
+        },
+        "saleprice": "",
+        "price": "950 грн"
+    },
+    {
+        "id": "90-x-lito",
+        "category": "summer",
+        "popularity": "1",
+        "date": "2024-01-11",
+        "color": {
+            "green": "зелений"
+        },
+        "model": "Сандалі",
+        "material": "Шкіра",
+        "style": "Повсякденний",
+        "size": ["40", "41", "42", "43", "44", "45"],
+        "images": {
+            "img": "img/90-x-lito/Чоловічі шкіряні босоніжки(1).jpg",
+            "alt": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap1": "img/90-x-lito/Чоловічі шкіряні босоніжки(2).jpg",
+            "altPopap1": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap2": "img/90-x-lito/Чоловічі шкіряні босоніжки(3).jpg",
+            "altPopap2": "чоловічі шкіряні сандалі на липучці ",
+            "imgPopap3": "img/90-x-lito/Чоловічі шкіряні босоніжки(4).jpg",
+            "altPopap3": "чоловічі шкіряні сандалі на липучці "
+        },
+        "head": "чоловічі шкіряні сандалі на липучці ",
+        "descript": "Чоловічі шкіряні сандалі зеленого кольору забезпечують стиль та комфорт. Виготовлені з високоякісної шкіри як зовні, так і всередині, вони забезпечують тривалу зносостійкість та приємний контакт із шкірою ніг. Липучка дозволяє легко регулювати посадку, а підошва з термопластичного еластомеру (ТЕП) надає гнучкість та добре амортизує кроки, роблячи їх ідеальними для активного використання у різних умовах.",
+        "technicalHaracteristic": {
+            "producer": "Ads",
+            "country": "Україна",
+            "kind": "сандалі",
+            "seasonHaract": "літо",
+            "materialTop": "натуральна шкіра",
+            "materialBottom": "натуральна шкіра",
+            "materialSole": "ТЕП",
+            "styleCard": "повсякденний"
+        },
+        "saleprice": "",
+        "price": "950 грн"
+    }
+]
