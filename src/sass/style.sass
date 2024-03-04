@@ -1,0 +1,622 @@
+@import components/mixins
+html
+    font-size: 1px
+body
+    margin: 0
+    box-sizing: border-box
+
+a
+    text-decoration: none
+
+ul
+    padding: 0
+    list-style: none
+
+h2, h3, p, ul, hr
+    margin: 0
+
+input, select
+    width: 100%
+    box-sizing: border-box
+    outline: none
+img
+    width: 100%
+    height: 100%
+    object-fit: cover
+section
+    padding: 50rem 0
+
+.wrapper
+    max-width: 80%
+    margin: 0 auto
+
+.flex
+    width: 100%
+    display: flex
+    column-gap: 30rem
+
+.flex-between
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    column-gap: 50rem
+    +media(768)
+        justify-content: space-between
+    +media(1024)
+        flex-wrap: nowrap
+
+.items-center
+    align-items: center
+
+.gradient
+    background: linear-gradient(90deg, #4E98B6 0%, #00D589 100%)
+
+.menu
+    column-gap: 50rem
+    a
+        transition: all .25s ease
+        display: inline-block
+        color: #000
+        text-align: center
+        font-family: "Kharkiv Tone"
+        font-size: 18rem
+        font-weight: 400
+        text-transform: uppercase
+        &:hover
+            transform: scale(1.05)
+
+.header
+    padding: 25rem 0
+.dark-bg
+    background: #000
+
+.head
+    padding-bottom: 40rem
+    text-align: center
+    font-family: "Kharkiv Tone"
+    font-size: 64px
+    font-weight: 400
+    text-transform: uppercase
+    +media(768)
+        font-size: 45px
+    +media(1440)
+        font-size: 64px
+.white-head
+    color: #FFF
+
+.dark-head
+    color: #000
+    text-align: center
+
+.black-kharkiv
+    padding-bottom: 40rem
+    color: #1E1E1E
+    text-align: center
+    font-family: "Kharkiv Tone"
+    font-size: 24px
+    font-weight: 400
+    line-height: 1.5em
+    text-transform: uppercase
+
+.name-block
+    padding-top: 50rem
+    h2
+        padding: 38rem 0
+    hr
+        margin-bottom: 34rem
+        border: none
+        border: 2px solid #fff
+
+.button-card,
+.button
+    column-gap: 30rem
+
+.number-card
+    font-family: Montserrat
+    font-size: 24rem
+
+.number
+    color: #4E98B6
+    font-weight: 500
+
+.number-of
+    color: #FFF
+    font-weight: 300
+
+.prev,
+.next,
+.left,
+.right
+    display: block
+    min-width: 150rem
+    max-width: 200rem
+    box-sizing: border-box
+    border: 1px solid #fff
+
+.next,
+.right
+    position: relative
+
+.pointer
+    position: absolute
+    top: 25%
+    right: -5%
+    animation: pointer 1s infinite alternate
+    @keyframes pointer
+        0%,100%
+            transform: scale(1)
+            box-shadow: none
+        50%
+            transform: scale(1.15)
+            filter: drop-shadow(0 0 5px rgb(158, 156, 156))
+
+.image-block
+    column-gap: 13rem
+
+.count-price_block
+    padding: 30rem 0 50rem
+    justify-content: center
+
+.count-price_block
+    justify-content: space-around
+    color: #FFF
+    font-family: "Kharkiv Tone"
+    font-size: 24px
+    font-weight: 400
+    text-transform: uppercase
+
+.blue-text
+    color: #4E98B6
+    font-family: Montserrat
+    font-size: 24px
+    font-weight: 600
+
+.full-price
+    display: inline-block
+    padding-left: 10rem
+    font-family: Montserrat
+    font-weight: 300
+    text-decoration: line-through
+
+.size-block,
+.color-block
+    width: 50%
+
+.haracteristic-block
+    padding: 50rem 0
+
+.size,
+.article,
+.material,
+.color,
+.haracteristic-name,
+.country,
+.description
+    padding-bottom: 40rem
+    p, li
+        color: #1E1E1E
+        font-family: Montserrat
+        font-size: 20px
+        font-weight: 400
+        +media(1440)
+            font-size: 24px
+
+p.haracteristic-name
+    padding-bottom: 20rem
+    font-family: "Kharkiv Tone"
+    text-transform: uppercase
+
+.input-size-block
+    height: 40rem
+    column-gap: 10rem
+
+.size-input,
+.color-input
+    display: none
+
+.size-input + label,
+.color-input + label
+    display: inline-block
+    position: relative
+    width: 40rem
+    height: 40rem
+    padding: 8rem
+    color: #1E1E1E
+    font-family: Montserrat
+    font-size: 20rem
+    font-weight: 400
+    text-transform: uppercase
+    border: 1px solid #000
+    box-sizing: border-box
+
+.color-input + label
+    border: none
+
+.material
+    li
+        position: relative
+        padding-left: 30rem
+        &::before
+            content: ""
+            position: absolute
+            top: 20%
+            left: 2.5%
+            width: 4rem
+            height: 4rem
+            border-radius: 50%
+            background-color: #000
+
+.cta-submit
+    justify-content: center
+    button
+        max-width: 400rem
+        padding: 30rem 120rem
+        border: none
+        cursor: pointer
+
+.text-style
+    text-align: center
+    color: #FFF
+    font-family: "Kharkiv Tone"
+    font-size: 20rem
+    text-transform: uppercase
+    font-weight: 400
+    +media(1440)
+        font-size: 24rem
+
+.instruction-size_block
+    padding: 50rem 0
+    column-gap: 13rem
+
+.size-table
+    margin: 0 auto
+    width: 100%
+    max-width: 950rem
+    table
+        width: 100%
+        border-collapse: collapse
+        thead
+            th
+                padding: 30rem 0
+        tbody
+            tr
+                border-bottom: 1px solid #fff
+                border-left: 1px solid #fff
+                border-right: 1px solid #fff
+                td
+                    width: 10vw
+                    padding: 30rem 0
+                    color: #FFF
+                    text-align: center
+                    font-family: Montserrat
+                    font-size: 25px
+                    font-weight: 400
+                    text-transform: uppercase
+                    +media(1440)
+                        font-size: 30px
+                td + td 
+                    border-left: 1px solid #fff
+.catalog-card
+    column-gap: 30rem
+
+.card
+    width: 25%
+
+.img-card
+    border: 1px solid #000
+
+.name-card
+    padding: 30rem 0 20rem
+    color: #000
+    font-family: "Kharkiv Tone"
+    text-align: left
+
+.size-card
+    column-gap: 5rem
+    padding: 20rem 0
+    label
+        font-size: 14rem
+        width: 25rem
+        height: 25rem
+        padding: 3rem
+        +media(1440)
+            width: 40rem
+            height: 40rem
+            padding: 8rem
+            font-size: 20rem
+.price-card
+    column-gap: 16rem
+
+.sale-price
+    font-size: 20px
+    font-weight: 700
+    +media(1440)
+        font-size: 30px
+
+.price
+    color: #1E1E1E
+    font-family: Montserrat
+    font-size: 16rem
+    font-weight: 250
+    text-decoration: line-through
+    +media(1440)
+        font-size: 20rem
+
+.cta-card
+    display: block
+    padding: 24rem 0
+    font-size: 18rem
+
+.cart
+    width: 50%
+    margin: 0 auto
+
+.cart-head
+    padding-bottom: 20rem
+    color: #4E98B6
+    font-family: "Kharkiv Tone"
+    font-size: 24rem
+    font-weight: 400
+    line-height: 1.5em
+    text-transform: uppercase
+
+a.add-to-cart
+    display: block
+    text-align: center
+    font-family: "Kharkiv Tone"
+    font-size: 24px
+    font-weight: 400
+    text-transform: uppercase
+
+.add-cta
+    display: inline-block
+    margin-left: 20rem
+    padding: 5rem 8rem
+    max-width: 30rem
+    max-height: 30rem
+    box-sizing: border-box
+
+.name,
+.phone
+    width: 100%
+    max-width: 450rem
+    input
+        padding: 10rem 0
+        background-color: transparent
+        border: none
+        color: #FFF
+        border-bottom: 1px solid #fff
+        &::placeholder
+            color: #FFF
+            font-family: Montserrat
+            font-size: 18px
+            font-weight: 300
+            line-height: 1.5em
+.order
+    padding: 30rem 0 42rem
+
+.cart-order
+    position: relative
+    padding: 15rem 30rem
+    border: 1px solid #fff
+
+.cancel
+    position: absolute
+    top: 20rem
+    right: 20rem
+
+.order-descript
+    column-gap: 20rem
+
+.img-order
+    max-width: 150rem
+
+.model,
+.size-order
+    padding-bottom: 20rem
+
+.model-order,
+.size-order-text
+    color: #4E98B6
+    font-family: Montserrat
+    font-size: 18px
+    font-weight: 500
+    line-height: 1.5em
+    text-transform: uppercase
+
+.model-order-name
+    font-size: 18px
+    font-weight: 400
+    text-align: left
+
+.size-order
+    max-width: 125rem
+    select
+        padding: 0 0 10rem
+        color: #FFF
+        font-family: Montserrat
+        font-size: 18px
+        font-weight: 300
+        background-color: transparent
+        border: none
+        border-bottom: 1px solid #fff
+        outline: none
+        appearance: none
+        -webkit-appearance: none
+
+.sale-price
+    width: 100rem
+
+.order-price-sale
+    width: 80rem
+    color: #fff
+
+.sum,
+.sale-sum,
+.pay-price
+    color: #FFF
+    font-family: Montserrat
+    font-size: 24px
+    font-weight: 400
+    line-height: 1.5em
+
+.pay-sum
+    color: #4E98B6
+    font-family: "Kharkiv Tone"
+    font-size: 24px
+    font-weight: 400
+    line-height: 1.5em
+    text-transform: uppercase
+
+.pay-price
+    font-size: 30px
+
+.cart-hr
+    margin: 27rem 0 23rem
+
+.cta-cart
+    padding-top: 50rem
+
+.about-us
+    p
+        color: #1E1E1E
+        font-size: 24px
+
+.about-us-block
+    margin-bottom: 17rem
+
+.description-aboutUs
+    width: 80%
+    p
+        text-transform: uppercase
+        font-weight: 400
+        &:first-child
+            margin-bottom: 20rem
+            font-family: "Kharkiv Tone"
+        &:last-child
+            font-family: Montserrat
+            text-transform: lowercase
+.svg-block
+    position: relative
+    width: 150rem
+    height: 150rem
+    &::before
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+.quality
+    .svg-block
+        &::before
+            width: 70rem
+            height: 70rem
+            background: url(../img/quality.png) no-repeat
+.delivery
+    .svg-block
+        &::before
+            width: 54rem
+            height: 54rem
+            background: url(../img/delivery.png) no-repeat
+.pay-method
+    .svg-block
+        &::before
+            width: 60rem
+            height: 56rem
+            background: url(../img/paument.png) no-repeat
+.sale-proposition
+    .svg-block
+        &::before
+            width: 64rem
+            height: 64rem
+            background: url(../img/sale.png) no-repeat
+
+.sale-descript
+    padding-bottom: 50rem
+    font-size: 24px
+    line-height: 1.5em
+
+.sale-block
+    width: 60%
+    margin: 0 auto
+    p
+        font-family: Montserrat
+        font-size: 24px
+        font-weight: 600
+        line-height: 1.5em
+        text-transform: uppercase
+    hr
+        margin: 20rem 0 30rem
+
+p.sale-numb
+    text-transform: lowercase
+    font-weight: 400
+.cta-sale
+    position: relative
+    top: 0
+    left: 50%
+    max-width: 400px
+    transform: translateX(-50%)
+
+.comment-block
+    overflow: hidden
+
+.comment-card
+    padding: 30rem 20rem
+    color: #1E1E1E
+    font-family: Montserrat
+    border: 1px solid #000
+    box-sizing: border-box
+
+.name-comment
+    margin-bottom: 10rem
+    h3
+        line-height: 1.5em
+        font-size: 16px
+        font-weight: 600
+        text-transform: uppercase
+.star-comment
+    padding-bottom: 18rem
+
+.date-comment
+    font-style: italic
+    font-size: 14px
+    line-height: 1.5em
+    font-weight: 300
+
+.text-comment-block
+    padding-bottom: 20rem
+    line-height: 1.5em
+    font-size: 14px
+    font-weight: 400
+
+.button-block
+    padding-top: 30rem
+    justify-content: center
+    .btn
+        border: 1px solid #4E98B6
+
+.footer
+    padding: 63rem 0 57rem
+    a
+        column-gap: 10rem
+    a, span, p
+        color: #FFF
+        font-family: Montserrat
+        font-size: 12px
+        font-weight: 400
+        
+.adress-block
+    div
+        column-gap: 10rem   
+
+.privacy 
+    padding-top: 30rem
+    text-align: center
+    a
+        text-decoration: underline
+
+.footer-bottom
+    padding-top: 16rem
+    text-align: center

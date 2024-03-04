@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Kharkiv Tone';
+    src: url('../fonts/KharkivTone04_10_2020.eot');
+    src: url('../fonts/KharkivTone04_10_2020.eot') format('embedded-opentype'),
+         url('../fonts/KharkivTone04_10_2020.woff2') format('woff2'),
+         url('../fonts/KharkivTone04_10_2020.woff') format('woff'),
+         url('../fonts/KharkivTone04_10_2020.ttf') format('truetype'),
+         url('../fonts/KharkivTone04_10_2020.svg#KharkivTone04_10_2020') format('svg');
+}
