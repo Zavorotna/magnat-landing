@@ -31,7 +31,6 @@ section
     margin: 0 auto
 
 .flex
-    width: 100%
     display: flex
     column-gap: 30rem
 
@@ -97,6 +96,9 @@ section
     font-weight: 400
     line-height: 1.5em
     text-transform: uppercase
+
+.card-section
+    padding-top: 0
 
 .name-block
     padding-top: 50rem
@@ -267,6 +269,21 @@ p.haracteristic-name
 .instruction-size_block
     padding: 50rem 0
     column-gap: 13rem
+.size-img
+    position: relative
+    svg
+        position: absolute
+        top: 30rem
+        left: 50%
+        transform: translateX(-50%)
+    &:last-child
+        svg
+            &:nth-child(2)
+                left: 10%
+            &:last-child
+                left: 85%
+                transform: translate(0)
+                
 
 .size-table
     margin: 0 auto

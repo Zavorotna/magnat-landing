@@ -72,7 +72,7 @@ html(lang="en")
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M22.0141 24.7947C23.7515 25.5539 24.4031 23.9631 24.4031 23.9631L29 0.896277C28.9638 -0.658384 26.8644 0.281644 26.8644 0.281644L1.12887 10.3689C1.12887 10.3689 -0.101803 10.8027 0.00678546 11.562C0.115374 12.3212 1.09267 12.6828 1.09267 12.6828L7.57181 14.8521C7.57181 14.8521 9.52641 21.2515 9.92456 22.4808C10.2865 23.6739 10.6123 23.71 10.6123 23.71C10.9743 23.8546 11.3 23.6016 11.3 23.6016L15.4988 19.8053L22.0141 24.7947ZM23.1365 4.9824C23.1365 4.9824 24.0414 4.44008 24.0052 4.9824C24.0052 4.9824 24.15 5.05471 23.6794 5.56088C23.2451 5.99474 13.0015 15.1781 11.626 16.4074C11.5175 16.4797 11.4451 16.5881 11.4451 16.7327L11.0469 20.1313C10.9745 20.4929 10.504 20.529 10.3954 20.2036L8.69415 14.6358C8.62176 14.4188 8.69415 14.1657 8.91133 14.0211L23.1365 4.9824Z" fill="#4E98B6"/>
                             </svg>
         main 
-            section
+            section.card-section
                 .main-card_block
                     .card_block.dark-bg 
                         .name-block 
@@ -194,12 +194,27 @@ html(lang="en")
                     p.descript-size.text-style Перед замовленням рекомендуємо переміряти довжину устілки.
                     p.text-style Як правильно робити заміри:
                     .instruction-size_block.flex-between
-                        picture 
-                            img(src="img/size1.png", alt="")
-                        picture 
-                            img(src="img/size2.png", alt="")
-                        picture 
-                            img(src="img/size3.png", alt="")
+                        .size-img
+                            picture 
+                                img(src="img/size1.png", alt="")
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H28V28H2V2ZM0 0H2H28H30V2V28V30H28H2H0V28V2V0ZM22.1422 7L22.8492 7.70703L16.0563 14.5L22.9914 21.4351L22.2843 22.1421L15.3492 15.207L8.70712 21.8491L8 21.1421L14.6422 14.5L8.14215 8L8.84924 7.29297L15.3492 13.793L22.1422 7Z" fill="#D90000"/>
+                            </svg>
+                        .size-img
+                            picture 
+                                img(src="img/size2.png", alt="")
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H28V28H2V2ZM0 0H2H28H30V2V28V30H28H2H0V28V2V0ZM13.3536 20.8536L24.8536 9.35355L24.1464 8.64645L13 19.7929L6.35355 13.1464L5.64645 13.8536L12.6464 20.8536L13 21.2071L13.3536 20.8536Z" fill="#24B40C"/>
+                            </svg>
+                        .size-img
+                            picture 
+                                img(src="img/size3.png", alt="")
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H28V28H2V2ZM0 0H2H28H30V2V28V30H28H2H0V28V2V0ZM22.1422 7L22.8492 7.70703L16.0563 14.5L22.9914 21.4351L22.2843 22.1421L15.3492 15.207L8.70712 21.8491L8 21.1421L14.6422 14.5L8.14215 8L8.84924 7.29297L15.3492 13.793L22.1422 7Z" fill="#D90000"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H28V28H2V2ZM0 0H2H28H30V2V28V30H28H2H0V28V2V0ZM13.3536 20.8536L24.8536 9.35355L24.1464 8.64645L13 19.7929L6.35355 13.1464L5.64645 13.8536L12.6464 20.8536L13 21.2071L13.3536 20.8536Z" fill="#24B40C"/>
+                            </svg>
                     .size-table.flex
                         table 
                             thead 
