@@ -55,12 +55,16 @@ section
     &:hover
         background: linear-gradient(90deg, #00D589 0%, #4E98B6 100%)
         
-
 .header-menu
+    width: 100%
     position: absolute
-    bottom: -20rem
+    left: 50%
+    transform: translateX(-50%)
+    bottom: 10px
     +media(768)
         position: static
+        width: auto
+        transform: translate(0)
 .menu
     display: flex
     column-gap: 20rem
@@ -84,7 +88,7 @@ section
 
 .header
     position: relative
-    padding: 25rem 0
+    padding: 25rem 0 35px
     justify-content: space-between
 
 .dark-bg
@@ -214,8 +218,11 @@ section
             min-width: 20vw
 
 .count-price_block
+    flex-wrap: wrap
     padding: 30rem 0 50rem
     justify-content: center
+    +media(768)
+        flex-wrap: nowrap
     p
         color: #FFF
         text-align: center
