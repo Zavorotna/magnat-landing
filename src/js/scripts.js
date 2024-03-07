@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         green: "зелений",
         blue: "синій"
       },
-      size: ["34", "38", "39", "40", "41", "42", "43", "44", "45"],
+      size: ["38", "39", "40", "41", "42", "44", "45"],
       head: "new balance 510",
       descript: "Наші New Balance 515 створені спеціально для тих, хто хоче закарбувати своє почуття стилю в повсякденному образі. У них компонуються тільки найкращі кольори та матеріали, що стало традицією фірми. Також ми зберегли оригінальну зручність і комфорт у сукупності з трендами сучасності.",
       material: {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         green: "зелений",
         white: "білий"
       },
-      size: ["34", "38", "39", "40", "41", "42", "43", "44", "45"],
+      size: ["38", "39", "40", "41", "42", "43", "44", "45"],
       head: "new balance 511",
       descript: "Опис продукту 2",
       material: {
@@ -41,14 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
       price: "2600 грн"
     },
     product3: {
-      id: "098747",
+      id: "098748",
       clasImg: "product3",
       color: {
         red: "червоний",
         blue: "зелений",
         white: "білий"
       },
-      size: ["34", "38", "39", "40", "41", "42", "43", "44", "45"],
+      size: ["38", "39", "40", "41", "42", "43", "44", "45"],
       head: "new balance 512",
       descript: "Опис продукту 2",
       material: {
@@ -62,13 +62,47 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   }
 
-  // Функція для створення карточки товару
+  let catalogProduct = {
+    catalogProduct1: {
+      id: "ct1",
+      headCatalog: "new balance 510",
+      priceCatalog: "1550",
+      saleCatalog: "2400",
+      sizeCatalog: ["40", "41", "42", "43", "44", "45"],
+      countCatalog: "10",
+    },
+    catalogProduct2: {
+      id: "ct2",
+      headCatalog: "new balance 511",
+      priceCatalog: "1550 ",
+      saleCatalog: "2400 ",
+      sizeCatalog: ["40", "41", "42", "43", "44", "45"],
+      countCatalog: "1",
+    },
+    catalogProduct3: {
+      id: "ct3",
+      headCatalog: "new balance 512",
+      priceCatalog: "1550 ",
+      saleCatalog: "2400 ",
+      sizeCatalog: ["40", "41", "42", "43", "44", "45"],
+      countCatalog: "8",
+    },
+    catalogProduct4: {
+      id: "ct4",
+      headCatalog: "new balance 510",
+      priceCatalog: "1550 ",
+      saleCatalog: "2400 ",
+      sizeCatalog: ["40", "41", "42", "43", "44", "45"],
+      countCatalog: "3",
+    }
+  }
+
+  let selectedSize
+  // створення головної картки товару
   function createProductCard(product) {
-    // Отримуємо блок карточки товару
-    const productCard = document.createElement('div');
-    productCard.classList.add('main-card_block');
-    const clasImg = product.clasImg;
-    // Заповнюємо дані з об'єкту в блок карточки товару
+    const productCard = document.createElement('div')
+    productCard.classList.add('main-card_block')
+    const clasImg = product.clasImg
     productCard.innerHTML = `
         <div class="slider-card">
           <div class="card_block dark-bg">
@@ -167,34 +201,33 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                   </div>
               </div>
-              <div class="flex cta-submit"><button class="text-style gradient" type="submit">купити</button></div>
+              <div class="flex cta-submit add-to-cart" data-item-key="${product.id}"><button class="text-style gradient" type="submit">купити</button></div>
             </form>
           </div>
         </div>
     `;
 
-    // Отримуємо блоки елементів, які потрібно заповнити динамічно
-    const colorBlock = productCard.querySelector('.color-input-block');
-    const sizeBlock = productCard.querySelector('.size-inputs');
-    const materialList = productCard.querySelector('.material ul');
+    const colorBlock = productCard.querySelector('.color-input-block'),
+      sizeBlock = productCard.querySelector('.size-inputs'),
+      materialList = productCard.querySelector('.material ul')
 
-    // Додаємо кольори
+    // кольори
 
     for (const color in product.color) {
-      const input = document.createElement('input');
-      input.setAttribute('type', 'radio');
-      input.setAttribute('name', 'color');
-      input.setAttribute('id', color);
-      input.classList.add('color-input');
+      const input = document.createElement('input')
+      input.setAttribute('type', 'radio')
+      input.setAttribute('name', 'color')
+      input.setAttribute('id', color)
+      input.classList.add('color-input')
 
-      const label = document.createElement('label');
-      label.setAttribute('for', color);
+      const label = document.createElement('label')
+      label.setAttribute('for', color)
 
-      const p = document.createElement('p');
-      p.appendChild(input);
-      p.appendChild(label);
+      const p = document.createElement('p')
+      p.appendChild(input)
+      p.appendChild(label)
 
-      colorBlock.appendChild(p);
+      colorBlock.appendChild(p)
 
       // Додати стилі для кожного кольору
       const dynamicStyle = `
@@ -203,48 +236,118 @@ document.addEventListener("DOMContentLoaded", function () {
         ${color === 'white' ? 'border: 0.5rem solid #ccc;' : ''}
       }
       `;
-      const styleElement = document.createElement('style');
-      styleElement.textContent = dynamicStyle;
-      document.head.appendChild(styleElement);
+      const styleElement = document.createElement('style')
+      styleElement.textContent = dynamicStyle
+      document.head.appendChild(styleElement)
     }
 
 
-    // Додаємо розміри
-    product.size.forEach(size => {
-      const input = document.createElement('input');
-      input.setAttribute('type', 'checkbox');
-      input.setAttribute('name', 'size');
-      input.setAttribute('id', `product-size${size}`);
-      input.classList.add('size-input');
+    // розміри
+     // Оголошення змінної за межами функції
 
-      const label = document.createElement('label');
-      label.setAttribute('for', `product-size${size}`);
-      label.innerText = size;
+    const sizes = ["38", "39", "40", "41", "42", "43", "44", "45"]
 
-      const p = document.createElement('p');
-      p.appendChild(input);
-      p.appendChild(label);
+    sizes.forEach(size => {
+      const input = document.createElement('input')
+      input.setAttribute('type', 'radio')
+      input.setAttribute('name', 'size')
+      input.setAttribute('id', `product-size${size}`)
+      input.setAttribute('value', size)
+      input.classList.add('size-input')
 
-      sizeBlock.appendChild(p);
-    });
+      const label = document.createElement('label')
+      label.setAttribute('for', `product-size${size}`)
+      label.innerText = size
 
-    // Додаємо матеріали
+      const p = document.createElement('p')
+      p.appendChild(input)
+      p.appendChild(label)
+      if (!product.size.includes(size)) {
+        input.disabled = true
+      }
+      sizeBlock.appendChild(p)
+
+      // Додати слухач подій для радіокнопок
+      input.addEventListener('change', function () {
+        if (this.checked) {
+          selectedSize = this.value
+          console.log('Вибраний розмір:', selectedSize)
+        }
+      })
+    })
+
+    console.log('Вибраний розмір за межами функції:', selectedSize)
+
+
+
+    //матеріали
     for (const key in product.material) {
-      const li = document.createElement('li');
-      li.innerText = product.material[key];
-      materialList.appendChild(li);
+      const li = document.createElement('li')
+      li.innerText = product.material[key]
+      materialList.appendChild(li)
     }
     return productCard
   }
 
-  // Отримуємо контейнер, куди будемо додавати карточки товарів
-  const container = document.querySelector('.main-card_block');
+  const container = document.querySelector('.main-card_block')
 
-  // Проходимось по кожному об'єкту і створюємо карточку товару для кожного
   for (const key in cardBlock) {
     const product = cardBlock[key];
     const productCard = createProductCard(product);
     container.appendChild(productCard);
+  }
+
+  function createCatalogCard(product) {
+    const card = document.createElement('div')
+    card.classList.add('card')
+
+    card.innerHTML = `
+        <div class="img-card">
+            <span class="flag"></span>
+            <picture>
+                <img src="img/1/nb-3.png" alt="">
+            </picture>
+        </div>
+        <p class="name-card text-style">${product.headCatalog}</p>
+        <div class="price-card flex items-center">
+            <p class="sale-price blue-text">${product.priceCatalog} грн</p>
+            <p class="price">${product.saleCatalog} грн</p>
+        </div>
+        <div class="size-card flex"></div>
+        <a href="#" class="cta cta-card gradient text-style">купити</a>
+    `;
+    const sizeCard = card.querySelector(".size-card"),
+      sizesCatalog = ["40", "41", "42", "43", "44", "45"]
+    sizesCatalog.forEach(size => {
+      const input = document.createElement('input'),
+        inputId = `product-size-${product.id}-catalog-${size}`
+      input.setAttribute('type', 'radio')
+      input.setAttribute('name', `size-${product.id}`)
+      input.setAttribute('id', inputId)
+      input.classList.add('size-input')
+
+      const label = document.createElement('label')
+      label.setAttribute('for', inputId)
+      label.innerText = size
+
+      const p = document.createElement('p')
+      p.appendChild(input)
+      p.appendChild(label)
+      if (!product.sizeCatalog.includes(size)) {
+        input.disabled = true
+      }
+      sizeCard.appendChild(p)
+    })
+
+    return card
+  }
+
+  const catalogContainer = document.querySelector(".catalog-card")
+
+  for (const key in catalogProduct) {
+    const product = catalogProduct[key]
+    const catalogCard = createCatalogCard(product)
+    catalogContainer.appendChild(catalogCard)
   }
 
 
@@ -283,39 +386,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   cards[currentCardIndex].classList.add("active")
-
-  // // виклик функції на скрол відгуків
-
-  // sliderGalery(".comment-block", ".comment-card", true, 30, ".left", ".right")
-  // // sliderGalery(".main-card_block", ".slider-card", true, 30, ".prev", "..next")
-
-  //виведення кольору з масиву
-
-  // const colors = ["white", "black", "red"]
-
-  // const dynamicStyles = document.createElement('style')
-  // document.head.appendChild(dynamicStyles)
-
-  // colors.forEach(function (color) {
-  // let dynamicStyle
-  // if (color === "white") {
-  //   console.log(color)
-  //   dynamicStyle = `
-  //       .color-input + label[for="${color}"]{
-  //         background-color: ${color};
-  //         border: 0.5rem solid #ccc;
-  //       }
-  //   `
-  // } else {
-  //   console.log(color)
-  //   dynamicStyle = `
-  //         .color-input + label[for="${color}"]{
-  //           background-color: ${color};
-  //         }
-  //     `
-  // }
-  //   dynamicStyles.sheet.insertRule(dynamicStyle, dynamicStyles.sheet.cssRules.length)
-
 
   //slider
   class InfinitySlider {
@@ -674,48 +744,110 @@ document.addEventListener("DOMContentLoaded", function () {
   //   };
   // })
 
-  // const pictureSlider3 = new InfinitySlider(".product3", {
-    //   isArrows: true,
-  //   isSlidesToScrollAll: false,
-  //   baseCardWidth: "250px",
-  //   gap: 50,
-  //   isAutoplay: true,
-  //   autoplaySpeed: 5000,
-  //   transitionCard: "all 1.5s ease-in-out",
-  // });
-  
-  // const pictureSlider4 = new InfinitySlider(".product4", {
-    //   isArrows: true,
-    //   isSlidesToScrollAll: false,
-    //   baseCardWidth: "250px",
-    //   gap: 50,
-    //   isAutoplay: true,
-    //   autoplaySpeed: 5000,
-    //   transitionCard: "all 1.5s ease-in-out",
-    // });
-    
-    const slider = new InfinitySlider(".product1", {
-      isArrows: true,
-      isSlidesToScrollAll: false,
-      baseCardWidth: "250px",
-      gap: 50,
-      isAutoplay: true,
-      autoplaySpeed: 5000,
-      transitionCard: "all 1.5s ease-in-out",
-    })
+  const pictureSlider3 = new InfinitySlider(".product3", {
+    isArrows: true,
+    isSlidesToScrollAll: false,
+    baseCardWidth: "250px",
+    gap: 50,
+    isAutoplay: true,
+    autoplaySpeed: 5000,
+    transitionCard: "all 1.5s ease-in-out",
+  })
+
+  const pictureSlider2 = new InfinitySlider(".product2", {
+    isArrows: true,
+    isSlidesToScrollAll: false,
+    baseCardWidth: "250px",
+    gap: 50,
+    isAutoplay: true,
+    autoplaySpeed: 5000,
+    transitionCard: "all 1.5s ease-in-out",
+  });
+
+  const slider = new InfinitySlider(".product1", {
+    isArrows: true,
+    isSlidesToScrollAll: false,
+    baseCardWidth: "250px",
+    gap: 50,
+    isAutoplay: true,
+    autoplaySpeed: 5000,
+    transitionCard: "all 1.5s ease-in-out",
+  })
 
   slider.init()
   comment.init()
-  // pictureSlider2.init()
-  // pictureSlider3.init()
+  pictureSlider2.init()
+  pictureSlider3.init()
   // pictureSlider4.init()
   window.onresize = function () {
     slider.init()
     comment.init()
-    slider.init()
-    // pictureSlider2.init()
-    // pictureSlider3.init()
+    // slider.init()
+    pictureSlider2.init()
+    pictureSlider3.init()
     // pictureSlider4.init()
   };
+
+
+  // кошик
+  const addToCart = document.querySelectorAll(".add-to-cart"),
+    order = document.querySelector(".cart-order"),
+    cancelCart = document.querySelector(".cancel"),
+    modelName = document.querySelector(".model-order-name"),
+    fullPrice = document.querySelector(".sum"),
+    salePrice = document.querySelector(".sale-sum "),
+    priceToPay = document.querySelector(".pay-price"),
+    sizeOrder = document.querySelector(".size-order"),
+    cardProductPrice = document.querySelector(".order-price-sale"),
+    cardSalePrice = document.querySelector(".sale-price-order")
+
+
+  addToCart.forEach(index => {
+    index.addEventListener("click", function (e) {
+      e.preventDefault();
+      order.style.display = "flex";
+      let idProduct = index.getAttribute("data-item-key");
+
+      for (const key in cardBlock) {
+        const product = cardBlock[key];
+        if (idProduct == product.id) {
+          modelName.innerText = product.head;
+          cardProductPrice.innerText = product.saleprice;
+          cardSalePrice.innerText = product.price;
+          fullPrice.innerText = product.saleprice;
+          salePrice.innerText = parseFloat(product.saleprice) - parseFloat(product.price)
+          priceToPay.innerText = product.price
+          const sizeSelect = document.createElement('select');
+          sizeSelect.setAttribute("id", "sizeSelect");
+          sizeSelect.setAttribute("name", "sizeSelect");
+          product.size.forEach(size => {
+            const option = document.createElement('option');
+            option.setAttribute('value', size);
+            option.textContent = `${size}`;
+            // Перевіряємо, чи розмір співпадає з обраним розміром, і якщо так, то додаємо атрибут "selected"
+            if (selectedSize === size) {
+              option.setAttribute('selected', 'selected')
+            }
+
+            sizeSelect.appendChild(option);
+          })
+
+          sizeOrder.appendChild(sizeSelect);
+          const labelSelect = document.createElement("label");
+          labelSelect.setAttribute("for", "sizeSelect");
+          sizeOrder.appendChild(labelSelect);
+          break;
+        }
+      }
+    });
+  });
+
+
+  if (order) {
+    cancelCart.addEventListener("click", function (e) {
+      e.preventDefault()
+      order.style.display = "none"
+    })
+  }
 
 })
