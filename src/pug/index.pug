@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0")
         link(rel="stylesheet", href="css/styles.css")
         title Document
     body 
@@ -56,7 +56,7 @@ html(lang="en")
                                     </clipPath>
                                 </defs>
                             </svg> 
-                    nav 
+                    nav.header-menu
                         ul.menu.flex-between
                             li
                                 a(href="#") товари
@@ -73,121 +73,7 @@ html(lang="en")
                             </svg>
         main 
             section.card-section
-                .main-card_block
-                    .card_block.dark-bg 
-                        .name-block 
-                            hr
-                            .wrapper.flex-between.items-center
-                                h2.white-head.head new balance 510
-                                .button-card.flex-between.items-center
-                                    .number-card 
-                                        p.number 01/
-                                            span.number-of 10
-                                    .button.flex-between.items-center
-                                        a.prev(href="#")
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
-                                                <path d="M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z" fill="white"/>
-                                            </svg> 
-                                        a.next(href="#") 
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
-                                                <path d="M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z" fill="white"/>
-                                            </svg>
-                                            span.pointer 
-                                                <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <rect y="15" width="30" height="30" transform="rotate(-30 0 15)" fill="url(#pattern0)"/>
-                                                    <defs>
-                                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                                            <use xlink:href="#image0_41_1656" transform="scale(0.01)"/>
-                                                        </pattern>
-                                                        <image id="image0_41_1656" width="100" height="100" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFMklEQVR4nO2dXYhWRRjHp6woS/vQoIs+KfKuG6ub6CpIJSqtLoqo7MMKukizhKAvUHETL8q9qIuSIMqkbqIyqEgsJQoVuwmhgtpSd73YPnV3xfYXw47r6zDnvPOeM3PemTnzgwPL2eeZj+d/zsycec/MESKTyWQymYgBZgA3AhuAb4AR4Kg6RtS5DcpmRr/LmyzAWcAqFXRbRpTPmf0uf1IAdwFDVGcIuKPf9Yge4BTgJWCS+kwCA8Cp/a5XlMjAAZsLgjsKvAncDswDzlaH/HsxsEnZmHg3i1JNkLWGYB5R58+18D8PWAeMGdJZXekqaXmfoTdTvwPzK6R1HbDf0Hwt8VP6NEdTQwYxLq6R5iUGUX7Noy+74K0yNFPzHaR7vaH5erpuum146NOfM9Y6TH9AS3s4d/DlAZNP152MlnXgwALgA+BHdbwP3NSlo9dHXzfUFTpZ1JRHJ5tKnk8GKWagJI+3NNv1XisVM2oeqpPFBXYP0B3jKEo+sWt2O71XLFaAQ1qwri6w+85CkC8LfOXDYyfD3isWK8CEFqxZBXb/WggyWuA7S7Mb916xWJHB0YI1s8DOigLfmZrZmPeKxYoahnZymQdBLtfMDnivWKwAOyw7ZisKfO/UzLZ7r1isABu1YL3mQZDXNbNXvVcsVoBFWrD+As5xJQhTHbpMs5MFjVUwNoAzDP3IaoeCrNFMDso8G6tgjAAvdBuW1hBkXDN5vrGKxYpqVk6aKncoiH53zG6sYgn8QDWN4f9WdPHLLz30KMqgR0Fe6akwmenfRrZ4EGRzfoGuniiDDgXZmMXwQFVBMp7IggRGFiQwsiCBkQUJjCxIYGRBEhOEqamZr4B/1LE9T6X0SRDg5RKXdXXK1VqqCgIstHC7ueTlvPuAr9VddRjYC6xs/W8qNQT5xMLtowJB3ijx+Rw4XbSVGoIMW7gdNPjdbeG3QrSVGoLYMGnw+8LCb69oK54FOWbws1mKPVYyY/0Y8K3qe46ovmdFMs2cZ0EmHOYnBwLvlbh8nMT6lBoBosqVXiO/ey3clonYqREgGw47zO8zC7cdInZqBMiGvx3mt79KftFRI0A2/Okwvz+q+EWHbYDoWEqtlkbb8B9wfgW/LIgFW1VA5fEp9nwoxezVz3Dh5Dukn2RBAiMKQYC5aoulXXJEoY5d6tycimmGyqXamnjZH3XFacC7BO42OWopKYu8gm6tkG6oyFnfK4CL1CYGVviJvlkMmytE2jzUY9pJ4U+FEwGb0+XOqCUKiSF8o/qHXrEWhcQQDQiyp2LZrEQhMUQDgsiRVFXkbm+PZ0EcYljp6lQUEkP4BtjtoJyFzReJIRoQ5EVHZTWKQmKIhoa9VtMGVUQhMURgD4Y9i0JiiKYAHnQoynRHT2KIJpFXtmtRSAzRNPLNCkcb6uNQ3PYKokR5OMVgRitIFiVAQZQoj+Q7JSBBPPQp0SNCIItyAhEKwKP5TiEcQSTqVf1WN18iNIAnaTEiRIDltBQRKi0VZVyEjFrq1SYOidABnqE9fC9iAHiKdrBFxILaJSF1VoqYAJ4lba4RsZFwn7JPxArwHOmxXCT2FdCYOVD0SaeocPjOV79ZKlJBfsOWuCckt4rUAO4HjhIfPwEXiBQBrgV+IR5+A64SKQNcePwrCoHzA3ClaAvAEuBnwuSdVn7Nh6mPij1huelLE+yrsso4OYDT1B0jt9Y41rAIcvS3E7hHlqPfsQgOYDZwi9qvd5saBNRd4XWcCfWFa7kRwtvq/YDpzQMymUwmkxGB8j9kimsss/L3AwAAAABJRU5ErkJggg=="/>
-                                                    </defs>
-                                                </svg>
-                            hr
-                        .image-block.flex-between
-                            .image 
-                                picture 
-                                    img(src="img/1/nb-1.png", alt="")
-                            .image 
-                                picture 
-                                    img(src="img/1/nb-2.png", alt="")
-                            .image 
-                                picture 
-                                    img(src="img/1/nb-3.png", alt="")
-                            .image 
-                                picture 
-                                    img(src="img/1/nb-4.png", alt="")
-                        .count-price_block.flex
-                            .count 
-                                p залишок - 
-                                    span.blue-text 5шт
-                            .price 
-                                p ціна - 
-                                    span.blue-text 2300 грн
-                                    span.full-price 3000 грн
-                    .haracteristic-block 
-                        h2.dark-head.head характеристики товару
-                        form(action="#")  
-                            .wrapper.flex-between
-                                .size-block
-                                    .size 
-                                        p.haracteristic-name розміри:
-                                        .flex.input-size-block
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size38")
-                                                label(for="product-size38") 37
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size38")
-                                                label(for="product-size38") 38
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size39")
-                                                label(for="product-size39") 39
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size40")
-                                                label(for="product-size40") 40
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size41")
-                                                label(for="product-size41") 41
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size42")
-                                                label(for="product-size42") 42
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size43")
-                                                label(for="product-size43") 43
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size44")
-                                                label(for="product-size44") 44
-                                            p
-                                                input.size-input(type="checkbox", name="size" id="product-size44")
-                                                label(for="product-size44") 45
-                                    .article 
-                                        p.haracteristic-name артикул:
-                                        p 098746
-                                    .material 
-                                        p.haracteristic-name Матеріал:
-                                        ul 
-                                            li Матеріал верху: 56,02% шкіра, 43,98% синтетичні матеріали 
-                                            li Матеріал підошви: гума; проміжна підошва зі CMEVA – для легкості
-                                .color-block
-                                    .color
-                                        p.haracteristic-name кольори:
-                                        .flex.input-size-block
-                                            p
-                                                input.color-input(type="radio", name="color" id="white")
-                                                label(for="white")
-                                            p
-                                                input.color-input(type="radio", name="color" id="black")
-                                                label(for="black")
-                                            p
-                                                input.color-input(type="radio", name="color" id="red")
-                                                label(for="red")
-                                    .country 
-                                        p.haracteristic-name Країна-виробник:
-                                        p Україна
-                                    .description 
-                                        p.haracteristic-name опис:
-                                        p Наші New Balance 515 створені спеціально для тих, хто хоче закарбувати своє почуття стилю в повсякденному образі. У них компонуються тільки найкращі кольори та матеріали, що стало традицією фірми. Також ми зберегли оригінальну зручність і комфорт у сукупності з трендами сучасності.
-                            .flex.cta-submit
-                                button(type="submit").text-style.gradient купити
+                .main-card_block.flex
             section.how-get-size.dark-bg
                 .wrapper
                     h2.white-head.head як обрати розмір
@@ -360,7 +246,7 @@ html(lang="en")
                     form(action="#")
                         .contact-name
                             p.cart-head ваші контактні дані:
-                            .flex-between 
+                            .flex-between.input-flex
                                 .name
                                     label(for="name") 
                                     input(type="text" id="name" placeholder="введіть ваше імʼя*" required)
@@ -386,22 +272,23 @@ html(lang="en")
                                             p.model-order-name.text-style New balance 510
                                         .size-order 
                                             p.size-order-text Розмір:
-                                            select#size(name="size") 
+                                            select#sizeSelect(name="size") 
                                                 option(value="40" selected) 40 (26см) 
                                                 option(value="41") 41 (27см) 
                                                 option(value="42") 42 (28см) 
                                                 option(value="43") 43 (28,5см) 
                                                 option(value="44") 44 (29см) 
                                                 option(value="45") 45 (29,5см) 
+                                            label(for="sizeSelect")
                                 .order-price.flex.items-center
                                     p.sale-price.blue-text 1550 грн
                                     p.price.order-price-sale 2400 грн
                         .sum-order 
-                            .flex-between 
-                                p.text-style Сума без знижки:
+                            .flex-between.sum-flex.items-center
+                                p.text-style.without-sale Сума без знижки:
                                 p.sum 7200 грн
-                            .flex-between 
-                                p.text-style знижка:
+                            .flex-between.sum-flex.items-center
+                                p.text-style.with-sale знижка:
                                 p.sale-sum 2550 грн
                         hr.cart-hr
                         .flex-between 
@@ -457,8 +344,8 @@ html(lang="en")
             section.comment#comment 
                 h2.bark-head.head відгуки
                 p.black-kharkiv більше 1000 відгуків про нас
-                .wrapper
-                    .comment-block.flex
+                .wrapper.comment-slider.slider-comment
+                    .comment-block.flex.slider-container
                         .comment-card
                             .flex-between
                                 .name-comment 
@@ -544,11 +431,11 @@ html(lang="en")
                                 p.text-comment-block Сподобалась ціна, доречі дешевше ніж у конкурентів і якість взуття теж на високому рівні. Дякую Прому за його сервіс оплати і Новій пошті, які роблять просто неймовірні речі. 
                                 p.text-comment-block Вчора замовив товар, сьогодні отримав замовлення. В наш тяжкий час це найкраща оцінка вашої діяльності. Також порадував продавець ввічливим і відповідальним ставленням до клієнтів.
                 .button-block.flex
-                    a.left.btn.btn-comment(href="#")
+                    a.left.slider_navigation.btn.btn-comment(href="#")
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 40" fill="none">
                             <path d="M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z" fill="#4E98B6"/>
                         </svg>
-                    a.right.btn.btn-comment(href="#")
+                    a.right.slider_navigation.btn.btn-comment(href="#")
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 40" fill="none">
                             <path d="M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z" fill="#4E98B6"/>
                         </svg>
@@ -574,12 +461,14 @@ html(lang="en")
                             p м. Хмельницький, <br> вул. Львівське шосе, 55/2б
                     .privacy 
                         a(href="#").privacy-police політика конфіденційності
-            .footer-bottom 
+            .footer-bottom.flex-items-center
                 span 
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                         <path d="M10.66 10.75C10.1131 11.2323 9.40921 11.499 8.67999 11.5C7.02249 11.5 5.67999 10.1575 5.67999 8.5C5.67999 6.8425 7.02249 5.5 8.67999 5.5C9.40921 5.50105 10.1131 5.76767 10.66 6.25M8.5 16C4.36 16 1 12.64 1 8.5C1 4.36 4.36 1 8.5 1C12.64 1 16 4.36 16 8.5C16 12.64 12.64 16 8.5 16Z" stroke="#4E98B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 span 2024 Інтернет-магазин "Взуттєвий магнат". Всi права захищенi.
+
+    script(src="js/scripts.js" defs)
 
                 
                                     
