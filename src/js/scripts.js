@@ -98,12 +98,12 @@ let catalogProduct = {
     countCatalog: rand(1, 10),
   }
 }
-
-function roundUpToMultipleOfTen(num) {
+// округлення знижки
+function roundUp(num) {
   if (num === 0) {
-    return 0;
+    return 0
   } else {
-    return Math.ceil(num / 10) * 10;
+    return Math.ceil(num / 10) * 10
   }
 }
 
@@ -124,18 +124,12 @@ function applyDiscount(price, discount) {
 }
 
 Object.keys(cardBlock).forEach(key => {
-  const product = cardBlock[key]
-  const discount = calculateDiscount(product.remainder)
-  const discountedPrice = applyDiscount(parseFloat(product.price), discount)
-  // Округлення ціни
-  const roundedPrice = roundUpToMultipleOfTen(discountedPrice)
+  const product = cardBlock[key],
+    discount = calculateDiscount(product.remainder),
+    discountedPrice = applyDiscount(parseFloat(product.price), discount),
+    roundedPrice = roundUp(discountedPrice)
   product.price = roundedPrice.toFixed(0) + " грн"
 })
-
-console.log(cardBlock)
-
-
-console.log(cardBlock)
 
 let selectedSize
 
@@ -282,10 +276,7 @@ function createProductCard(product) {
     document.head.appendChild(styleElement)
   }
 
-
   // розміри
-  // Оголошення змінної за межами функції
-
   const sizes = ["38", "39", "40", "41", "42", "43", "44", "45"]
 
   sizes.forEach(size => {
@@ -316,10 +307,6 @@ function createProductCard(product) {
       }
     })
   })
-
-  console.log('Вибраний розмір за межами функції:', selectedSize)
-
-
 
   //матеріали
   for (const key in product.material) {
@@ -745,28 +732,6 @@ const comment = new InfinitySlider(".slider-comment", {
   transitionCard: "all 1.5s ease-in-out",
 });
 
-// const mainSlider = new InfinitySlider(".main-slider", {
-//   isArrows: true,
-//   isSlidesToScrollAll: false,
-//   baseCardWidth: "250px",
-//   gap: 50,
-//   isAutoplay: true,
-//   autoplaySpeed: 5000,
-//   transitionCard: "all 1.5s ease-in-out",
-// });
-
-// Ініціалізація слайдерів для кожного товару
-// document.querySelectorAll('.product').forEach((product, index) => {
-//   slider.init()
-//   window.onresize = function () {
-//     // slider.init()
-//     slider.init()
-//     // pictureSlider2.init()
-//     // pictureSlider3.init()
-//     // pictureSlider4.init()
-//   };
-// })
-
 const pictureSlider3 = new InfinitySlider(".product3", {
   isArrows: false,
   isSlidesToScrollAll: false,
@@ -796,21 +761,19 @@ const slider = new InfinitySlider(".product1", {
   autoplaySpeed: 5000,
   transitionCard: "all 1.5s ease-in-out",
 })
-
-slider.init()
-comment.init()
-pictureSlider2.init()
-pictureSlider3.init()
-// pictureSlider4.init()
-window.onresize = function () {
+function initSlider() {
   slider.init()
   comment.init()
-  // slider.init()
   pictureSlider2.init()
   pictureSlider3.init()
-  // pictureSlider4.init()
-};
-
+  window.onresize = function () {
+    slider.init()
+    comment.init()
+    pictureSlider2.init()
+    pictureSlider3.init()
+  }
+}
+initSlider()
 const cards = document.querySelectorAll(".slider-card"),
   nextButtons = document.querySelectorAll(".next"),
   prevButtons = document.querySelectorAll(".prev")
@@ -833,19 +796,7 @@ nextButtons.forEach((button, index) => {
   button.addEventListener("click", (event) => {
     event.preventDefault()
     showNextCard(index)
-    slider.init()
-    comment.init()
-    pictureSlider2.init()
-    pictureSlider3.init()
-    // pictureSlider4.init()
-    window.onresize = function () {
-      slider.init()
-      comment.init()
-      // slider.init()
-      pictureSlider2.init()
-      pictureSlider3.init()
-      // pictureSlider4.init()
-    };
+    initSlider()
   })
 })
 
@@ -853,23 +804,11 @@ prevButtons.forEach((button, index) => {
   button.addEventListener("click", (event) => {
     event.preventDefault()
     showPreviousCard(index)
-    slider.init()
-    comment.init()
-    pictureSlider2.init()
-    pictureSlider3.init()
-    // pictureSlider4.init()
-    window.onresize = function () {
-      slider.init()
-      comment.init()
-      // slider.init()
-      pictureSlider2.init()
-      pictureSlider3.init()
-      // pictureSlider4.init()
-    };
+    initSlider()
   })
 })
-
 cards[currentCardIndex].classList.add("active")
+
 // кошик
 const addToCart = document.querySelectorAll(".add-to-cart"),
   order = document.querySelector(".cart-order"),
@@ -924,7 +863,6 @@ addToCart.forEach(index => {
     }
   })
 })
-
 
 if (order) {
   cancelCart.addEventListener("click", function (e) {

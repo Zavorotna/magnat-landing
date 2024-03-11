@@ -148,8 +148,8 @@ html(lang="en")
                                     </svg>
                                 .order-descript.flex
                                     .img-order 
-                                        //- picture 
-                                        //-     img(src="img/1/nb-1.png", alt="")
+                                        picture 
+                                            img(src="img/1/nb-1.png", alt="")
                                     .descript-order
                                         .model
                                             p.model-order модель:
@@ -162,14 +162,14 @@ html(lang="en")
                         .sum-order 
                             .flex-between.sum-flex.items-center
                                 p.text-style.without-sale Сума без знижки:
-                                p.sum 
+                                p.sum 0
                             .flex-between.sum-flex.items-center
                                 p.text-style.with-sale знижка
-                                p.sale-sum 
+                                p.sale-sum 0
                         hr.cart-hr
                         .flex-between 
                             p.pay-sum Сума до оплати:
-                            p.pay-price 
+                            p.pay-price 0
                         .flex.cta-submit.cta-cart
                             button(type="submit").text-style.gradient замовити
             section.about-us#aboutUs.wrapper
