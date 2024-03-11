@@ -1,10 +1,10 @@
 @import components/mixins
 html
     font-size: 1px
+    scroll-behavior: smooth
 body
     margin: 0
     box-sizing: border-box
-    scroll-behavior: smooth
 
 a
     text-decoration: none
@@ -51,10 +51,11 @@ section
 
 .gradient
     transition: all .5s ease
-    background: linear-gradient(90deg, #4E98B6 0%, #00D589 100%)
+    background: linear-gradient(90deg, #4E98B6 0%, #00D589 50%, #4E98B6 100%)
+    background-size: 200% 100%
     &:hover
-        background: linear-gradient(90deg, #00D589 0%, #4E98B6 100%)
-        
+        background-position: 100% 0
+
 .header-menu
     width: 100%
     position: absolute
@@ -85,6 +86,7 @@ section
             font-size: 18rem
         &:hover
             transform: scale(1.05)
+            color: #4E98B6
 
 .header
     position: relative
@@ -177,6 +179,16 @@ section
 .number-of
     color: #FFF
     font-weight: 300
+.prev, .next
+    transition: all .25s ease
+    svg > path 
+        fill: #fff
+    &:hover
+        border: 1px solid #4E98B6
+        background-color: #4E98B6
+    &:hover
+        svg > path
+            fill: #fff
 
 .prev, .next, .left, .right
     display: block
@@ -245,7 +257,7 @@ section
     font-size: 24px
     font-weight: 600
 
-.full-price, .full-price-card 
+.full-price, .full-price-card
     display: inline-block
     padding-left: 10rem
     font-family: Montserrat
@@ -321,8 +333,7 @@ p.haracteristic-name
 .size-input:checked + label
     color: #4E98B6
     border: 1px solid #4E98B6
-        
-    
+
 .color-input + label
     border: none
 
@@ -385,10 +396,6 @@ p.haracteristic-name
             &:last-child
                 left: 85%
                 transform: translate(0)
-                
-                
-
-
 
 .size-table
     margin: 0 auto
@@ -435,7 +442,46 @@ div.catalog-card
         width: 20vw
 
 .img-card
+    position: relative
     border: 1px solid #000
+.flag
+    position: absolute
+    padding: 11rem 26rem
+    top: 20rem
+    right: -5.5rem
+    color: #FFF
+    text-align: center
+    font-family: "Kharkiv Tone"
+    font-size: 10px
+    font-weight: 400
+    text-transform: uppercase
+    &::before
+        content: ""
+        position: absolute
+        bottom: -4rem
+        right: 1.5rem
+        border: 4rem solid transparent
+        transform: rotate(135deg)
+
+.green-flag
+    background: #24B40C
+    &::before
+        border-top-color: #0B5517
+
+.purple-flag
+    background: #641AC2
+    &::before
+        border-top-color: #1F093C
+
+.darkgreen-flag
+    background: #0B5517
+    &::before
+        border-top-color: #061509
+
+.blue-flag
+    background: #4E98B6
+    &::before
+        border-top-color: #25445E
 
 .name-card
     padding: 30rem 0 20rem
@@ -827,7 +873,15 @@ p.sale-numb
     padding-top: 30rem
     justify-content: center
     .btn
+        transition: all .25s ease
         border: 1px solid #4E98B6
+        svg > path
+            fill: #4E98B6
+        &:hover
+            background-color: #4E98B6
+        &:hover
+            svg > path
+                fill: #fff
 
 .footer
     padding: 63rem 0 57rem

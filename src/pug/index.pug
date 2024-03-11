@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0")
         link(rel="stylesheet", href="css/styles.css")
-        title Document
+        title Взуттєвий магнат - твій інтернет-магазин взуття
     body 
         include components/mixins
         header#up
@@ -59,13 +59,13 @@ html(lang="en")
                     nav.header-menu
                         ul.menu.flex-between
                             li
-                                a(href="#") товари
+                                a(href="#catalog") товари
                             li
-                                a(href="#") про нас
+                                a(href="#aboutUs") про нас
                             li
-                                a(href="#") sale
+                                a(href="#saleProposition") sale
                             li
-                                a(href="#") відгуки
+                                a(href="#comment") відгуки
                     .social.flex
                         a(href="https://t.me/Vzuttevuymagnat")
                             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="25" viewBox="0 0 29 25" fill="none">
@@ -220,7 +220,7 @@ html(lang="en")
             section.comment#comment 
                 h2.bark-head.head відгуки
                 p.black-kharkiv більше 1000 відгуків про нас
-                .wrapper.comment-slider.slider-comment
+                .wrapper.comment-slider.slider-comment#commentSlider
                     .comment-block.flex.slider-container
                         .comment-card
                             .flex-between
@@ -307,13 +307,13 @@ html(lang="en")
                                 p.text-comment-block Сподобалась ціна, доречі дешевше ніж у конкурентів і якість взуття теж на високому рівні. Дякую Прому за його сервіс оплати і Новій пошті, які роблять просто неймовірні речі. 
                                 p.text-comment-block Вчора замовив товар, сьогодні отримав замовлення. В наш тяжкий час це найкраща оцінка вашої діяльності. Також порадував продавець ввічливим і відповідальним ставленням до клієнтів.
                 .button-block.flex
-                    a.left.slider_navigation.btn.btn-comment(href="#")
+                    a.btn.btn-comment.left.slider_navigation(href="#")
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 40" fill="none">
-                            <path d="M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z" fill="#4E98B6"/>
+                            <path d="M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z"/>
                         </svg>
-                    a.right.slider_navigation.btn.btn-comment(href="#")
+                    a.btn.btn-comment.right.slider_navigation(href="#")
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 40" fill="none">
-                            <path d="M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z" fill="#4E98B6"/>
+                            <path d="M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z"/>
                         </svg>
         footer.dark-bg.footer
             .wrapper.flex-between.items-center
