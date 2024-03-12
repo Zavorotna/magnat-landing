@@ -28,6 +28,18 @@ img
 section
     padding: 50rem 0
 
+.toast
+    transition: all 1s ease
+    position: fixed
+    top: 0
+    right: 0
+    padding: 30rem 50rem
+    font-family: "Kharkiv Tone"
+    background-color: #4E98B6
+    font-size: 15rem
+    color: #fff
+    opacity: 1
+
 .wrapper
     max-width: 80%
     margin: 0 auto
@@ -135,11 +147,37 @@ section
     +media(768)
     padding-top: 0
 
-.slider-card
-    display: none
+.main-slider
+    .left.slider_navigation,
+    .right.slider_navigation
+        position: absolute
+        bottom: 1170rem
+        display: block
+        max-width: 200rem
+        padding: 20rem
+        width: 100%
+        box-sizing: border-box
+        border: 1px solid #fff
+        transition: all .25s ease
+        border: 1px solid #fff
+        z-index: 4
+    .left.slider_navigation
+        right: 27%
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23fff'/%3E%3C/svg%3E")
+        cursor: pointer
+        &:hover
+            border: 1px solid #4E98B6
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
+            background-color: #4E98B6
 
-.active
-    display: block
+    .right.slider_navigation
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23fff'/%3E%3C/svg%3E")
+        cursor: pointer
+        left: 75%
+        &:hover
+            border: 1px solid #4E98B6
+            background-color: #4E98B6
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
 
 .card_block
     width: 100vw
@@ -152,6 +190,8 @@ section
 .name-block
     padding-top: 50rem
     h2
+        text-align: left
+        width: 50%
         padding: 18rem 0
         +media(768)
             padding: 38rem 0
@@ -169,6 +209,7 @@ section
     column-gap: 30rem
 
 .number-card
+    display: flex
     font-family: Montserrat
     font-size: 24rem
 
@@ -177,18 +218,19 @@ section
     font-weight: 500
 
 .number-of
+    display: inline
     color: #FFF
     font-weight: 300
 .prev, .next
     transition: all .25s ease
     svg > path 
-        fill: #fff
+    fill: #fff
     &:hover
         border: 1px solid #4E98B6
         background-color: #4E98B6
     &:hover
         svg > path
-            fill: #fff
+        fill: #fff
 
 .prev, .next, .left, .right
     display: block
@@ -271,7 +313,8 @@ section
         width: 50%
 
 .haracteristic-block
-    padding: 50rem 0
+    height: 100vh
+    padding: 50rem 0 80rem
 
 .size,
 .article,
@@ -828,6 +871,7 @@ p.sale-numb
     overflow: hidden
 
 .comment-block
+    padding-bottom: 80rem
     height: 500rem
 
 .comment-card
@@ -869,19 +913,35 @@ p.sale-numb
     font-size: 14px
     font-weight: 400
 
-.button-block
-    padding-top: 30rem
-    justify-content: center
-    .btn
-        transition: all .25s ease
-        border: 1px solid #4E98B6
-        svg > path
-            fill: #4E98B6
-        &:hover
-            background-color: #4E98B6
-        &:hover
-            svg > path
-                fill: #fff
+.left.slider_navigation,
+.right.slider_navigation
+    position: absolute
+    bottom: 0rem
+    display: block
+    max-width: 200rem
+    padding: 20rem
+    width: 100%
+    box-sizing: border-box
+    border: 1px solid #fff
+    transition: all .25s ease
+    border: 1px solid #4E98B6
+    z-index: 4
+
+.left.slider_navigation
+    right: 55%
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E")
+    cursor: pointer
+    &:hover
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
+        background-color: #4E98B6
+
+.right.slider_navigation
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E")
+    cursor: pointer
+    left: 55%
+    &:hover
+        background-color: #4E98B6
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
 
 .footer
     padding: 63rem 0 57rem

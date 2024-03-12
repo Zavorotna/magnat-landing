@@ -73,7 +73,124 @@ html(lang="en")
                             </svg>
         main 
             section.card-section
-                .main-card_block.flex
+                .main-card_block.flex.main-slider#mainSlider
+                    .slider-container
+                        .slider-card
+                            .card_block.dark-bg
+                                .name-block
+                                    hr
+                                    .wrapper.flex.items-center.head-flex
+                                        h2.white-head.head.product 
+                                        .number-card
+                                            p.number
+                                            p.number-of
+                                    hr
+                                    .product-img.product1#product1
+                                        .flex-between.slider-container
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-1.png' alt='' loading='lazy')
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-2.png' alt='' loading='lazy')
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-3.png' alt='' loading='lazy')
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-4.png' alt='' loading='lazy')
+                                    .count-price_block.flex
+                                        .count.flex
+                                            p залишок - 
+                                            p.blue-text.remainder
+                                        .price-card
+                                            p ціна - 
+                                                span.blue-text
+                                                span.full-price-card
+                            .haracteristic-block
+                                h2.dark-head.head характеристики товару
+                                form(action='#')
+                                    .wrapper.flex-between
+                                        .size-block
+                                            .size
+                                                p.haracteristic-name розміри:
+                                                .flex.input-size-block.size-inputs
+                                            .article
+                                                p.haracteristic-name артикул:
+                                                p.article-id
+                                            .material
+                                                p.haracteristic-name Матеріал:
+                                                ul
+                                        .color-block
+                                            .color
+                                                p.haracteristic-name кольори:
+                                                .flex.input-size-block.color-input-block
+                                            .country
+                                                p.haracteristic-name Країна-виробник:
+                                                p.country-name 
+                                            .description
+                                                p.haracteristic-name опис:
+                                                p.text-descript
+                                    .flex.cta-submit.add-to-cart
+                                        button.text-style.gradient(type='submit') купити
+                        .slider-card
+                            .card_block.dark-bg
+                                .name-block
+                                    hr
+                                    .wrapper.flex.items-center.head-flex
+                                        h2.white-head.head.product 
+                                        .number-card
+                                            p.number
+                                            p.number-of
+                                    hr
+                                    .product-img.product2#product2
+                                        .flex-between.slider-container
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-1.png' alt='' loading='lazy')
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-2.png' alt='' loading='lazy')
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-3.png' alt='' loading='lazy')
+                                            .image
+                                                picture
+                                                    img(src='img/1/nb-4.png' alt='' loading='lazy')
+                                    .count-price_block.flex
+                                        .count.flex
+                                            p залишок - 
+                                            p.blue-text.remainder
+                                        .price-card
+                                            p ціна - 
+                                                span.blue-text
+                                                span.full-price-card
+                            .haracteristic-block
+                                h2.dark-head.head характеристики товару
+                                form(action='#')
+                                    .wrapper.flex-between
+                                        .size-block
+                                            .size
+                                                p.haracteristic-name розміри:
+                                                .flex.input-size-block.size-inputs
+                                            .article
+                                                p.haracteristic-name артикул:
+                                                p.article-id
+                                            .material
+                                                p.haracteristic-name Матеріал:
+                                                ul
+                                        .color-block
+                                            .color
+                                                p.haracteristic-name кольори:
+                                                .flex.input-size-block.color-input-block
+                                            .country
+                                                p.haracteristic-name Країна-виробник:
+                                                p.country-name 
+                                            .description
+                                                p.haracteristic-name опис:
+                                                p.text-descript
+                                    .flex.cta-submit.add-to-cart
+                                        button.text-style.gradient(type='submit') купити
             section.how-get-size.dark-bg
                 .wrapper
                     h2.white-head.head як обрати розмір
@@ -124,6 +241,28 @@ html(lang="en")
             section.catalog.wrapper#catalog 
                 h2.dark-head.head каталог товарів
                 .flex-between.catalog-card
+                    .card 
+                        .img-card
+                            p.flag
+                            picture.hover-img
+                                img(src="img/1/nb-3.png" alt="")
+                        p.name-card.text-style
+                        .price-card.flex.items-center
+                            p.sale-price.blue-text
+                            p.price
+                        .size-card.flex
+                        a.cta.cta-card.gradient.text-style(href="#") купити
+                    .card 
+                        .img-card
+                            p.flag
+                            picture.hover-img
+                                img(src="img/1/nb-3.png" alt="")
+                        p.name-card.text-style
+                        .price-card.flex.items-center
+                            p.sale-price.blue-text
+                            p.price
+                        .size-card.flex
+                        a.cta.cta-card.gradient.text-style(href="#") купити
             section.cart-product.dark-bg
                 h2.white-head.head замовлення товару
                 .cart 
@@ -306,15 +445,6 @@ html(lang="en")
                             .text-comment
                                 p.text-comment-block Сподобалась ціна, доречі дешевше ніж у конкурентів і якість взуття теж на високому рівні. Дякую Прому за його сервіс оплати і Новій пошті, які роблять просто неймовірні речі. 
                                 p.text-comment-block Вчора замовив товар, сьогодні отримав замовлення. В наш тяжкий час це найкраща оцінка вашої діяльності. Також порадував продавець ввічливим і відповідальним ставленням до клієнтів.
-                .button-block.flex
-                    a.btn.btn-comment.left.slider_navigation(href="#")
-                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 40" fill="none">
-                            <path d="M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z"/>
-                        </svg>
-                    a.btn.btn-comment.right.slider_navigation(href="#")
-                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 40" fill="none">
-                            <path d="M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z"/>
-                        </svg>
         footer.dark-bg.footer
             .wrapper.flex-between.items-center
                 .mail 
