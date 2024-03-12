@@ -132,7 +132,7 @@ html(lang="en")
                                                 p.haracteristic-name опис:
                                                 p.text-descript
                                     .flex.cta-submit.add-to-cart
-                                        button.text-style.gradient(type='submit') купити
+                                        a(href="#cart").text-style.gradient.cart-cta купити
                         .slider-card
                             .card_block.dark-bg
                                 .name-block
@@ -190,7 +190,7 @@ html(lang="en")
                                                 p.haracteristic-name опис:
                                                 p.text-descript
                                     .flex.cta-submit.add-to-cart
-                                        button.text-style.gradient(type='submit') купити
+                                        a(href="#cart").text-style.gradient.cart-cta купити
             section.how-get-size.dark-bg
                 .wrapper
                     h2.white-head.head як обрати розмір
@@ -251,7 +251,7 @@ html(lang="en")
                             p.sale-price.blue-text
                             p.price
                         .size-card.flex
-                        a.cta.cta-card.gradient.text-style(href="#") купити
+                        a.cta.cta-card.gradient.text-style.cart-cta(href="#cart") купити
                     .card 
                         .img-card
                             p.flag
@@ -262,8 +262,8 @@ html(lang="en")
                             p.sale-price.blue-text
                             p.price
                         .size-card.flex
-                        a.cta.cta-card.gradient.text-style(href="#") купити
-            section.cart-product.dark-bg
+                        a.cta.cta-card.gradient.text-style.cart-cta(href="#cart") купити
+            section.cart-product.dark-bg#cart
                 h2.white-head.head замовлення товару
                 .cart 
                     form(action="#")
@@ -309,7 +309,7 @@ html(lang="en")
                         .flex-between 
                             p.pay-sum Сума до оплати:
                             p.pay-price 0
-                        .flex.cta-submit.cta-cart
+                        .flex.cta-submit.cta-cart-submit
                             button(type="submit").text-style.gradient замовити
             section.about-us#aboutUs.wrapper
                 h2.black-head.head про нас

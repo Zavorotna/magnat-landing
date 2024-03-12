@@ -313,16 +313,11 @@ section
         width: 50%
 
 .haracteristic-block
+    overflow-y: scroll
     height: 100vh
     padding: 50rem 0 80rem
 
-.size,
-.article,
-.material,
-.color,
-.haracteristic-name,
-.country,
-.description
+.size, .article, .material, .color, .haracteristic-name, .country, .description
     padding-bottom: 20rem
     +media(768)
         padding-bottom: 40rem
@@ -396,12 +391,14 @@ p.haracteristic-name
 
 .cta-submit
     justify-content: center
-    button
+    a, button
+        display: block
         width: 90%
         max-width: 400rem
-        padding: 30rem 50rem
+        padding: 30rem 0
         border: none
         cursor: pointer
+        box-sizing: border-box
         +media(768)
             padding: 30rem 120rem
 
@@ -918,14 +915,17 @@ p.sale-numb
     position: absolute
     bottom: 0rem
     display: block
-    max-width: 200rem
     padding: 20rem
+    max-width: 100rem
     width: 100%
     box-sizing: border-box
     border: 1px solid #fff
     transition: all .25s ease
     border: 1px solid #4E98B6
     z-index: 4
+    box-sizing: border-box
+    +media(1024)
+        max-width: 200rem
 
 .left.slider_navigation
     right: 55%

@@ -6,6 +6,7 @@ function fetchData() {
     .then(data => {
       jsonData = data
       createCard(data)
+      cart(data)
     })
     .catch(error => console.error("Помилка завантаження даних:", error))
 }
@@ -17,7 +18,7 @@ function createCard(data) {
     const product = data[key]
     const cardContainer = mainCard[index],
       catalogCardContainer = catalogCard[index]
-    if (!cardContainer || !catalogCard) return
+    if (!cardContainer || !catalogCardContainer) return
 
     let productNameElement = cardContainer.querySelector('.product'),
       priceElement = cardContainer.querySelector('.price-card .blue-text'),
@@ -34,11 +35,54 @@ function createCard(data) {
       catalogName = catalogCardContainer.querySelector(".name-card"),
       catalogFullPrice = catalogCardContainer.querySelector(".sale-price"),
       catalogPrice = catalogCardContainer.querySelector(".price"),
-      sizeBlockCatalog = catalogCardContainer.querySelector('.size-card')
+      sizeBlockCatalog = catalogCardContainer.querySelector('.size-card'),
+      btnCart = cardContainer.querySelector('.cart-cta'),
+      btnCartCatalog = catalogCardContainer.querySelector('.cart-cta')
 
+    // округлення знижки
+    function roundUp(num) {
+      if (num === 0) {
+        return 0
+      } else {
+        return Math.ceil(num / 10) * 10
+      }
+    }
+
+    function calculateDiscount(remainder) {
+      if (remainder >= 10) {
+        fullPrice.style.display = "none"
+        catalogPrice.style.display = "none"
+        return 0
+      } else if (remainder <= 10 && remainder > 5) {
+        fullPrice.style.display = "inline-block"
+        catalogPrice.style.display = "inline-block"
+        return 0.02 // 2% знижка
+      } else if (remainder <= 5 && remainder > 1) {
+        fullPrice.style.display = "inline-block"
+        catalogPrice.style.display = "inline-block"
+        return 0.04 // 4% знижка
+      } else {
+        fullPrice.style.display = "inline-block"
+        catalogPrice.style.display = "inline-block"
+        return 0.06 // 6% знижка
+      }
+    }
+
+    function applyDiscount(price, discount) {
+      return price * (1 - discount)
+    }
+    btnCart.setAttribute("data-item-key", product.id)
+    btnCartCatalog.setAttribute("data-item-key", product.id)
+
+    const salePrice = parseFloat(product.saleprice); // Конвертувати строкове значення у числовий формат
+    const remainder = parseInt(product.remainder);
+
+    // Розрахунок знижки
+    const discount = calculateDiscount(remainder);
+    const discountedPrice = applyDiscount(salePrice, discount);
 
     productNameElement.innerText = product.head
-    priceElement.innerText = product.price
+    priceElement.innerText = discountedPrice.toFixed(2)
     numberCard.innerText = index + 1 + "/"
     numberOf.innerText = mainCard.length - 1
     count.innerText = product.remainder
@@ -48,8 +92,8 @@ function createCard(data) {
     description.innerText = product.descript
 
     catalogName.innerText = product.head
-    catalogFullPrice.innerText = product.saleprice
-    catalogPrice.innerText = product.price
+    catalogFullPrice.innerText = discountedPrice.toFixed(2)
+    catalogPrice.innerText = product.saleprice
     // Кольори
     let colorIndex = 0
     for (const color in product.color) {
@@ -81,26 +125,54 @@ function createCard(data) {
       const input = document.createElement('input'),
         label = document.createElement('label'),
         p = document.createElement('p')
-
+    
+      const inputId = `size-${index}-${sizeIndex}`
+    
       input.setAttribute('type', 'radio')
       input.setAttribute('name', `size-${index}`)
-      input.setAttribute('id', `size-${index}-${sizeIndex}`)
+      input.setAttribute('id', inputId)
       input.setAttribute('value', size)
       input.classList.add('size-input')
-
-      label.setAttribute('for', `size-${index}-${sizeIndex}`)
+    
+      label.setAttribute('for', inputId)
       label.innerText = size
-
+    
       if (!product.size.includes(size)) {
         input.disabled = true
       }
+    
+      const pClone = p.cloneNode(false)
+      pClone.appendChild(input)
+      pClone.appendChild(label)
+    
+      sizeBlock.appendChild(pClone)
 
-      p.appendChild(input)
-      p.appendChild(label)
-
-      sizeBlock.appendChild(p)
-      sizeBlockCatalog.appendChild(p)
+      const inputCatalog = document.createElement('input'),
+        labelCatalog = document.createElement('label'),
+        pCatalog = document.createElement('p')
+    
+      const inputCatalogId = `size-${index}-${sizeIndex}-catalog`
+    
+      inputCatalog.setAttribute('type', 'radio')
+      inputCatalog.setAttribute('name', `size-${index}-catalog`)
+      inputCatalog.setAttribute('id', inputCatalogId)
+      inputCatalog.setAttribute('value', size)
+      inputCatalog.classList.add('size-input')
+    
+      labelCatalog.setAttribute('for', inputCatalogId)
+      labelCatalog.innerText = size
+    
+      if (!product.size.includes(size)) {
+        inputCatalog.disabled = true
+      }
+    
+      const pCatalogClone = pCatalog.cloneNode(false)
+      pCatalogClone.appendChild(inputCatalog)
+      pCatalogClone.appendChild(labelCatalog)
+    
+      sizeBlockCatalog.appendChild(pCatalogClone)
     })
+    
 
     //матеріали
     for (const key in product.material) {
@@ -108,38 +180,86 @@ function createCard(data) {
       li.innerText = product.material[key]
       materialList.appendChild(li)
     }
+
+    const countProduct = parseFloat(product.remainder),
+      countFlag = catalogCardContainer.querySelector(".flag")
+    countFlag.classList.remove("green-flag", "blue-flag", "purple-flag", "darkgreem-flag")
+    if (countProduct <= 1) {
+      countFlag.innerText = "остання пара"
+      countFlag.classList.add("green-flag")
+    } else if (countProduct > 1 && countProduct <= 5) {
+      countFlag.innerText = `Залишилось: ${countProduct} пари`
+      countFlag.classList.add("blue-flag")
+    } else if (countProduct > 5 && countProduct < 10) {
+      countFlag.innerText = `Залишилось: ${countProduct} пар`
+      countFlag.classList.add("purple-flag")
+    } else if (countProduct >= 10) {
+      countFlag.innerText = `Залишилось: ${countProduct} пар`
+      countFlag.classList.add("darkgreen-flag")
+    }
   })
 }
 
 fetchData()
 
+function cart(product) {
+  const addToCartButtons = document.querySelectorAll(".cart-cta"),
+    order = document.querySelector(".cart-order"),
+    modelName = document.querySelector(".model-order-name"),
+    cancel = document.querySelector(".cancel"),
+    fullPrice = document.querySelector(".sum"),
+    salePrice = document.querySelector(".sale-sum "),
+    priceToPay = document.querySelector(".pay-price"),
+    sizeOrder = document.querySelector(".size-order"),
+    cardProductPrice = document.querySelector(".order-price-sale"),
+    cardSalePrice = document.querySelector(".sale-price-order"),
+    productsArray = Object.values(product)
+
+  addToCartButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      // event.preventDefault()
+
+      const productId = button.getAttribute("data-item-key"),
+        selectedProduct = productsArray.find(item => item.id === productId)
+
+      if (selectedProduct) {
+        modelName.innerText = selectedProduct.head
+        cardProductPrice.innerText = selectedProduct.saleprice
+        cardSalePrice.innerText = selectedProduct.price
+        fullPrice.innerText = selectedProduct.saleprice
+        salePrice.innerText = parseFloat(selectedProduct.saleprice) - parseFloat(selectedProduct.price)
+        priceToPay.innerText = selectedProduct.price
+
+        const sizeSelect = document.createElement('select')
+        sizeSelect.setAttribute("id", "sizeSelect")
+        sizeSelect.setAttribute("name", "sizeSelect")
+
+        selectedProduct.size.forEach(size => {
+          const option = document.createElement('option')
+          option.setAttribute('value', size);
+          option.textContent = `${size}`
+          sizeSelect.appendChild(option)
+        })
+
+        sizeOrder.innerHTML = ''
+        sizeOrder.appendChild(sizeSelect)
+
+        order.style.display = "flex"
+      }
+    })
+  })
+  cancel.addEventListener("click", function (e) {
+    e.preventDefault()
+    order.style.display = "none"
+    fullPrice.innerText = "0"
+    salePrice.innerText = "0"
+    priceToPay.innerText = "0"
+
+  })
+}
+
 function rand(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-// округлення знижки
-function roundUp(num) {
-  if (num === 0) {
-    return 0
-  } else {
-    return Math.ceil(num / 10) * 10
-  }
-}
-
-function calculateDiscount(remainder) {
-  if (remainder > 10) {
-    return 0
-  } else if (remainder <= 10 && remainder > 5) {
-    return 0.02 // 2% знижка
-  } else if (remainder <= 5 && remainder > 1) {
-    return 0.04 // 4% знижка
-  } else {
-    return 0.06 // 6% знижка
-  }
-}
-
-function applyDiscount(price, discount) {
-  return price * (1 - discount)
 }
 
 //slider
@@ -504,7 +624,6 @@ const mainSlider = new InfinitySlider(".main-slider", {
   gap: 50,
   isAutoplay: false,
   autoplaySpeed: 5000,
-  transitionCard: "all 1.5s ease-in-out",
 })
 
 function initSlider() {
@@ -522,105 +641,7 @@ function initSlider() {
   }
 }
 initSlider()
-// const cards = document.querySelectorAll(".slider-card"),
-//   nextButtons = document.querySelectorAll(".next"),
-//   prevButtons = document.querySelectorAll(".prev")
 
-// let currentCardIndex = 0
-
-// function showNextCard(index) {
-//   cards[currentCardIndex].classList.remove("active")
-//   currentCardIndex = (currentCardIndex + 1) % cards.length
-//   cards[currentCardIndex].classList.add("active")
-// }
-
-// function showPreviousCard() {
-//   cards[currentCardIndex].classList.remove("active")
-//   currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
-//   cards[currentCardIndex].classList.add("active")
-// }
-
-// nextButtons.forEach((button, index) => {
-//   button.addEventListener("click", (event) => {
-//     event.preventDefault()
-//     showNextCard(index)
-//     initSlider()
-//   })
-// })
-
-// prevButtons.forEach((button, index) => {
-//   button.addEventListener("click", (event) => {
-//     event.preventDefault()
-//     showPreviousCard(index)
-//     initSlider()
-//   })
-// })
-// cards[currentCardIndex].classList.add("active")
-
-// кошик
-function cart() {
-
-  const addToCart = document.querySelectorAll(".add-to-cart"),
-    order = document.querySelector(".cart-order"),
-    cancelCart = document.querySelector(".cancel"),
-    modelName = document.querySelector(".model-order-name"),
-    fullPrice = document.querySelector(".sum"),
-    salePrice = document.querySelector(".sale-sum "),
-    priceToPay = document.querySelector(".pay-price"),
-    sizeOrder = document.querySelector(".size-order"),
-    cardProductPrice = document.querySelector(".order-price-sale"),
-    cardSalePrice = document.querySelector(".sale-price-order")
-  
-  
-  addToCart.forEach(index => {
-    index.addEventListener("click", function (e) {
-      e.preventDefault()
-      order.style.display = "flex"
-      let idProduct = index.getAttribute("data-item-key")
-  
-      for (const key in cardBlock) {
-        const product = cardBlock[key]
-        if (idProduct == product.id) {
-          modelName.innerText = product.head
-          cardProductPrice.innerText = product.saleprice
-          cardSalePrice.innerText = product.price
-          fullPrice.innerText = product.saleprice
-          salePrice.innerText = parseFloat(product.saleprice) - parseFloat(product.price)
-          priceToPay.innerText = product.price
-  
-          const sizeSelect = document.createElement('select')
-          sizeSelect.setAttribute("id", "sizeSelect")
-          sizeSelect.setAttribute("name", "sizeSelect")
-  
-          product.size.forEach(size => {
-            const option = document.createElement('option')
-            option.setAttribute('value', size)
-            option.textContent = `${size}`
-  
-            if (selectedSize === size) {
-              option.setAttribute('selected', 'selected')
-            }
-  
-            sizeSelect.appendChild(option)
-          })
-  
-          sizeOrder.appendChild(sizeSelect)
-          const labelSelect = document.createElement("label")
-          labelSelect.setAttribute("for", "sizeSelect")
-          sizeOrder.appendChild(labelSelect)
-          break
-        }
-      }
-    })
-  })
-  
-  if (order) {
-    cancelCart.addEventListener("click", function (e) {
-      e.preventDefault()
-      order.style.display = "none"
-    })
-  }
-}
 
 const phoneInput = document.querySelector('#phone')
 
