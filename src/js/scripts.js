@@ -108,6 +108,7 @@ function createCard(data) {
 
       label.setAttribute('for', `color-${index}-${colorIndex}`);
       label.style.backgroundColor = color;
+      label.style.border = "1px solid"
       label.style.borderColor = color === 'white' ? '#ccc' : 'transparent';
 
       p.appendChild(input);
