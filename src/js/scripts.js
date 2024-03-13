@@ -1,5 +1,11 @@
 let jsonData = []
 
+function sendData(orders) {
+  const phpOrdersObj = JSON.stringify(orders)
+  let ordersInput = document.querySelector("#orderProductsObject")
+  ordersInput.value = phpOrdersObj
+}
+
 function fetchData() {
   fetch("products.json")
     .then(response => response.json())
@@ -215,14 +221,13 @@ function cart(product) {
     cardProductPrice = document.querySelector(".order-price-sale"),
     cardSalePrice = document.querySelector(".sale-price-order"),
     productsArray = Object.values(product)
-
-  addToCartButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      // event.preventDefault()
-
-      const productId = button.getAttribute("data-item-key"),
+    addToCartButtons.forEach(button => {
+      button.addEventListener("click", function () {
+        // event.preventDefault()
+        
+        const productId = button.getAttribute("data-item-key"),
         selectedProduct = productsArray.find(item => item.id === productId)
-
+      // sendData(selectedProduct)
       if (selectedProduct) {
         modelName.innerText = selectedProduct.head
         cardProductPrice.innerText = selectedProduct.saleprice
@@ -244,7 +249,24 @@ function cart(product) {
 
         sizeOrder.innerHTML = ''
         sizeOrder.appendChild(sizeSelect)
+        const selectedSize = document.querySelector('input[type="radio"]:checked').value;
 
+        const option = sizeSelect.querySelector(`option[value="${selectedSize}"]`);
+
+        if (option) {
+          option.selected = true
+        }
+        const selectedKeys = ['head', 'price']
+        const selectedData = selectedKeys.reduce((obj, key) => {
+          obj[key] = selectedProduct[key]
+          return obj
+        }, {})
+
+        const selectedSizeValue = sizeOrder.querySelector('select').value
+        selectedData.size = selectedSizeValue
+        console.log(selectedData)
+        // Відправити об'єкт з вибраними ключами на сервер
+        sendData(selectedData)
         order.style.display = "flex"
       }
     })
@@ -668,3 +690,4 @@ function showToast(message) {
     toast.style.opacity = "0"
   }, 3000)
 }
+

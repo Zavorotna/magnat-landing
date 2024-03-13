@@ -313,17 +313,18 @@
       <section class="cart-product dark-bg" id="cart">
         <h2 class="white-head head">замовлення товару</h2>
         <div class="cart"> 
-          <form action="#">
+          <form action="sendorder.php" method="post">
             <div class="contact-name">
               <p class="cart-head">ваші контактні дані:</p>
+              <input type="hidden" name="orderProducts" id="orderProductsObject">
               <div class="flex-between input-flex">
                 <div class="name">
                   <label for="name"> </label>
-                  <input type="text" id="name" placeholder="введіть ваше імʼя*" required>
+                  <input type="text" id="name" name="userName" placeholder="введіть ваше імʼя*" required>
                 </div>
                 <div class="phone">
                   <label for="phone"> </label>
-                  <input type="tel" id="phone" placeholder="введіть ваш телефон*" required>
+                  <input type="tel" id="phone" name="userPhone" placeholder="введіть ваш телефон*" required>
                 </div>
               </div>
             </div>
@@ -368,7 +369,7 @@
               <p class="pay-price">0</p>
             </div>
             <div class="flex cta-submit cta-cart-submit">
-              <button class="text-style gradient" type="submit">замовити</button>
+              <button class="text-style gradient" id="submit" type="submit">замовити</button>
             </div>
           </form>
         </div>

@@ -266,16 +266,17 @@ html(lang="en")
             section.cart-product.dark-bg#cart
                 h2.white-head.head замовлення товару
                 .cart 
-                    form(action="#")
+                    form(action="sendorder.php" method="post")
                         .contact-name
                             p.cart-head ваші контактні дані:
+                            input(type="hidden", name="orderProducts")#orderProductsObject
                             .flex-between.input-flex
                                 .name
                                     label(for="name") 
-                                    input(type="text" id="name" placeholder="введіть ваше імʼя*" required)
+                                    input(type="text" id="name" name="userName" placeholder="введіть ваше імʼя*" required)
                                 .phone
                                     label(for="phone") 
-                                    input(type="tel" id="phone" placeholder="введіть ваш телефон*" required)
+                                    input(type="tel" id="phone" name="userPhone" placeholder="введіть ваш телефон*" required)
                         .order 
                             p.cart-head ваше замовлення:
                             a(href="#catalog").addtocart.white-head.head додати товар
@@ -310,7 +311,7 @@ html(lang="en")
                             p.pay-sum Сума до оплати:
                             p.pay-price 0
                         .flex.cta-submit.cta-cart-submit
-                            button(type="submit").text-style.gradient замовити
+                            button#submit(type="submit").text-style.gradient замовити
             section.about-us#aboutUs.wrapper
                 h2.black-head.head про нас
                 p.black-kharkiv наш Інтернет-магазин пропонує широкий асортимент взуття для різних смаків та стилів. Особливості та переваги:
