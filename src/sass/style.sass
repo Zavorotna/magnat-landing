@@ -68,6 +68,13 @@ section
     background-size: 200% 100%
     &:hover
         background-position: 100% 0
+.social
+    svg > path
+        transition: all .5s ease
+        fill: #4E98B6
+    &:hover
+        svg > path 
+            fill: #00D589
 
 .header-menu
     width: 100%
@@ -144,41 +151,53 @@ section
         font-size: 24px
 
 .card-section
+    height: 100%
     overflow: hidden
     +media(768)
-    padding-top: 0
+        padding-top: 0
 
-.main-slider
-    .left.slider_navigation,
-    .right.slider_navigation
-        position: absolute
-        bottom: 1170rem
-        display: block
-        max-width: 200rem
-        padding: 20rem
-        width: 100%
-        box-sizing: border-box
-        border: 1px solid #fff
-        transition: all .25s ease
-        border: 1px solid #fff
-        z-index: 4
-    .left.slider_navigation
-        right: 27%
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23fff'/%3E%3C/svg%3E")
-        cursor: pointer
-        &:hover
-            border: 1px solid #4E98B6
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
-            background-color: #4E98B6
+.slider-card
+    display: none
 
-    .right.slider_navigation
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23fff'/%3E%3C/svg%3E")
-        cursor: pointer
-        left: 75%
-        &:hover
-            border: 1px solid #4E98B6
-            background-color: #4E98B6
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
+.active
+    display: block
+
+// .main-slider
+//     .left.slider_navigation,
+//     .right.slider_navigation
+//         position: absolute
+//         bottom: calc( 100% - 45rem )
+//         display: block
+//         padding: 20rem
+//         border: 1px solid #fff
+//         transition: all .25s ease
+//         box-sizing: border-box
+//         z-index: 4
+//         +media(768)
+//             bottom: calc( 100% - 160rem )
+//         +media(1440)
+//             bottom: calc( 100% - 200rem )
+//     .left.slider_navigation
+//         right: 55%
+//         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23fff'/%3E%3C/svg%3E")
+//         cursor: pointer
+//         +media(768)
+//             right: 24%
+//         &:hover
+//             border: 1px solid #4E98B6
+//             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
+//             background-color: #4E98B6
+
+//     .right.slider_navigation
+//         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23fff'/%3E%3C/svg%3E")
+//         cursor: pointer
+//         left: 55%
+//         +media(768)
+//             left: 77%
+//         &:hover
+//             border: 1px solid #4E98B6
+//             background-color: #4E98B6
+//             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
 
 .card_block
     width: 100vw
@@ -222,6 +241,7 @@ section
     display: inline
     color: #FFF
     font-weight: 300
+
 .prev, .next
     transition: all .25s ease
     svg > path 
@@ -235,15 +255,14 @@ section
 
 .prev, .next, .left, .right
     display: block
-    min-width: 130rem
+    min-width: 100rem
     max-width: 200rem
     box-sizing: border-box
     border: 1px solid #fff
-    +media(768)
+    +media(1024)
         min-width: 150rem
-        max-width: 200rem
 
-.next, .right
+.next
     position: relative
 
 .pointer
@@ -314,9 +333,7 @@ section
         width: 50%
 
 .haracteristic-block
-    overflow-y: scroll
-    height: 100vh
-    padding: 50rem 0 80rem
+    padding: 50rem 0
 
 .size, .article, .material, .color, .haracteristic-name, .country, .description
     padding-bottom: 20rem
@@ -811,21 +828,21 @@ p.model-order-name
 .delivery
     .svg-block
         &::before
-            background: url(../img/delivery.png) no-repeat center/cover
+            background: url(../img/delivery.svg) no-repeat center/cover
             +media(768)
-                width: 54rem
-                height: 54rem
+                width: 80rem
+                height: 64rem
 .pay-method
     .svg-block
         &::before
-            background: url(../img/paument.png) no-repeat center/cover
+            background: url(../img/paument.svg) no-repeat center/cover
             +media(768)
                 width: 60rem
                 height: 56rem
 .sale-proposition
     .svg-block
         &::before
-            background: url(../img/sale.png) no-repeat center/cover
+            background: url(../img/sale.svg) no-repeat center/cover
             +media(768)
                 width: 64rem
                 height: 64rem
@@ -880,14 +897,6 @@ p.sale-numb
     font-family: Montserrat
     border: 1px solid #000
     box-sizing: border-box
-    // transform: translateX(calc(-100% - 30rem))
-    // +media(768)
-    //     min-width: 38vw
-    // +media(1200)
-    //     min-width: 24.5vw
-    // +media(1440)
-    //     // transform: translateX(0)
-        // min-width: 18.4vw
 
 .name-comment
     margin-bottom: 10rem
@@ -916,33 +925,29 @@ p.sale-numb
     position: absolute
     bottom: 0rem
     display: block
-    padding: 20rem
-    max-width: 100rem
-    width: 100%
-    box-sizing: border-box
-    border: 1px solid #fff
+    padding: 20rem 10rem
     transition: all .25s ease
     border: 1px solid #4E98B6
-    z-index: 4
     box-sizing: border-box
-    +media(1024)
-        max-width: 200rem
+    z-index: 4
 
 .left.slider_navigation
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E") center/cover
     right: 55%
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E")
     cursor: pointer
+    background-size: 150%
     &:hover
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
         background-color: #4E98B6
 
 .right.slider_navigation
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E")
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E") center/cover
+    background-size: 150%
     cursor: pointer
     left: 55%
     &:hover
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
         background-color: #4E98B6
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E")
 
 .footer
     padding: 63rem 0 57rem
