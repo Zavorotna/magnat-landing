@@ -1,11 +1,10 @@
 window.addEventListener("DOMContentLoaded", function () {
-
   let jsonData = []
 
   function sendData(orders) {
-    const phpOrdersObj = JSON.stringify(orders)
-    let ordersInput = document.querySelector("#orderProductsObject")
-    ordersInput.value = phpOrdersObj
+    const phpOrdersObj = JSON.stringify(orders);
+    let ordersInput = document.querySelector("#orderProductsObject");
+    ordersInput.value = phpOrdersObj;
   }
 
   function fetchData() {
@@ -18,7 +17,7 @@ window.addEventListener("DOMContentLoaded", function () {
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
-
+  // let selectedData
   function createCard(data) {
     const mainCard = document.querySelectorAll('.slider-card'),
       catalogCard = document.querySelectorAll('.card')
@@ -223,21 +222,51 @@ window.addEventListener("DOMContentLoaded", function () {
       cardProductPrice = document.querySelector(".order-price-sale"),
       cardSalePrice = document.querySelector(".sale-price-order"),
       productsArray = Object.values(product)
+
+    function calculateDiscount(remainder) {
+      if (remainder >= 10) {
+        return 0;
+      } else if (remainder <= 9 && remainder > 5) {
+        return 0.02; // 2% знижка
+      } else if (remainder <= 5 && remainder > 1) {
+        return 0.04; // 4% знижка
+      } else {
+        return 0.06; // 6% знижка
+      }
+    }
+
+    const btnAddCart = document.querySelector(".addtocart")
     addToCartButtons.forEach(button => {
       button.addEventListener("click", function () {
-        // event.preventDefault()
-
         const productId = button.getAttribute("data-item-key"),
           selectedProduct = productsArray.find(item => item.id === productId)
-        // sendData(selectedProduct)
+        btnAddCart.style.display = "none"
         if (selectedProduct) {
           modelName.innerText = selectedProduct.head
           cardProductPrice.innerText = selectedProduct.saleprice
-          cardSalePrice.innerText = selectedProduct.price
-          fullPrice.innerText = selectedProduct.saleprice
-          salePrice.innerText = parseFloat(selectedProduct.saleprice) - parseFloat(selectedProduct.price)
-          priceToPay.innerText = selectedProduct.price
 
+          // Розрахунок знижки для товару
+          const discount = calculateDiscount(parseInt(selectedProduct.remainder));
+          let discountedPrice = parseFloat(selectedProduct.saleprice);
+
+          // Застосування знижки, якщо вона є
+          if (discount > 0) {
+            discountedPrice = discountedPrice * (1 - discount);
+          }
+
+          cardSalePrice.innerText = discountedPrice.toFixed(2)
+
+          fullPrice.innerText = selectedProduct.saleprice
+          salePrice.innerText = parseFloat(selectedProduct.saleprice) - parseFloat(cardSalePrice.innerText);
+          let totalPrice = parseFloat(selectedProduct.saleprice)
+
+          // перевірка чи є знижка
+          if (parseFloat(cardSalePrice.innerText) > 0) {
+            totalPrice = parseFloat(cardSalePrice.innerText)
+          }
+
+          //сума до оплати
+          priceToPay.innerText = totalPrice.toFixed(2)
           const sizeSelect = document.createElement('select')
           sizeSelect.setAttribute("id", "sizeSelect")
           sizeSelect.setAttribute("name", "sizeSelect")
@@ -258,12 +287,17 @@ window.addEventListener("DOMContentLoaded", function () {
           if (option) {
             option.selected = true
           }
-          const selectedKeys = ['head', 'price']
+          const selectedKeys = ['head', 'saleprice', 'color']; // Додайте 'color' до ключів, які ви хочете включити
           const selectedData = selectedKeys.reduce((obj, key) => {
-            obj[key] = selectedProduct[key]
-            return obj
-          }, {})
+            if (key === 'color') {
+              obj[key] = JSON.stringify(selectedProduct[key]); // Перетворюємо об'єкт color в рядок JSON
+            } else {
+              obj[key] = selectedProduct[key];
+            }
+            return obj;
+          }, {});
 
+          selectedData.saleprice = parseFloat(cardSalePrice.innerText.trim());
           const selectedSizeValue = sizeOrder.querySelector('select').value
           selectedData.size = selectedSizeValue
           console.log(selectedData)
@@ -275,6 +309,7 @@ window.addEventListener("DOMContentLoaded", function () {
     })
     cancel.addEventListener("click", function (e) {
       e.preventDefault()
+      btnAddCart.style.display = "block"
       order.style.display = "none"
       fullPrice.innerText = "0"
       salePrice.innerText = "0"
@@ -282,6 +317,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     })
   }
+
 
   function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
@@ -423,6 +459,8 @@ window.addEventListener("DOMContentLoaded", function () {
         this.touchPoint = e.touches[0].pageX;
         this.slider.addEventListener('touchmove', this.touchSlider);
         clearInterval(localStorage[this.slider.id + "Interval"]);
+      }, {
+        passive: true
       });
 
       this.slider.onmouseenter = () => {

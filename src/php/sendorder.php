@@ -32,17 +32,21 @@ try {
 
 $token = "6955843433:AAHq4PsIKlhlh9ED95MXctOJxMHziCney1Y"; // api телеграм бота
 $chat_id = "-1001904336913";
+// $token = "6502486274:AAFqSGBvtvutHB8be-wTlsK3ETbssmLSEWo"; // api телеграм бота
+// $chat_id = "1066741091";
+
 
 $userPhone = urlencode("$userPhone");
 $userName = urlencode("$userName");
 $textObj = '';
-if (isset($phpObject->head) && isset($phpObject->price) && isset($phpObject->size)) {
+if (isset($phpObject->head) && isset($phpObject->saleprice) && isset($phpObject->size) && isset($phpObject->color)) {
     $productName = $phpObject->head;
-    $productPrice = $phpObject->price;
+    $productPrice = $phpObject->saleprice;
     $productSize = $phpObject->size;
+    $productColor = $phpObject->color;
 
     // Додати інформацію про товар до тексту повідомлення з тегами форматування
-    $textObj = "Товар: <b>$productName</b>, Розмір: <b>$productSize</b>, Ціна: <b>$productPrice</b>%0A%0A";
+    $textObj = "Товар: <b>$productName</b>, Розмір: <b>$productSize</b>, Колір: <b>$productColor</b>, Ціна: <b>$productPrice</b>%0A%0A";
 } else {
     $textObj = "ERROR IN PRODUCT DATA";
 }
