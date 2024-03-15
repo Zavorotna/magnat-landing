@@ -1,4 +1,5 @@
 @import components/mixins
+// оформити політику конфід
 html
     font-size: 1px
     scroll-behavior: smooth
@@ -221,8 +222,15 @@ section
         border: 2px solid #fff
 
 .button
+    position: absolute
+    top: -15rem
+    left: 50%
+    transform: translateX(-50%)
     padding: 30rem 0
     flex-wrap: nowrap
+    +media(768)
+        position: static
+        transform: translate(0)
 
 .button-card,
 .button

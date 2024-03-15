@@ -1,4 +1,15 @@
 window.addEventListener("DOMContentLoaded", function () {
+  function showToast(message) {
+    var toast = document.createElement('div')
+    toast.classList.add('toast')
+    toast.textContent = message
+    document.body.appendChild(toast)
+
+    setTimeout(function () {
+      toast.style.opacity = "0"
+    }, 3000)
+  }
+  
   let jsonData = []
 
   function sendData(orders) {
@@ -17,6 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
+
   // let selectedData
   function createCard(data) {
     const mainCard = document.querySelectorAll('.slider-card'),
@@ -179,8 +191,20 @@ window.addEventListener("DOMContentLoaded", function () {
         pCatalogClone.appendChild(labelCatalog)
 
         sizeBlockCatalog.appendChild(pCatalogClone)
-      })
+        // скидання радіокнопок чекед з інших карток
+        const radioButtons = document.querySelectorAll("input[type='radio']")
+        radioButtons.forEach(radioButton => {
+          radioButton.addEventListener('change', function () {
+            const currentName = this.name
+            radioButtons.forEach(radio => {
+              if (radio.name !== currentName) {
+                radio.checked = false
+              }
+            })
 
+          })
+        })
+      })
 
       //матеріали
       for (const key in product.material) {
@@ -209,7 +233,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   fetchData()
-
+  // кошик
   function cart(product) {
     const addToCartButtons = document.querySelectorAll(".cart-cta"),
       order = document.querySelector(".cart-order"),
@@ -234,17 +258,21 @@ window.addEventListener("DOMContentLoaded", function () {
         return 0.06; // 6% знижка
       }
     }
-
     const btnAddCart = document.querySelector(".addtocart")
     addToCartButtons.forEach(button => {
       button.addEventListener("click", function () {
         const productId = button.getAttribute("data-item-key"),
-          selectedProduct = productsArray.find(item => item.id === productId)
+        selectedProduct = productsArray.find(item => item.id === productId)
         btnAddCart.style.display = "none"
         if (selectedProduct) {
+          const selectedSizeRadio = document.querySelector('input[type="radio"]:checked');
+          if (!selectedSizeRadio) {
+            showToast("Будь ласка, оберіть розмір");
+            return; // Повертаємо з функції, якщо розмір не обрано
+          }
           modelName.innerText = selectedProduct.head
           cardProductPrice.innerText = selectedProduct.saleprice
-
+          
           // Розрахунок знижки для товару
           const discount = calculateDiscount(parseInt(selectedProduct.remainder));
           let discountedPrice = parseFloat(selectedProduct.saleprice);
@@ -264,13 +292,12 @@ window.addEventListener("DOMContentLoaded", function () {
           if (parseFloat(cardSalePrice.innerText) > 0) {
             totalPrice = parseFloat(cardSalePrice.innerText)
           }
-
           //сума до оплати
           priceToPay.innerText = totalPrice.toFixed(2)
           const sizeSelect = document.createElement('select')
           sizeSelect.setAttribute("id", "sizeSelect")
           sizeSelect.setAttribute("name", "sizeSelect")
-
+          
           selectedProduct.size.forEach(size => {
             const option = document.createElement('option')
             option.setAttribute('value', size);
@@ -278,12 +305,12 @@ window.addEventListener("DOMContentLoaded", function () {
             sizeSelect.appendChild(option)
           })
 
+          const selectedSize = document.querySelector('input[type="radio"]:checked').value,
+          option = sizeSelect.querySelector(`option[value="${selectedSize}"]`)
+          
           sizeOrder.innerHTML = ''
           sizeOrder.appendChild(sizeSelect)
-          const selectedSize = document.querySelector('input[type="radio"]:checked').value;
-
-          const option = sizeSelect.querySelector(`option[value="${selectedSize}"]`);
-
+          
           if (option) {
             option.selected = true
           }
@@ -296,7 +323,7 @@ window.addEventListener("DOMContentLoaded", function () {
             }
             return obj;
           }, {});
-
+          
           selectedData.saleprice = parseFloat(cardSalePrice.innerText.trim());
           const selectedSizeValue = sizeOrder.querySelector('select').value
           selectedData.size = selectedSizeValue
@@ -304,6 +331,13 @@ window.addEventListener("DOMContentLoaded", function () {
           // Відправити об'єкт з вибраними ключами на сервер
           sendData(selectedData)
           order.style.display = "flex"
+          
+          // скидання радіо кнопок на клік упити
+          const radioInputs = document.querySelectorAll('input[type="radio"]');
+
+          radioInputs.forEach(input => {
+              input.checked = false;
+          });
         }
       })
     })
@@ -720,16 +754,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   })
 
-  function showToast(message) {
-    var toast = document.createElement('div')
-    toast.classList.add('toast')
-    toast.textContent = message
-    document.body.appendChild(toast)
-
-    setTimeout(function () {
-      toast.style.opacity = "0"
-    }, 3000)
-  }
   // перемикання карток товару
   const cards = document.querySelectorAll(".slider-card"),
     nextButtons = document.querySelectorAll(".next"),
