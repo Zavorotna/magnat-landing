@@ -25,6 +25,7 @@ window.addEventListener("DOMContentLoaded", function () {
         jsonData = data
         createCard(data)
         cart(data)
+        
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
@@ -694,25 +695,31 @@ window.addEventListener("DOMContentLoaded", function () {
     transitionCard: "all 1.5s ease-in-out",
   });
 
-  const slider = new InfinitySlider(".product1", {
-    isArrows: false,
-    isSlidesToScrollAll: false,
-    baseCardWidth: "250px",
-    gap: 50,
-    isAutoplay: true,
-    autoplaySpeed: 5000,
-    transitionCard: "all 1.5s ease-in-out",
+  const products = document.querySelectorAll(".products")
+  let sliders = {}
+  console.log(products);
+  products.forEach((slider, i) => {
+    sliders["img-key" + (i + 1)] = new InfinitySlider("#product" + (i + 1), {
+      isArrows: false,
+      isSlidesToScrollAll: false,
+      baseCardWidth: "250px",
+      gap: 50,
+      isAutoplay: true,
+      autoplaySpeed: 5000,
+      transitionCard: "all 1.5s ease-in-out",
+    })
   })
+  console.log(sliders);
 
-  const pictureSlider2 = new InfinitySlider(".product2", {
-    isArrows: false,
-    isSlidesToScrollAll: false,
-    baseCardWidth: "250px",
-    gap: 50,
-    isAutoplay: true,
-    autoplaySpeed: 5000,
-    transitionCard: "all 1.5s ease-in-out",
-  })
+  // const pictureSlider2 = new InfinitySlider(".product2", {
+  //   isArrows: false,
+  //   isSlidesToScrollAll: false,
+  //   baseCardWidth: "250px",
+  //   gap: 50,
+  //   isAutoplay: true,
+  //   autoplaySpeed: 5000,
+  //   transitionCard: "all 1.5s ease-in-out",
+  // })
 
   // const mainSlider = new InfinitySlider(".main-slider", {
   //   isArrows: true,
@@ -724,20 +731,26 @@ window.addEventListener("DOMContentLoaded", function () {
   // })
 
   function initSlider() {
-    slider.init()
     comment.init()
-    pictureSlider2.init()
-    // mainSlider.init()
-    // pictureSlider3.init()
-    window.onresize = function () {
-      slider.init()
-      comment.init()
-      pictureSlider2.init()
-      // mainSlider.init()
-      // pictureSlider3.init()
-    }
+    Object.keys(sliders).forEach(sliderKey => {
+      sliders[sliderKey].init()
+      // sliderKey.init()
+    })
   }
-  initSlider()
+  window.onresize = function () {
+    comment.init()
+    Object.keys(sliders).forEach(sliderKey => {
+      sliders[sliderKey].init()
+      // sliderKey.init()
+    })
+  }
+  setTimeout(function() {
+    initSlider()
+    Object.keys(sliders).forEach(sliderKey => {
+      sliders[sliderKey].init()
+      // sliderKey.init()
+    })
+  }, 1000);
 
 
   const phoneInput = document.querySelector('#phone')
@@ -778,6 +791,11 @@ window.addEventListener("DOMContentLoaded", function () {
       event.preventDefault()
       showNextCard(index)
       initSlider()
+      Object.keys(sliders).forEach(sliderKey => {
+        sliders[sliderKey].init()
+        // sliderKey.init()
+      })
+      
     })
   })
 
@@ -786,6 +804,10 @@ window.addEventListener("DOMContentLoaded", function () {
       event.preventDefault()
       showPreviousCard(index)
       initSlider()
+      Object.keys(sliders).forEach(sliderKey => {
+        sliders[sliderKey].init()
+        // sliderKey.init()
+      })
     })
   })
 

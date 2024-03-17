@@ -24,12 +24,14 @@ input, select
 img
     width: 100%
     height: 100%
-    object-fit: cover
+    object-fit: contain
 
 section
     padding: 50rem 0
+
 .bg-order-popup
     font-size: 20rem
+
 .toast
     transition: all 1s ease
     position: fixed
@@ -275,7 +277,7 @@ section
 
 .pointer
     position: absolute
-    top: 25%
+    bottom: 15%
     right: -5%
     animation: pointer 1s infinite alternate
     @keyframes pointer
@@ -495,21 +497,27 @@ p.haracteristic-name
                 td + td 
                     border-left: 1px solid #fff
 div.catalog-card
+    display: grid
     column-gap: 30rem
     row-gap: 30rem
-    flex-wrap: wrap
-    +media(1200)
-        flex-wrap: nowrap
+    grid-template-columns: 1fr 
+    +media(768)
+        grid-template-columns: 1fr 1fr
+    +media(1024)
+        grid-template-columns: 1fr 1fr 1fr 1fr
 
 .card
-    +media(768)
-        width: 45%
-    +media(1200)
-        width: 20vw
+    width: 100%
 
 .img-card
     position: relative
     border: 1px solid #000
+
+.hover-img
+    display: inline-block
+    height: 290rem
+    min-width: 255rem
+
 .flag
     position: absolute
     padding: 11rem 26rem
@@ -570,6 +578,8 @@ div.size-card
             font-size: 20rem
 .price-card
     column-gap: 16rem
+    .price
+        margin-left: 20rem
 
 .sale-price
     font-size: 20px
@@ -758,6 +768,9 @@ p.model-order-name
     font-size: 12rem
     padding: 0
 
+.order-sum
+    margin-bottom: 30rem
+
 .sum,
 .sale-sum,
 .pay-price,
@@ -818,8 +831,8 @@ p.model-order-name
         width: 150rem
         height: 150rem
     &::before
-        width: 30rem
-        height: 30rem
+        width: 50%
+        height: 50%
         content: ""
         position: absolute
         top: 50%
@@ -829,31 +842,31 @@ p.model-order-name
 .quality
     .svg-block
         &::before
-            background: url(../img/quality.png) no-repeat center/cover
+            background: url(../img/quality.svg) no-repeat center/contain
             +media(768)
-                width: 70rem
-                height: 70rem
+                width: 54rem
+                height: 54rem
 .delivery
     .svg-block
         &::before
-            background: url(../img/delivery.svg) no-repeat center/cover
+            background: url(../img/delivery.svg) no-repeat center/contain
             +media(768)
-                width: 80rem
-                height: 64rem
+                width: 50rem
+                height: 39rem
 .pay-method
     .svg-block
         &::before
-            background: url(../img/paument.svg) no-repeat center/cover
+            background: url(../img/paument.svg) no-repeat center/contain
             +media(768)
-                width: 60rem
-                height: 56rem
+                width: 50rem
+                height: 40rem
 .sale-proposition
     .svg-block
         &::before
-            background: url(../img/sale.svg) no-repeat center/cover
+            background: url(../img/sale.svg) no-repeat center/contain
             +media(768)
-                width: 64rem
-                height: 64rem
+                width: 50rem
+                height: 53rem
 
 .sale-descript
     padding-bottom: 50rem
