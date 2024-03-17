@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", function () {
       toast.style.opacity = "0"
     }, 3000)
   }
-  
+
   let jsonData = []
 
   function sendData(orders) {
@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", function () {
         jsonData = data
         createCard(data)
         cart(data)
-        
+
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
@@ -52,12 +52,14 @@ window.addEventListener("DOMContentLoaded", function () {
         colorBlock = cardContainer.querySelector('.color-input-block'),
         sizeBlock = cardContainer.querySelector('.size-inputs'),
         materialList = cardContainer.querySelector('.material ul'),
+        imgCard = cardContainer.querySelector(".image"),
         catalogName = catalogCardContainer.querySelector(".name-card"),
         catalogFullPrice = catalogCardContainer.querySelector(".sale-price"),
         catalogPrice = catalogCardContainer.querySelector(".price"),
         sizeBlockCatalog = catalogCardContainer.querySelector('.size-card'),
         btnCart = cardContainer.querySelector('.cart-cta'),
-        btnCartCatalog = catalogCardContainer.querySelector('.cart-cta')
+        btnCartCatalog = catalogCardContainer.querySelector('.cart-cta'),
+        imgCatalog = catalogCardContainer.querySelector(".hover-img img")
 
       // округлення знижки
       function roundUp(num) {
@@ -94,12 +96,12 @@ window.addEventListener("DOMContentLoaded", function () {
       btnCart.setAttribute("data-item-key", product.id)
       btnCartCatalog.setAttribute("data-item-key", product.id)
 
-      const salePrice = parseFloat(product.saleprice); // Конвертувати строкове значення у числовий формат
-      const remainder = parseInt(product.remainder);
+      const salePrice = parseFloat(product.saleprice),
+        remainder = parseInt(product.remainder)
 
       // Розрахунок знижки
-      const discount = calculateDiscount(remainder);
-      const discountedPrice = applyDiscount(salePrice, discount);
+      const discount = calculateDiscount(remainder),
+        discountedPrice = applyDiscount(salePrice, discount)
 
       productNameElement.innerText = product.head
       priceElement.innerText = discountedPrice.toFixed(2)
@@ -110,7 +112,8 @@ window.addEventListener("DOMContentLoaded", function () {
       article.innerText = product.id
       country.innerText = product.country
       description.innerText = product.descript
-
+      imgCatalog.setAttribute("data-id-img", product.id)
+      imgCard.setAttribute("data-id-img", product.id)
       catalogName.innerText = product.head
       catalogFullPrice.innerText = discountedPrice.toFixed(2)
       catalogPrice.innerText = product.saleprice
@@ -246,6 +249,10 @@ window.addEventListener("DOMContentLoaded", function () {
       sizeOrder = document.querySelector(".size-order"),
       cardProductPrice = document.querySelector(".order-price-sale"),
       cardSalePrice = document.querySelector(".sale-price-order"),
+      sumBlockCart = document.querySelector(".sum-order"),
+      orderSum = document.querySelector(".order-sum"),
+      imgOrder = document.querySelectorAll('img[data-id-img]'),
+      cartImg = document.querySelector(".img-order"),
       productsArray = Object.values(product)
 
     function calculateDiscount(remainder) {
@@ -263,17 +270,19 @@ window.addEventListener("DOMContentLoaded", function () {
     addToCartButtons.forEach(button => {
       button.addEventListener("click", function () {
         const productId = button.getAttribute("data-item-key"),
-        selectedProduct = productsArray.find(item => item.id === productId)
+          selectedProduct = productsArray.find(item => item.id === productId)
         btnAddCart.style.display = "none"
+        sumBlockCart.style.display = "block"
+        orderSum.style.display = "flex"
         if (selectedProduct) {
           const selectedSizeRadio = document.querySelector('input[type="radio"]:checked');
           if (!selectedSizeRadio) {
-            showToast("Будь ласка, оберіть розмір");
-            return; // Повертаємо з функції, якщо розмір не обрано
+            showToast("Будь ласка, оберіть розмір")
+            return
           }
           modelName.innerText = selectedProduct.head
           cardProductPrice.innerText = selectedProduct.saleprice
-          
+
           // Розрахунок знижки для товару
           const discount = calculateDiscount(parseInt(selectedProduct.remainder));
           let discountedPrice = parseFloat(selectedProduct.saleprice);
@@ -298,7 +307,7 @@ window.addEventListener("DOMContentLoaded", function () {
           const sizeSelect = document.createElement('select')
           sizeSelect.setAttribute("id", "sizeSelect")
           sizeSelect.setAttribute("name", "sizeSelect")
-          
+
           selectedProduct.size.forEach(size => {
             const option = document.createElement('option')
             option.setAttribute('value', size);
@@ -307,24 +316,24 @@ window.addEventListener("DOMContentLoaded", function () {
           })
 
           const selectedSize = document.querySelector('input[type="radio"]:checked').value,
-          option = sizeSelect.querySelector(`option[value="${selectedSize}"]`)
-          
+            option = sizeSelect.querySelector(`option[value="${selectedSize}"]`)
+
           sizeOrder.innerHTML = ''
           sizeOrder.appendChild(sizeSelect)
-          
+
           if (option) {
             option.selected = true
           }
-          const selectedKeys = ['head', 'saleprice', 'color']; // Додайте 'color' до ключів, які ви хочете включити
+          const selectedKeys = ['head', 'saleprice', 'color']
           const selectedData = selectedKeys.reduce((obj, key) => {
             if (key === 'color') {
-              obj[key] = JSON.stringify(selectedProduct[key]); // Перетворюємо об'єкт color в рядок JSON
+              obj[key] = JSON.stringify(selectedProduct[key])
             } else {
-              obj[key] = selectedProduct[key];
+              obj[key] = selectedProduct[key]
             }
-            return obj;
-          }, {});
-          
+            return obj
+          }, {})
+
           selectedData.saleprice = parseFloat(cardSalePrice.innerText.trim());
           const selectedSizeValue = sizeOrder.querySelector('select').value
           selectedData.size = selectedSizeValue
@@ -332,24 +341,35 @@ window.addEventListener("DOMContentLoaded", function () {
           // Відправити об'єкт з вибраними ключами на сервер
           sendData(selectedData)
           order.style.display = "flex"
-          
+          //зображення в кошику
+          const firstImageSrc = document.querySelector(`.image[data-id-img="${selectedProduct.id}"] img`).getAttribute('src')
+
+          let imgCartBlock = document.createElement("img")
+          imgCartBlock.setAttribute('src', firstImageSrc)
+          cartImg.appendChild(imgCartBlock)
+
           // скидання радіо кнопок на клік упити
-          const radioInputs = document.querySelectorAll('input[type="radio"]');
+          const radioInputs = document.querySelectorAll('input[type="radio"]')
 
           radioInputs.forEach(input => {
-              input.checked = false;
-          });
+            input.checked = false
+          })
+          cancel.addEventListener("click", function (e) {
+            e.preventDefault()
+            if (imgCartBlock && cartImg.contains(imgCartBlock)) {
+              cartImg.removeChild(imgCartBlock)
+            }
+            btnAddCart.style.display = "block"
+            sumBlockCart.style.display = "none"
+            orderSum.style.display = "none"
+            order.style.display = "none"
+            fullPrice.innerText = "0"
+            salePrice.innerText = "0"
+            priceToPay.innerText = "0"
+
+          })
         }
       })
-    })
-    cancel.addEventListener("click", function (e) {
-      e.preventDefault()
-      btnAddCart.style.display = "block"
-      order.style.display = "none"
-      fullPrice.innerText = "0"
-      salePrice.innerText = "0"
-      priceToPay.innerText = "0"
-
     })
   }
 
@@ -744,7 +764,7 @@ window.addEventListener("DOMContentLoaded", function () {
       // sliderKey.init()
     })
   }
-  setTimeout(function() {
+  setTimeout(function () {
     initSlider()
     Object.keys(sliders).forEach(sliderKey => {
       sliders[sliderKey].init()
@@ -795,7 +815,7 @@ window.addEventListener("DOMContentLoaded", function () {
         sliders[sliderKey].init()
         // sliderKey.init()
       })
-      
+
     })
   })
 
