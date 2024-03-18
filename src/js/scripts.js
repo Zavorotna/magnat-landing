@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
+  // хедер фіксований
   let lastScrollTop = 0;
   const headerNavigation = document.querySelector(".header"),
     logo = document.querySelector(".logo svg")
@@ -49,19 +50,73 @@ window.addEventListener("DOMContentLoaded", function () {
       .then(response => response.json())
       .then(data => {
         jsonData = data
-        createCard(data)
-        cart(data)
-
+        updateLocalStorage(data)
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
 
+  function updateLocalStorage(jsonData) {
+    const maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData,
+      currentTime = Date.now(),
+      lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0
+    //час між останнім оновленням і поточним часом
+    const timePassed = currentTime - lastUpdate
+
+    for (const key in maxQuantity) {
+      if (maxQuantity.hasOwnProperty(key)) {
+        const fr = parseFloat(maxQuantity[key].fr)
+        // час, який має пройти до наступного оновлення на основі періодичності fr
+        const timeToNextUpdate = fr * 3600000 
+
+        if (timePassed >= timeToNextUpdate) {
+          //числові значення для обчислень
+          const remainder = parseInt(maxQuantity[key].remainder),
+            min = parseInt(maxQuantity[key].min)
+
+          // Зміна ремайндер на 1
+          if (remainder > min) {
+            maxQuantity[key].remainder = remainder - 1
+          } else {
+            // Оновлення ремайндер на початкове значення, яке було на початку
+            maxQuantity[key].remainder = parseInt(jsonData[key].remainder)
+          }
+
+          // оновленя часу останнього оновлення
+          localStorage.setItem('lastUpdate', currentTime)
+
+          // оновлення даних в об'єкті jsonData
+          jsonData[key].remainder = maxQuantity[key].remainder
+        }
+      }
+    }
+
+    // Оновлюємо локальне сховище з новими значеннями
+    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
+    // console.log('Оновлене знову maxQuantity:', maxQuantity[key].remainder)
+
+    return jsonData
+  }
+  // витягування зміненого обєкта з локального сховища
+  function getUpdatedDataFromLocalStorage() {
+    var jsonDataFromLocalStorage = localStorage.getItem('maxQuantity')
+    if (jsonDataFromLocalStorage) {
+      return JSON.parse(jsonDataFromLocalStorage)
+    } else {
+      return null
+    }
+  }
+
+  // Використання функції для отримання оновлених даних з локального сховища
+  const updatedData = getUpdatedDataFromLocalStorage()
+  // console.log(updatedData);
   // let selectedData
-  function createCard(data) {
+  createCard(updatedData)
+
+  function createCard(updatedData) {
     const mainCard = document.querySelectorAll('.slider-card'),
       catalogCard = document.querySelectorAll('.card')
-    Object.keys(data).forEach((key, index) => {
-      const product = data[key]
+    Object.keys(updatedData).forEach((key, index) => {
+      const product = updatedData[key]
       const cardContainer = mainCard[index],
         catalogCardContainer = catalogCard[index]
       if (!cardContainer || !catalogCardContainer) return
@@ -175,9 +230,8 @@ window.addEventListener("DOMContentLoaded", function () {
       sizes.forEach((size, sizeIndex) => {
         const input = document.createElement('input'),
           label = document.createElement('label'),
-          p = document.createElement('p')
-
-        const inputId = `size-${index}-${sizeIndex}`
+          p = document.createElement('p'),
+          inputId = `size-${index}-${sizeIndex}`
 
         input.setAttribute('type', 'radio')
         input.setAttribute('name', `size-${index}`)
@@ -265,6 +319,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   fetchData()
   // кошик
+  cart(updatedData)
   function cart(product) {
     const addToCartButtons = document.querySelectorAll(".cart-cta"),
       order = document.querySelector(".cart-order"),
@@ -284,13 +339,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
     function calculateDiscount(remainder) {
       if (remainder >= 10) {
-        return 0;
+        return 0
       } else if (remainder <= 9 && remainder > 5) {
-        return 0.02; // 2% знижка
+        return 0.02 // 2% знижка
       } else if (remainder <= 5 && remainder > 1) {
-        return 0.04; // 4% знижка
+        return 0.04 // 4% знижка
       } else {
-        return 0.06; // 6% знижка
+        return 0.06 // 6% знижка
       }
     }
     const btnAddCart = document.querySelector(".addtocart")
@@ -311,12 +366,12 @@ window.addEventListener("DOMContentLoaded", function () {
           cardProductPrice.innerText = selectedProduct.saleprice
 
           // Розрахунок знижки для товару
-          const discount = calculateDiscount(parseInt(selectedProduct.remainder));
-          let discountedPrice = parseFloat(selectedProduct.saleprice);
+          const discount = calculateDiscount(parseInt(selectedProduct.remainder))
+          let discountedPrice = parseFloat(selectedProduct.saleprice)
 
           // Застосування знижки, якщо вона є
           if (discount > 0) {
-            discountedPrice = discountedPrice * (1 - discount);
+            discountedPrice = discountedPrice * (1 - discount)
           }
 
           cardSalePrice.innerText = discountedPrice.toFixed(2)
@@ -331,10 +386,15 @@ window.addEventListener("DOMContentLoaded", function () {
           }
           //сума до оплати
           priceToPay.innerText = totalPrice.toFixed(2)
+          // const sizeText = document.createElement("p")
+          // sizeText.classList.add("size-order-text")
+          // sizeText.innerText = "Розмір:"
+          // const labelSelect = document.createElement("label")
+          // labelSelect.setAttribute("for", "sizeSelect")
+
           const sizeSelect = document.createElement('select')
           sizeSelect.setAttribute("id", "sizeSelect")
           sizeSelect.setAttribute("name", "sizeSelect")
-
           selectedProduct.size.forEach(size => {
             const option = document.createElement('option')
             option.setAttribute('value', size);
@@ -381,6 +441,15 @@ window.addEventListener("DOMContentLoaded", function () {
           radioInputs.forEach(input => {
             input.checked = false
           })
+          //якзо розмір з селекту то відправити його
+          sizeSelect.addEventListener("change", function () {
+            const selectedSizeValue = this.value
+            selectedData.size = selectedSizeValue
+  
+            console.log(selectedData)
+            sendData(selectedData)
+          })
+
           cancel.addEventListener("click", function (e) {
             e.preventDefault()
             if (imgCartBlock && cartImg.contains(imgCartBlock)) {
@@ -398,11 +467,6 @@ window.addEventListener("DOMContentLoaded", function () {
         }
       })
     })
-  }
-
-
-  function rand(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
   //slider

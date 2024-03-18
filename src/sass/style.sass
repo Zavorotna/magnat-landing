@@ -722,16 +722,18 @@ a.addtocart
     select
         position: relative
         z-index: 1
-    label
+        
+.size-block-label
+    position: absolute
+    width: 100rem
+    &::before
+        content: ""
         position: absolute
-        &::before
-            content: ""
-            position: absolute
-            top: 8px
-            right: 0
-            border: 10px solid transparent
-            border-top-color: #4E98B6
-            z-index: 0
+        top: 8px
+        right: -20rem
+        border: 10px solid transparent
+        border-top-color: #4E98B6
+        z-index: 0
     option
         color: #000
     &:selected
