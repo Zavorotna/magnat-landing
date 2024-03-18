@@ -48,6 +48,19 @@ section
     max-width: 80%
     margin: 0 auto
 
+header
+    padding-top: 160rem
+
+.header
+    transition: all 1s ease
+    position: fixed
+    width: 100%
+    background-color: rgba(255, 255, 255, 0.7)
+    top: 0
+    left: 0
+    backdrop-filter: blur(4rem)
+    z-index: 10
+
 .flex
     display: flex
     column-gap: 30rem
@@ -112,7 +125,6 @@ section
             color: #4E98B6
 
 .header
-    position: relative
     padding: 25rem 0 35px
     justify-content: space-between
 
@@ -500,7 +512,7 @@ div.catalog-card
     display: grid
     column-gap: 30rem
     row-gap: 30rem
-    grid-template-columns: 1fr 
+    grid-template-columns: 1fr
     +media(768)
         grid-template-columns: 1fr 1fr
     +media(1024)
@@ -770,7 +782,7 @@ p.model-order-name
 .sum-order,
 .order-sum
     display: none
-    
+
 .order-sum
     margin-bottom: 30rem
 
@@ -970,7 +982,7 @@ p.sale-numb
     cursor: pointer
     left: 55%
     &:hover
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
         background-color: #4E98B6
 
 .footer
@@ -993,8 +1005,62 @@ p.sale-numb
     a
         text-decoration: underline
 
+.popups-outline
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    background-color: #fff
+    font-size: 14rem
+    z-index: 9
+    overflow-y: scroll
+
+.popup-h2
+    color: #fff
+    font-family: "Kharkiv Tone"
+
+.popup-h2,
+.popups-outline h3,
+.info-popup p, .info-popup ul
+    padding: 20rem 0 10rem
+    text-align: center
+    font-family: Montserrat
+    font-size: 34px
+    font-weight: 400
+    text-transform: uppercase
+
+.popups-outline
+    h3
+        padding: 10rem 0
+        color: #1E1E1E
+        font-size: 20rem
+        text-align: left
+.info-popup 
+    padding: 30rem 0
+    p, ul
+        padding: 10rem 0
+        color: #1E1E1E
+        font-size: 14rem
+        text-align: left
+    ul
+        padding: 0
+        font-size: 12rem 
+        text-transform: none
+
+.popup-footer 
+    width: 100%
+    padding: 20rem 0
+    a
+        display: block
+        color: #fff
+        font-size: 20rem
+
+
 .footer-bottom
     padding-top: 16rem
     text-align: center
     span
         display: inline-block
+

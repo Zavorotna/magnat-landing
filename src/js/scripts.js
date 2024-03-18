@@ -1,4 +1,30 @@
 window.addEventListener("DOMContentLoaded", function () {
+  let lastScrollTop = 0;
+  const headerNavigation = document.querySelector(".header"),
+    logo = document.querySelector(".logo svg")
+
+  function handleScroll() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > 100) {
+      if (currentScroll > lastScrollTop) {
+        headerNavigation.style.top = "-100%"
+      } else {
+        headerNavigation.style.top = "0"
+        logo.style.width = "80rem"
+        logo.style.height = "80rem"
+        headerNavigation.style.padding = "10rem 0"
+      }
+    } else {
+      headerNavigation.style.top = "0"
+      logo.style.width = ""
+      logo.style.height = ""
+      headerNavigation.style.padding = ""
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
+  }
+  window.addEventListener("scroll", handleScroll, false)
+
+
   function showToast(message) {
     var toast = document.createElement('div')
     toast.classList.add('toast')
@@ -729,26 +755,7 @@ window.addEventListener("DOMContentLoaded", function () {
       transitionCard: "all 1.5s ease-in-out",
     })
   })
-  console.log(sliders);
-
-  // const pictureSlider2 = new InfinitySlider(".product2", {
-  //   isArrows: false,
-  //   isSlidesToScrollAll: false,
-  //   baseCardWidth: "250px",
-  //   gap: 50,
-  //   isAutoplay: true,
-  //   autoplaySpeed: 5000,
-  //   transitionCard: "all 1.5s ease-in-out",
-  // })
-
-  // const mainSlider = new InfinitySlider(".main-slider", {
-  //   isArrows: true,
-  //   isSlidesToScrollAll: false,
-  //   baseCardWidth: "1000px",
-  //   gap: 50,
-  //   isAutoplay: false,
-  //   autoplaySpeed: 5000,
-  // })
+  // console.log(sliders);
 
   function initSlider() {
     comment.init()
@@ -831,7 +838,20 @@ window.addEventListener("DOMContentLoaded", function () {
     })
   })
 
-
   cards[currentCardIndex].classList.add("active")
+
+  const popapPrivacy = document.querySelector(".privacy-police"),
+    openPopapPrivacy = document.querySelector(".popups-outline"),
+    closePrivacy = document.querySelector(".cancel-privacy")
+
+  popapPrivacy.addEventListener("click", function (e) {
+    e.preventDefault()
+    openPopapPrivacy.style.display = "block"
+  })
+
+  closePrivacy.addEventListener("click", function (e) {
+    e.preventDefault()
+    openPopapPrivacy.style.display = "none"
+  })
 
 })
