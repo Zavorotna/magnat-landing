@@ -150,9 +150,10 @@ window.addEventListener("DOMContentLoaded", function () {
           label = document.createElement('label'),
           p = document.createElement('p')
 
-        input.setAttribute('type', 'radio');
+        input.setAttribute('type', 'checkbox');
         input.setAttribute('name', `color-${index}`);
         input.setAttribute('id', `color-${index}-${colorIndex}`);
+        input.setAttribute('selected', true);
         input.classList.add('color-input');
 
         label.setAttribute('for', `color-${index}-${colorIndex}`);
@@ -160,8 +161,8 @@ window.addEventListener("DOMContentLoaded", function () {
         label.style.border = "1px solid"
         label.style.borderColor = color === 'white' ? '#ccc' : 'transparent';
 
-        p.appendChild(input);
-        p.appendChild(label);
+        p.appendChild(input)
+        p.appendChild(label)
 
         colorBlock.appendChild(p);
 
