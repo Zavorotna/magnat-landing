@@ -67,94 +67,107 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
 
-  // function updateLocalStorage(jsonData) {
-  //   let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData;
-  //   const currentTime = Date.now();
-  //   const lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0;
-  //   // час, який минає між останнім оновленням і поточним часом
-  //   const timePassed = currentTime - lastUpdate;
-
-  //   if (!maxQuantity) {
-  //     maxQuantity = jsonData;
-  //   }
-
-  //   for (const key in maxQuantity) {
-  //     if (maxQuantity.hasOwnProperty(key)) {
-  //       const fr = parseFloat(maxQuantity[key].fr)
-  //       console.log(fr);
-  //       // час, який має пройти до наступного оновлення на основі періодичності fr
-  //       const timeToNextUpdate = 5000 // час у мілісекундах
-  //       // const timeToNextUpdate = fr * 3600000 // час у мілісекундах
-  //       // кількість зменшень за час, що минув
-  //       const decreases = Math.floor(timePassed / timeToNextUpdate)
-
-  //       // кількість залишків, що залишаються після зменшень
-  //       let remainder = parseInt(maxQuantity[key].remainder) - decreases
-
-  //       // перевірка, щоб не ставати менше мінімального значення
-  //       if (remainder < parseInt(maxQuantity[key].min)) {
-  //         remainder = parseInt(jsonData[key].remainder)
-  //       }
-
-  //       // Змінюємо значення ремайндера
-  //       maxQuantity[key].remainder = remainder
-  //       // Оновлення даних в об'єкті jsonData
-  //       jsonData[key].remainder = remainder
-  //     }
-  //   }
-
-  //   // Оновлення локального сховища з новими значеннями
-  //   localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
-  //   // Оновлення часу останнього оновлення
-  //   localStorage.setItem('lastUpdate', currentTime)
-
-  //   return jsonData
-  // }
-
-
   function updateLocalStorage(jsonData) {
-    const maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData,
-      currentTime = Date.now(),
-      lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0
-    //час між останнім оновленням і поточним часом
-    const timePassed = currentTime - lastUpdate
-    if (!maxQuantity) {
-      maxQuantity = jsonData
+    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData;
+    const currentTime = Date.now();
+    const lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0;
+    localStorage.setItem('lastUpdate', currentTime);
+
+    // Час, який пройшов з останнього оновлення
+    let timePassed = currentTime - lastUpdate;
+    if (lastUpdate === 0) {
+      timePassed = 1;
     }
+
     for (const key in maxQuantity) {
       if (maxQuantity.hasOwnProperty(key)) {
-        const fr = parseFloat(maxQuantity[key].fr)
-        // час, який має пройти до наступного оновлення на основі періодичності fr
-        // const timeToNextUpdate = 5 * 100
-        const timeToNextUpdate = fr * 3600000
-        if (timePassed >= timeToNextUpdate) {
-          //числові значення для обчислень
-          const decreases = Math.floor(timePassed / timeToNextUpdate)
+        const fr = parseInt(maxQuantity[key].fr);
+        const timeToNextUpdate = fr * 3600000;
 
-          // const remainder = parseInt(maxQuantity[key].remainder),
-          // кількість залишків, що залишаються після зменшень
-          let remainder = parseInt(maxQuantity[key].remainder) - decreases,
-            min = parseInt(maxQuantity[key].min)
-          console.log(`Ключ: ${key}, Ремайндер: ${remainder}, Мінімум: ${min}`);
-          // Зміна ремайндер на 1
-          if (remainder > min) {
-            maxQuantity[key].remainder = remainder - 1
-          } else {
-            // Оновлення ремайндер на початкове значення, яке було на початку
-            maxQuantity[key].remainder = parseInt(jsonData[key].remainder);
+        if (timePassed >= timeToNextUpdate) {
+          const decreases = Math.floor(timePassed / timeToNextUpdate);
+
+          let remainder = parseInt(maxQuantity[key].remainder);
+          const min = parseInt(jsonData[key].min);
+          const max = parseInt(jsonData[key].remainder);
+
+          // Вираховуємо залишок після зменшень
+          remainder -= decreases;
+
+          // Перевірка на мінімальне та максимальне значення
+          if (remainder < min) {
+            remainder = max;
+          } else if (remainder > max) {
+            remainder = min;
           }
-          // оновленя часу останнього оновлення
-          localStorage.setItem('lastUpdate', currentTime)
-          // оновлення даних в об'єкті jsonData
-          jsonData[key].remainder = maxQuantity[key].remainder
+
+          maxQuantity[key].remainder = remainder;
+          jsonData[key].remainder = remainder;
         }
       }
     }
-    // Оновлюємо локальне сховище з новими значеннями
-    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
 
-    return jsonData
+    // Оновлюємо локальне сховище з новими значеннями
+    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
+    return jsonData;
   }
+
+  // function updateLocalStorage(jsonData) {
+  //   const maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData,
+  //     currentTime = Date.now(),
+  //     lastUpdate = parseInt(localStorage.getItem('lastUpdate') || 0)
+  //     localStorage.setItem('lastUpdate', currentTime)
+  //   //час між останнім оновленням і поточним часом
+  //   let timePassed = currentTime - lastUpdate
+  //   if(lastUpdate == 0) {
+  //     timePassed = 1
+  //   }
+  //   if (!maxQuantity) {
+  //     maxQuantity = jsonData
+  //   }
+  //   for (const key in maxQuantity) {
+  //     if (maxQuantity.hasOwnProperty(key)) {
+  //       const fr = parseInt(maxQuantity[key].fr)
+  //       // час, який має пройти до наступного оновлення на основі періодичності fr
+  //       // const timeToNextUpdate = fr * 6000
+  //       const timeToNextUpdate = fr * 60000
+  //       // console.log(timeToNextUpdate);
+  //       // console.log("значення фр" + "" + fr);
+  //       console.log(timePassed);
+  //       if (timePassed >= timeToNextUpdate) {
+  //         //числові значення для обчислень
+  //         const decreases = Math.floor(timePassed / timeToNextUpdate)
+  //         console.log(decreases);
+  //         // const remainder = parseInt(maxQuantity[key].remainder),
+  //         // кількість залишків, що залишаються після зменшень
+  //         let remainder = decreases,
+  //           min = parseInt(jsonData[key].min), 
+  //           max = parseInt(jsonData[key].remainder)
+
+  //         do{
+  //           if(remainder > max) {
+  //             remainder = parseInt(jsonData[key].remainder) - remainder
+  //           } else if(remainder < min) {
+  //             remainder = parseInt(jsonData[key].min) + remainder
+  //           }
+  //         } while(remainder < min || remainder > max) 
+  //         console.log(`Ключ: ${key}, Ремайндер: ${remainder}, Мінімум: ${min}`);
+  //         // Зміна ремайндер на 1
+  //         if (timePassed == 1) {
+  //           maxQuantity[key].remainder = parseInt(jsonData[key].remainder);
+  //         } else {
+  //           maxQuantity[key].remainder = remainder
+  //           // Оновлення ремайндер на початкове значення, яке було на початку
+  //         }
+
+  //         jsonData[key].remainder = maxQuantity[key].remainder
+  //       }
+  //     }
+  //   }
+  //   // Оновлюємо локальне сховище з новими значеннями
+  //   localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
+  //   return jsonData
+  // }
 
   // витягування зміненого обєкта з локального сховища
   function getUpdatedDataFromLocalStorage() {
@@ -864,10 +877,22 @@ window.addEventListener("DOMContentLoaded", function () {
   let sliders = {}
   console.log(products);
   products.forEach((slider, i) => {
+    const mediaQuery1440 = window.matchMedia('(min-width: 1440px)');
+    const mediaQuery1920 = window.matchMedia('(min-width: 1920px)');
+
+    let baseCardWidthImg = "250px"
+
+    if (mediaQuery1440.matches) {
+      baseCardWidthImg = "250px";
+    }
+
+    if (mediaQuery1920.matches) {
+      baseCardWidthImg = "550px";
+    }
     sliders["img-key" + (i + 1)] = new InfinitySlider("#product" + (i + 1), {
       isArrows: false,
       isSlidesToScrollAll: false,
-      baseCardWidth: "250px",
+      baseCardWidth: baseCardWidthImg,
       gap: 50,
       isAutoplay: true,
       autoplaySpeed: 5000,
