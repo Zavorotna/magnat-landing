@@ -2,28 +2,37 @@ window.addEventListener("DOMContentLoaded", function () {
   // хедер фіксований
   let lastScrollTop = 0;
   const headerNavigation = document.querySelector(".header"),
-    logo = document.querySelector(".logo svg")
+    logo = document.querySelector(".logo svg");
 
   function handleScroll() {
     let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     if (currentScroll > 100) {
       if (currentScroll > lastScrollTop) {
-        headerNavigation.style.top = "-100%"
+        headerNavigation.style.top = "-100%";
       } else {
-        headerNavigation.style.top = "0"
-        logo.style.width = "80rem"
-        logo.style.height = "80rem"
-        headerNavigation.style.padding = "10rem 0"
+        headerNavigation.style.top = "0";
+        logo.style.width = "80rem";
+        logo.style.height = "80rem";
       }
     } else {
-      headerNavigation.style.top = "0"
-      logo.style.width = ""
-      logo.style.height = ""
-      headerNavigation.style.padding = ""
+      headerNavigation.style.top = "0";
+      logo.style.width = "";
+      logo.style.height = "";
     }
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   }
-  window.addEventListener("scroll", handleScroll, false)
+
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      headerNavigation.style.padding = "25rem 0";
+    } else {
+      headerNavigation.style.padding = "10rem 0";
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll, false);
+  window.addEventListener("resize", handleResize, false);
+
 
 
   function showToast(message) {
@@ -66,7 +75,7 @@ window.addEventListener("DOMContentLoaded", function () {
       if (maxQuantity.hasOwnProperty(key)) {
         const fr = parseFloat(maxQuantity[key].fr)
         // час, який має пройти до наступного оновлення на основі періодичності fr
-        const timeToNextUpdate = fr * 3600000 
+        const timeToNextUpdate = fr * 3600000
 
         if (timePassed >= timeToNextUpdate) {
           //числові значення для обчислень
@@ -320,6 +329,7 @@ window.addEventListener("DOMContentLoaded", function () {
   fetchData()
   // кошик
   cart(updatedData)
+
   function cart(product) {
     const addToCartButtons = document.querySelectorAll(".cart-cta"),
       order = document.querySelector(".cart-order"),
@@ -445,7 +455,7 @@ window.addEventListener("DOMContentLoaded", function () {
           sizeSelect.addEventListener("change", function () {
             const selectedSizeValue = this.value
             selectedData.size = selectedSizeValue
-  
+
             console.log(selectedData)
             sendData(selectedData)
           })
