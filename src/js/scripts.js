@@ -44,7 +44,8 @@ window.addEventListener("DOMContentLoaded", function () {
     }, 3000)
   }
 
-  let jsonData = []
+  let jsonData = [],
+    isFirstEntry = true
 
   function sendData(orders) {
     const phpOrdersObj = JSON.stringify(orders);
@@ -56,8 +57,18 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch("products.json")
       .then(response => response.json())
       .then(data => {
-        jsonData = data
-        updateLocalStorage(data)
+        jsonData = data;
+        if (isFirstEntry) {
+          createCard(data)
+          cart(data)
+          updateLocalStorage(data)
+        } else {
+          const updatedData = getUpdatedDataFromLocalStorage()
+          createCard(updatedData)
+          cart(updatedData)
+          updateLocalStorage(updatedData)
+          
+      }
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
@@ -99,25 +110,33 @@ window.addEventListener("DOMContentLoaded", function () {
 
     // Оновлюємо локальне сховище з новими значеннями
     localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
-    // console.log('Оновлене знову maxQuantity:', maxQuantity[key].remainder)
 
     return jsonData
   }
   // витягування зміненого обєкта з локального сховища
   function getUpdatedDataFromLocalStorage() {
-    var jsonDataFromLocalStorage = localStorage.getItem('maxQuantity')
+    const jsonDataFromLocalStorage = localStorage.getItem('maxQuantity');
     if (jsonDataFromLocalStorage) {
       return JSON.parse(jsonDataFromLocalStorage)
     } else {
       return null
     }
   }
+  
+  const jsonDataFromLocalStorage = localStorage.getItem('maxQuantity')
 
+  if(jsonDataFromLocalStorage) {
+    isFirstEntry = false
+  }
   // Використання функції для отримання оновлених даних з локального сховища
-  const updatedData = getUpdatedDataFromLocalStorage()
-  // console.log(updatedData);
-  // let selectedData
-  createCard(updatedData)
+
+  console.log(isFirstEntry);
+  if(!isFirstEntry) {
+    const updatedData = getUpdatedDataFromLocalStorage()
+    console.log(updatedData);
+    createCard(updatedData)
+    cart(updatedData)
+  }
 
   function createCard(updatedData) {
     const mainCard = document.querySelectorAll('.slider-card'),
@@ -324,9 +343,10 @@ window.addEventListener("DOMContentLoaded", function () {
     })
   }
 
-  fetchData()
+
   // кошик
-  cart(updatedData)
+
+  // cart(updatedData)
 
   function cart(product) {
     const addToCartButtons = document.querySelectorAll(".cart-cta"),
@@ -476,7 +496,7 @@ window.addEventListener("DOMContentLoaded", function () {
       })
     })
   }
-
+  fetchData()
   //slider
   class InfinitySlider {
     constructor(selector, settings = {}) {
