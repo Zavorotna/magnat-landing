@@ -82,8 +82,8 @@ window.addEventListener("DOMContentLoaded", function () {
       if (maxQuantity.hasOwnProperty(key)) {
         const fr = parseFloat(maxQuantity[key].fr)
         // час, який має пройти до наступного оновлення на основі періодичності fr
-        const timeToNextUpdate = 5000 // час у мілісекундах
-        // const timeToNextUpdate = fr * 3600000 // час у мілісекундах
+        // const timeToNextUpdate = 5000 // час у мілісекундах
+        const timeToNextUpdate = fr * 3600000 // час у мілісекундах
 
         // кількість зменшень за час, що минув
         const decreases = Math.floor(timePassed / timeToNextUpdate)
