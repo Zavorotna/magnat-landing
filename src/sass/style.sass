@@ -900,16 +900,22 @@ p.sale-numb
 
 .comment-block
     padding-bottom: 80rem
-    height: 500rem
 
 .comment-card
-    height: 500rem
+    height: 450rem
     padding: 30rem 20rem
     color: #1E1E1E
     background-color: #fff
     font-family: Montserrat
     border: 1px solid #000
     box-sizing: border-box
+
+.img-comment 
+    max-width: 300rem
+    height: 150rem
+    overflow: hidden
+    img
+        object-fit: cover
 
 .name-comment
     margin-bottom: 10rem
@@ -918,8 +924,12 @@ p.sale-numb
         font-size: 16px
         font-weight: 600
         text-transform: uppercase
+
 .star-comment
     padding-bottom: 18rem
+    svg 
+        > path
+            fill: #eac83e
 
 .date-comment
     font-style: italic
@@ -932,6 +942,8 @@ p.sale-numb
     line-height: 1.5em
     font-size: 14px
     font-weight: 400
+.text-comment
+    min-height: 145rem
 
 .left.slider_navigation,
 .right.slider_navigation
