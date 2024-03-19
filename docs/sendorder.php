@@ -12,9 +12,9 @@
     <div class="bg-order-popup">
         <a class="to-main" href="index.html"></a>
         <div class="orders-successful">
-            <h2>ви успішно оформили замовлення!</h2>
+            <h2>ви успішно оформили замовлення!</h2><img src="img/галочка.svg" alt="" />
             <p>Ми звʼяжемося з вами найближчим часом для підтвердження замовлення.</p>
-            <a class="btn-style-one" href="index.html">на головну</a>
+            <a class="btn-style-one gradient" href="index.html">на головну</a>
         </div>
     </div>
 </body>
@@ -58,7 +58,7 @@ if (isset ($phpObject->head) && isset ($phpObject->saleprice) && isset ($phpObje
     // Видаляємо непотрібні символи (пробіли, коми, лапки)
     $colorValue = trim($colorValue, '{}"');
     // Додати інформацію про товар до тексту повідомлення з тегами форматування
-    $textObj = "Товар: <b>$productName</b>, Розмір: <b>$productSize</b>, Колір: <b>$colorValue</b>, Ціна: <b>$productPrice</b>%0A%0A";
+    $textObj = "Товар: <b>$productName</b>, Розмір: <b>$productSize</b>, Колір: <b>colorValue</b>, Ціна: <b>$productPrice</b>%0A%0A";
 } else {
     $textObj = "ERROR IN PRODUCT DATA";
 }
