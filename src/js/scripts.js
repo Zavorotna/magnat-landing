@@ -44,8 +44,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }, 3000)
   }
 
-  let jsonData = [],
-    isFirstEntry = true
+  let jsonData = []
 
   function sendData(orders) {
     const phpOrdersObj = JSON.stringify(orders);
@@ -57,18 +56,13 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch("products.json")
       .then(response => response.json())
       .then(data => {
-        jsonData = data;
-        if (isFirstEntry) {
-          createCard(data)
-          cart(data)
-          updateLocalStorage(data)
-        } else {
-          const updatedData = getUpdatedDataFromLocalStorage()
-          createCard(updatedData)
-          cart(updatedData)
-          updateLocalStorage(updatedData)
-          
-      }
+        jsonData = data
+        updateLocalStorage(jsonData)
+        const updatedData = getUpdatedDataFromLocalStorage()
+        console.log(updatedData);
+        createCard(updatedData)
+        cart(updatedData)
+        updateLocalStorage(updatedData)
       })
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
@@ -78,64 +72,47 @@ window.addEventListener("DOMContentLoaded", function () {
       currentTime = Date.now(),
       lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0
     //час між останнім оновленням і поточним часом
-    const timePassed = currentTime - lastUpdate
-
+      const timePassed = currentTime - lastUpdate
+      if (!maxQuantity) {
+        maxQuantity = jsonData
+      }
     for (const key in maxQuantity) {
       if (maxQuantity.hasOwnProperty(key)) {
         const fr = parseFloat(maxQuantity[key].fr)
         // час, який має пройти до наступного оновлення на основі періодичності fr
-        const timeToNextUpdate = fr * 3600000
-
+        const timeToNextUpdate = 5 * 100
+        // const timeToNextUpdate = fr * 3600000
         if (timePassed >= timeToNextUpdate) {
           //числові значення для обчислень
           const remainder = parseInt(maxQuantity[key].remainder),
             min = parseInt(maxQuantity[key].min)
-
+          console.log(`Ключ: ${key}, Ремайндер: ${remainder}, Мінімум: ${min}`);
           // Зміна ремайндер на 1
           if (remainder > min) {
             maxQuantity[key].remainder = remainder - 1
           } else {
             // Оновлення ремайндер на початкове значення, яке було на початку
-            maxQuantity[key].remainder = parseInt(jsonData[key].remainder)
+            maxQuantity[key].remainder = parseInt(jsonData[key].remainder);
           }
-
           // оновленя часу останнього оновлення
           localStorage.setItem('lastUpdate', currentTime)
-
           // оновлення даних в об'єкті jsonData
           jsonData[key].remainder = maxQuantity[key].remainder
         }
       }
     }
-
     // Оновлюємо локальне сховище з новими значеннями
     localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
 
     return jsonData
   }
+
   // витягування зміненого обєкта з локального сховища
   function getUpdatedDataFromLocalStorage() {
-    const jsonDataFromLocalStorage = localStorage.getItem('maxQuantity');
+    const jsonDataFromLocalStorage = localStorage.getItem('maxQuantity')
     if (jsonDataFromLocalStorage) {
       return JSON.parse(jsonDataFromLocalStorage)
-    } else {
-      return null
-    }
-  }
-  
-  const jsonDataFromLocalStorage = localStorage.getItem('maxQuantity')
-
-  if(jsonDataFromLocalStorage) {
-    isFirstEntry = false
-  }
-  // Використання функції для отримання оновлених даних з локального сховища
-
-  console.log(isFirstEntry);
-  if(!isFirstEntry) {
-    const updatedData = getUpdatedDataFromLocalStorage()
-    console.log(updatedData);
-    createCard(updatedData)
-    cart(updatedData)
+    } 
   }
 
   function createCard(updatedData) {
