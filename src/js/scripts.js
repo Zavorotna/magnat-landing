@@ -68,51 +68,97 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateLocalStorage(jsonData) {
-    const maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData,
-      currentTime = Date.now(),
-      lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0
-    //час між останнім оновленням і поточним часом
-      const timePassed = currentTime - lastUpdate
-      if (!maxQuantity) {
-        maxQuantity = jsonData
-      }
+    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData;
+    const currentTime = Date.now();
+    const lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0;
+    // час, який минає між останнім оновленням і поточним часом
+    const timePassed = currentTime - lastUpdate;
+
+    if (!maxQuantity) {
+      maxQuantity = jsonData;
+    }
+
     for (const key in maxQuantity) {
       if (maxQuantity.hasOwnProperty(key)) {
         const fr = parseFloat(maxQuantity[key].fr)
         // час, який має пройти до наступного оновлення на основі періодичності fr
-        const timeToNextUpdate = 5 * 100
-        // const timeToNextUpdate = fr * 3600000
-        if (timePassed >= timeToNextUpdate) {
-          //числові значення для обчислень
-          const remainder = parseInt(maxQuantity[key].remainder),
-            min = parseInt(maxQuantity[key].min)
-          console.log(`Ключ: ${key}, Ремайндер: ${remainder}, Мінімум: ${min}`);
-          // Зміна ремайндер на 1
-          if (remainder > min) {
-            maxQuantity[key].remainder = remainder - 1
-          } else {
-            // Оновлення ремайндер на початкове значення, яке було на початку
-            maxQuantity[key].remainder = parseInt(jsonData[key].remainder);
-          }
-          // оновленя часу останнього оновлення
-          localStorage.setItem('lastUpdate', currentTime)
-          // оновлення даних в об'єкті jsonData
-          jsonData[key].remainder = maxQuantity[key].remainder
+        const timeToNextUpdate = 5000 // час у мілісекундах
+        // const timeToNextUpdate = fr * 3600000 // час у мілісекундах
+
+        // кількість зменшень за час, що минув
+        const decreases = Math.floor(timePassed / timeToNextUpdate)
+
+        // кількість залишків, що залишаються після зменшень
+        let remainder = parseInt(maxQuantity[key].remainder) - decreases
+
+        // перевірка, щоб не ставати менше мінімального значення
+        if (remainder < parseInt(maxQuantity[key].min)) {
+          remainder = parseInt(jsonData[key].remainder)
         }
+
+        // Змінюємо значення ремайндера
+        maxQuantity[key].remainder = remainder
+        // Оновлення даних в об'єкті jsonData
+        jsonData[key].remainder = remainder
       }
     }
-    // Оновлюємо локальне сховище з новими значеннями
+
+    // Оновлення локального сховища з новими значеннями
     localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
+    // Оновлення часу останнього оновлення
+    localStorage.setItem('lastUpdate', currentTime)
 
     return jsonData
   }
+
+
+
+  // function updateLocalStorage(jsonData) {
+  //   const maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData,
+  //     currentTime = Date.now(),
+  //     lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0
+  //   //час між останнім оновленням і поточним часом
+  //   const timePassed = currentTime - lastUpdate
+  //   if (!maxQuantity) {
+  //     maxQuantity = jsonData
+  //   }
+  //   for (const key in maxQuantity) {
+  //     if (maxQuantity.hasOwnProperty(key)) {
+  //       const fr = parseFloat(maxQuantity[key].fr)
+  //       // час, який має пройти до наступного оновлення на основі періодичності fr
+  //       const timeToNextUpdate = 5 * 100
+  //       // const timeToNextUpdate = fr * 3600000
+  //       if (timePassed >= timeToNextUpdate) {
+  //         //числові значення для обчислень
+  //         const remainder = parseInt(maxQuantity[key].remainder),
+  //           min = parseInt(maxQuantity[key].min)
+  //         console.log(`Ключ: ${key}, Ремайндер: ${remainder}, Мінімум: ${min}`);
+  //         // Зміна ремайндер на 1
+  //         if (remainder > min) {
+  //           maxQuantity[key].remainder = remainder - 1
+  //         } else {
+  //           // Оновлення ремайндер на початкове значення, яке було на початку
+  //           maxQuantity[key].remainder = parseInt(jsonData[key].remainder);
+  //         }
+  //         // оновленя часу останнього оновлення
+  //         localStorage.setItem('lastUpdate', currentTime)
+  //         // оновлення даних в об'єкті jsonData
+  //         jsonData[key].remainder = maxQuantity[key].remainder
+  //       }
+  //     }
+  //   }
+  //   // Оновлюємо локальне сховище з новими значеннями
+  //   localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
+
+  //   return jsonData
+  // }
 
   // витягування зміненого обєкта з локального сховища
   function getUpdatedDataFromLocalStorage() {
     const jsonDataFromLocalStorage = localStorage.getItem('maxQuantity')
     if (jsonDataFromLocalStorage) {
       return JSON.parse(jsonDataFromLocalStorage)
-    } 
+    }
   }
 
   function createCard(updatedData) {
