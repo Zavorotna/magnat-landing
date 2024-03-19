@@ -738,11 +738,14 @@ a.addtocart
     &::before
         content: ""
         position: absolute
-        top: 8px
-        right: -20rem
+        top: 25px
+        right: -60rem
         border: 10px solid transparent
         border-top-color: #4E98B6
         z-index: 0
+        +media(768)
+            top: 8px
+            right: -20rem
     option
         color: #000
     &:selected
@@ -780,6 +783,8 @@ p.model-order-name
 .order-price-sale
     width: 80rem
     color: #fff
+    +media(768)
+        width: 100rem
 
 .sum-flex
     padding-bottom: 26rem
