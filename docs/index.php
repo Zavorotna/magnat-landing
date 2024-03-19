@@ -1,4 +1,13 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0"><link rel="stylesheet" href="css/styles.css"><title>Взуттєвий магнат - твій інтернет-магазин взуття</title></head><body> <header id="up"><div class="header"><div class="wrapper"> <div class="flex-between items-center"><div class="logo"> <a href="#up"><svg xmlns="http://www.w3.org/2000/svg" width="102" height="100" viewBox="0 0 102 100" fill="none">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0"><link rel="stylesheet" href="css/styles.css"><title>Взуттєвий магнат - твій інтернет-магазин взуття</title><script>!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '373450575098587');
+fbq('track', 'Lead');</script></head><body> <header id="up"><div class="header"><div class="wrapper"> <div class="flex-between items-center"><div class="logo"> <a href="#up"><svg xmlns="http://www.w3.org/2000/svg" width="102" height="100" viewBox="0 0 102 100" fill="none">
 <g clip-path="url(#clip0_31_48)">
 <path d="M50.8763 97.9741C77.4399 97.9741 98.974 76.4686 98.974 49.9402C98.974 23.4118 77.4399 1.90628 50.8763 1.90628C24.3127 1.90628 2.77864 23.4118 2.77864 49.9402C2.77864 76.4686 24.3127 97.9741 50.8763 97.9741Z" fill="#F0F5F7"/>
 <path d="M100.762 49.6958H98.8532C98.8532 23.3447 77.3868 1.9068 51.0003 1.9068C24.6137 1.9068 3.14736 23.3447 3.14736 49.6958H1.23804C1.23804 22.2935 23.5611 0 50.9997 0C78.4383 0 100.761 22.2935 100.761 49.6958H100.762Z" fill="#25445E"/>
