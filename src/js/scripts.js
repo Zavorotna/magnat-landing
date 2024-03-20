@@ -95,20 +95,18 @@ window.addEventListener("DOMContentLoaded", function () {
           const decreases = Math.floor(timePassed / timeToNextUpdate);
 
           let remainder = parseInt(maxQuantity[key].remainder);
-          const min = parseInt(jsonData[key].min);
-          const max = parseInt(jsonData[key].max);
-
+          
           // Вираховуємо залишок після зменшень
           remainder -= decreases;
-
+          
+          const min = parseInt(jsonData[key].min);
+          const max = parseInt(jsonData[key].remainder);
           // Перевірка на мінімальне та максимальне значення
-          do {
-            if (remainder > max) {
-              remainder = parseInt(jsonData[key].remainder) - remainder
-            } else if (remainder < min) {
-              remainder = parseInt(jsonData[key].min) + remainder
-            }
-          } while (remainder < min || remainder > max)
+          if (remainder <= min) {
+            remainder = max;
+          } else if (remainder > max) {
+            remainder = min;
+          }
 
           maxQuantity[key].remainder = remainder;
           jsonData[key].remainder = remainder;
