@@ -700,13 +700,12 @@ a.addtocart
         content: ""
         position: absolute
         top: 25px
-        right: -60rem
-        border: 10px solid transparent
+        right: -80rem
+        border: 8px solid transparent
         border-top-color: #4E98B6
         z-index: 0
         +media(768)
             top: 8px
-            right: -20rem
     option
         color: #000
     &:selected
@@ -724,12 +723,12 @@ p.model-order-name
     padding-bottom: 20rem
     +media(768)
         padding-bottom: 0
-        max-width: 125rem
+        // max-width: 125rem
     select
-        padding: 0 0 10rem
+        padding: 0 20rem 10rem 0
         color: #FFF
         font-family: Montserrat
-        font-size: 18px
+        font-size: 16px
         font-weight: 300
         background-color: transparent
         border: none
@@ -737,6 +736,8 @@ p.model-order-name
         outline: none
         appearance: none
         -webkit-appearance: none
+        option
+            color: #000
 
 .sale-price
     width: 100rem
@@ -942,7 +943,7 @@ p.sale-numb
     line-height: 1.5em
     font-size: 14px
     font-weight: 400
-    
+
 .text-comment
     min-height: 145rem
 

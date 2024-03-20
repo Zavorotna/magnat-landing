@@ -83,27 +83,55 @@ window.addEventListener("DOMContentLoaded", function () {
       if (maxQuantity.hasOwnProperty(key)) {
         const fr = parseInt(maxQuantity[key].fr);
         const timeToNextUpdate = fr * 3600000;
-
-        if (timePassed >= timeToNextUpdate) {
+        if (timePassed >= timeToNextUpdate || (timePassed >= 3600000 && (timePassed % timeToNextUpdate === 0))) {
           const decreases = Math.floor(timePassed / timeToNextUpdate);
 
-          let remainder = parseInt(maxQuantity[key].remainder);
-          const min = parseInt(jsonData[key].min);
-          const max = parseInt(jsonData[key].remainder);
+          for (const key in maxQuantity) {
+            if (maxQuantity.hasOwnProperty(key)) {
+              let remainder = parseInt(maxQuantity[key].remainder);
+              const min = parseInt(jsonData[key].min);
+              const max = parseInt(jsonData[key].remainder);
 
-          // Вираховуємо залишок після зменшень
-          remainder -= decreases;
+              // Вираховуємо залишок після зменшень
+              remainder -= decreases;
 
-          // Перевірка на мінімальне та максимальне значення
-          if (remainder < min) {
-            remainder = max;
-          } else if (remainder > max) {
-            remainder = min;
+              // Перевірка на мінімальне та максимальне значення
+              if (remainder < min) {
+                remainder = max;
+              } else if (remainder > max) {
+                remainder = min;
+              }
+
+              maxQuantity[key].remainder = remainder;
+              jsonData[key].remainder = remainder;
+            }
           }
-
-          maxQuantity[key].remainder = remainder;
-          jsonData[key].remainder = remainder;
         }
+
+        // Оновлюємо локальне сховище з новими значеннями
+        localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
+        return jsonData;
+
+        // if (timePassed >= timeToNextUpdate) {
+        //   const decreases = Math.floor(timePassed / timeToNextUpdate);
+
+        //   let remainder = parseInt(maxQuantity[key].remainder);
+        //   const min = parseInt(jsonData[key].min);
+        //   const max = parseInt(jsonData[key].remainder);
+
+        //   // Вираховуємо залишок після зменшень
+        //   remainder -= decreases;
+
+        //   // Перевірка на мінімальне та максимальне значення
+        //   if (remainder < min) {
+        //     remainder = max;
+        //   } else if (remainder > max) {
+        //     remainder = min;
+        //   }
+
+        //   maxQuantity[key].remainder = remainder;
+        //   jsonData[key].remainder = remainder;
+        // }
       }
     }
 
@@ -382,11 +410,7 @@ window.addEventListener("DOMContentLoaded", function () {
     })
   }
 
-
   // кошик
-
-  // cart(updatedData)
-
   function cart(product) {
     const addToCartButtons = document.querySelectorAll(".cart-cta"),
       order = document.querySelector(".cart-order"),
@@ -400,7 +424,6 @@ window.addEventListener("DOMContentLoaded", function () {
       cardSalePrice = document.querySelector(".sale-price-order"),
       sumBlockCart = document.querySelector(".sum-order"),
       orderSum = document.querySelector(".order-sum"),
-      imgOrder = document.querySelectorAll('img[data-id-img]'),
       cartImg = document.querySelector(".img-order"),
       productsArray = Object.values(product)
 
@@ -415,28 +438,28 @@ window.addEventListener("DOMContentLoaded", function () {
         return 0.06 // 6% знижка
       }
     }
+
     const btnAddCart = document.querySelector(".addtocart")
     addToCartButtons.forEach(button => {
       button.addEventListener("click", function () {
+        cartImg.innerHTML = ""
         const productId = button.getAttribute("data-item-key"),
           selectedProduct = productsArray.find(item => item.id === productId)
+        console.log(selectedProduct)
         btnAddCart.style.display = "none"
         sumBlockCart.style.display = "block"
         orderSum.style.display = "flex"
         if (selectedProduct) {
-          const selectedSizeRadio = document.querySelector('input[type="radio"]:checked');
+          const selectedSizeRadio = document.querySelector('input[type="radio"]:checked')
           if (!selectedSizeRadio) {
-            showToast("Будь ласка, оберіть розмір")
-            return
+            showToast("Виберіть розмір, будь ласка")
           }
           modelName.innerText = selectedProduct.head
           cardProductPrice.innerText = selectedProduct.saleprice
 
-          // Розрахунок знижки для товару
           const discount = calculateDiscount(parseInt(selectedProduct.remainder))
           let discountedPrice = parseFloat(selectedProduct.saleprice)
 
-          // Застосування знижки, якщо вона є
           if (discount > 0) {
             discountedPrice = discountedPrice * (1 - discount)
           }
@@ -444,40 +467,42 @@ window.addEventListener("DOMContentLoaded", function () {
           cardSalePrice.innerText = discountedPrice.toFixed(2)
 
           fullPrice.innerText = selectedProduct.saleprice
-          salePrice.innerText = parseFloat(selectedProduct.saleprice) - parseFloat(cardSalePrice.innerText);
+          salePrice.innerText = parseFloat(selectedProduct.saleprice) - parseFloat(cardSalePrice.innerText)
           let totalPrice = parseFloat(selectedProduct.saleprice)
 
-          // перевірка чи є знижка
           if (parseFloat(cardSalePrice.innerText) > 0) {
             totalPrice = parseFloat(cardSalePrice.innerText)
           }
-          //сума до оплати
+
           priceToPay.innerText = totalPrice.toFixed(2)
-          // const sizeText = document.createElement("p")
-          // sizeText.classList.add("size-order-text")
-          // sizeText.innerText = "Розмір:"
-          // const labelSelect = document.createElement("label")
-          // labelSelect.setAttribute("for", "sizeSelect")
 
           const sizeSelect = document.createElement('select')
           sizeSelect.setAttribute("id", "sizeSelect")
           sizeSelect.setAttribute("name", "sizeSelect")
+
+          const defaultOption = document.createElement('option')
+          defaultOption.setAttribute('value', 'Розмір не вибрано')
+          defaultOption.setAttribute('selected', 'selected')
+          defaultOption.textContent = 'Розмір не вибрано'
+          sizeSelect.appendChild(defaultOption)
+
           selectedProduct.size.forEach(size => {
             const option = document.createElement('option')
-            option.setAttribute('value', size);
+            option.setAttribute('value', size)
             option.textContent = `${size}`
             sizeSelect.appendChild(option)
           })
 
-          const selectedSize = document.querySelector('input[type="radio"]:checked').value,
-            option = sizeSelect.querySelector(`option[value="${selectedSize}"]`)
-
           sizeOrder.innerHTML = ''
           sizeOrder.appendChild(sizeSelect)
+
+          const selectedSizeValue = selectedSizeRadio ? selectedSizeRadio.value : 'Розмір не вибрано'
+          const option = sizeSelect.querySelector(`option[value="${selectedSizeValue}"]`)
 
           if (option) {
             option.selected = true
           }
+
           const selectedKeys = ['head', 'saleprice', 'color']
           const selectedData = selectedKeys.reduce((obj, key) => {
             if (key === 'color') {
@@ -488,31 +513,27 @@ window.addEventListener("DOMContentLoaded", function () {
             return obj
           }, {})
 
-          selectedData.saleprice = parseFloat(cardSalePrice.innerText.trim());
-          const selectedSizeValue = sizeOrder.querySelector('select').value
+          selectedData.saleprice = parseFloat(cardSalePrice.innerText.trim())
           selectedData.size = selectedSizeValue
-          console.log(selectedData)
-          // Відправити об'єкт з вибраними ключами на сервер
+
           sendData(selectedData)
+
           order.style.display = "flex"
-          //зображення в кошику
+
           const firstImageSrc = document.querySelector(`.image[data-id-img="${selectedProduct.id}"] img`).getAttribute('src')
 
           let imgCartBlock = document.createElement("img")
           imgCartBlock.setAttribute('src', firstImageSrc)
           cartImg.appendChild(imgCartBlock)
 
-          // скидання радіо кнопок на клік упити
           const radioInputs = document.querySelectorAll('input[type="radio"]')
-
           radioInputs.forEach(input => {
             input.checked = false
           })
-          //якзо розмір з селекту то відправити його
+
           sizeSelect.addEventListener("change", function () {
             const selectedSizeValue = this.value
             selectedData.size = selectedSizeValue
-
             console.log(selectedData)
             sendData(selectedData)
           })
@@ -529,12 +550,12 @@ window.addEventListener("DOMContentLoaded", function () {
             fullPrice.innerText = "0"
             salePrice.innerText = "0"
             priceToPay.innerText = "0"
-
           })
         }
       })
     })
   }
+
   fetchData()
   //slider
   class InfinitySlider {
@@ -941,9 +962,16 @@ window.addEventListener("DOMContentLoaded", function () {
   // перемикання карток товару
   const cards = document.querySelectorAll(".slider-card"),
     nextButtons = document.querySelectorAll(".next"),
-    prevButtons = document.querySelectorAll(".prev")
+    prevButtons = document.querySelectorAll(".prev"),
+    pointer = document.querySelectorAll(".pointer")
 
   let currentCardIndex = 0
+
+  function pointerNone() {
+    pointer.forEach(items => {
+      items.style.display = "none"
+    })
+  }
 
   function showNextCard(index) {
     cards[currentCardIndex].classList.remove("active")
@@ -961,6 +989,7 @@ window.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", (event) => {
       event.preventDefault()
       showNextCard(index)
+      pointerNone()
       initSlider()
       Object.keys(sliders).forEach(sliderKey => {
         sliders[sliderKey].init()
@@ -974,6 +1003,7 @@ window.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", (event) => {
       event.preventDefault()
       showPreviousCard(index)
+      pointerNone()
       initSlider()
       Object.keys(sliders).forEach(sliderKey => {
         sliders[sliderKey].init()
