@@ -67,65 +67,63 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
 
-  let lastUpdate;
+  let lastUpdate
 
   function updateLocalStorage(jsonData) {
-    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData;
-    lastUpdate = parseInt(localStorage.getItem('lastUpdate'));
-    const currentTime = Date.now();
+    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData
+    lastUpdate = parseInt(localStorage.getItem('lastUpdate'))
+    const currentTime = Date.now()
 
     if (!lastUpdate) {
-      // Якщо lastUpdate є пустим або не існує, встановлюємо поточний час
-      localStorage.setItem('lastUpdate', currentTime);
-      lastUpdate = currentTime; // Оновлюємо lastUpdate для подальшого використання
+      localStorage.setItem('lastUpdate', currentTime)
     }
 
     // Час, який пройшов з останнього оновлення
-    let timePassed = currentTime - lastUpdate;
+    let timePassed = currentTime - lastUpdate
     console.log(timePassed);
-    let updated = false; // Прапорець для визначення, чи відбулося фактичне оновлення залишків
+    let updated = false // Прапорець для визначення, чи відбулося фактичне оновлення залишків
 
     for (const key in maxQuantity) {
       if (maxQuantity.hasOwnProperty(key)) {
-        const fr = parseInt(maxQuantity[key].fr);
-        const timeToNextUpdate = fr * 3600000;
+        const fr = parseInt(maxQuantity[key].fr)
+        const timeToNextUpdate = fr * 3600000
 
         // Перевірка, чи пройшов час для оновлення залишків
         if (timePassed >= timeToNextUpdate) {
-          const decreases = Math.floor(timePassed / timeToNextUpdate);
+          const decreases = Math.floor(timePassed / timeToNextUpdate)
 
-          let remainder = parseInt(maxQuantity[key].remainder);
+          let remainder = parseInt(maxQuantity[key].remainder)
           
           // Вираховуємо залишок після зменшень
-          remainder -= decreases;
+          remainder -= decreases
           
-          const min = parseInt(jsonData[key].min);
-          const max = parseInt(jsonData[key].remainder);
+          const min = parseInt(jsonData[key].min)
+          const max = parseInt(jsonData[key].remainder)
           // Перевірка на мінімальне та максимальне значення
           if (remainder <= min) {
-            remainder = max;
+            remainder = max
           } else if (remainder > max) {
-            remainder = min;
+            remainder = min
           }
 
-          maxQuantity[key].remainder = remainder;
-          jsonData[key].remainder = remainder;
+          maxQuantity[key].remainder = remainder
+          jsonData[key].remainder = remainder
 
           // Встановлюємо флаг оновлення
-          updated = true;
+          updated = true
         }
       }
     }
 
     if (updated) {
       // Якщо відбулося фактичне оновлення залишків, оновлюємо lastUpdate до поточного часу
-      localStorage.setItem('lastUpdate', currentTime);
+      localStorage.setItem('lastUpdate', currentTime)
     }
 
     // Оновлюємо локальне сховище з новими значеннями
-    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
+    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
 
-    return jsonData;
+    return jsonData
   }
 
 
