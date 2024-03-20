@@ -67,50 +67,56 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
 
-  function updateLocalStorage(jsonData) {
-    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData;
-    const currentTime = Date.now();
-    const lastUpdate = parseInt(localStorage.getItem('lastUpdate')) || 0;
-    
-    // Час, який пройшов з останнього оновлення
-    let timePassed = currentTime - lastUpdate;
-    if (lastUpdate === 0) {
-      timePassed = 1;
-    }
+  let lastUpdate;
 
+  function updateLocalStorage(jsonData) {
+    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData
+    lastUpdate = parseInt(localStorage.getItem('lastUpdate'))
+    const currentTime = Date.now()
+    
+    if (!lastUpdate) {
+      // Якщо lastUpdate є пустим або не існує, встановлюємо поточний час
+      localStorage.setItem('lastUpdate', currentTime)
+      lastUpdate = currentTime // Оновлюємо lastUpdate для подальшого використання
+    }
+  
+    // Час, який пройшов з останнього оновлення
+    let timePassed = currentTime - lastUpdate
+    console.log(timePassed);
     for (const key in maxQuantity) {
       if (maxQuantity.hasOwnProperty(key)) {
-        const fr = parseInt(maxQuantity[key].fr);
+        const fr = parseInt(maxQuantity[key].fr)
         const timeToNextUpdate = fr * 3600000;
+        
+        // Перевірка, чи пройшов час для оновлення залишків
         if (timePassed >= timeToNextUpdate) {
-          const decreases = Math.floor(timePassed / timeToNextUpdate);
-      
-          for (const key in maxQuantity) {
-              if (maxQuantity.hasOwnProperty(key)) {
-                  let remainder = parseInt(maxQuantity[key].remainder);
-                  const min = parseInt(jsonData[key].min);
-                  const max = parseInt(jsonData[key].remainder);
-      
-                  // Вираховуємо залишок після зменшень
-                  remainder -= decreases;
-                  
-                  // Перевірка на мінімальне та максимальне значення
-                  if (remainder < min) {
-                    remainder = max;
-                  } else if (remainder > max) {
-                    remainder = min;
-                  }
-                  
-                  maxQuantity[key].remainder = remainder;
-                  jsonData[key].remainder = remainder;
-                }
-              }
-              localStorage.setItem('lastUpdate', currentTime);
-            }
-      
-      // Оновлюємо локальне сховище з новими значеннями
-      localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
-      return jsonData;
+          const decreases = Math.floor(timePassed / timeToNextUpdate)
+  
+          let remainder = parseInt(maxQuantity[key].remainder)
+          const min = parseInt(jsonData[key].min)
+          const max = parseInt(jsonData[key].max)
+  
+          // Вираховуємо залишок після зменшень
+          remainder -= decreases
+  
+          // Перевірка на мінімальне та максимальне значення
+          if (remainder < min) {
+            remainder = max
+          } else if (remainder > max) {
+            remainder = min
+          }
+  
+          maxQuantity[key].remainder = remainder
+          jsonData[key].remainder = remainder
+        }
+      }
+    }
+    
+    // Оновлюємо локальне сховище з новими значеннями
+    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
+    return jsonData
+  }
+  
       
         // if (timePassed >= timeToNextUpdate) {
         //   const decreases = Math.floor(timePassed / timeToNextUpdate);
@@ -132,13 +138,13 @@ window.addEventListener("DOMContentLoaded", function () {
         //   maxQuantity[key].remainder = remainder;
         //   jsonData[key].remainder = remainder;
         // }
-      }
-    }
+      // }
+  //   }
 
-    // Оновлюємо локальне сховище з новими значеннями
-    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
-    return jsonData;
-  }
+  //   // Оновлюємо локальне сховище з новими значеннями
+  //   localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
+  //   return jsonData;
+  // }
 
   // function updateLocalStorage(jsonData) {
   //   const maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData,
