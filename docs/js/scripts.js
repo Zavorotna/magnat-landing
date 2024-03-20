@@ -461,7 +461,10 @@ window.addEventListener("DOMContentLoaded", function () {
           let discountedPrice = parseFloat(selectedProduct.saleprice)
 
           if (discount > 0) {
+            cardProductPrice.style.display = "block"
             discountedPrice = discountedPrice * (1 - discount)
+          } else {
+            cardProductPrice.style.display = "none"
           }
 
           cardSalePrice.innerText = discountedPrice.toFixed(2)
