@@ -139,7 +139,7 @@ html(lang="uk")
                             .flex-between.input-flex
                                 .name
                                     label(for="name") 
-                                    input(type="text" id="name" name="userName" placeholder="введіть ваше імʼя*" required min="3" max="30")
+                                    input(type="text" id="name" name="userName" minlength="3" maxlength="30" placeholder="введіть ваше імʼя*" required)
                                 .phone
                                     label(for="phone") 
                                     input(type="tel" id="phone" name="userPhone" placeholder="введіть ваш телефон*" required)

@@ -962,13 +962,22 @@ window.addEventListener("DOMContentLoaded", function () {
       // sliderKey.init()
     })
   }, 1000);
-
+  //перевірка відправки форми для телефону і імені
+  const inputField = document.getElementById('name'),
+    maxLength = 30,
+    minLength = 3
+  inputField.addEventListener('keydown', function (event) {
+    const userInput = inputField.value.trim()
+    if (userInput.length >= maxLength && event.key !== 'Backspace' && event.key !== 'Delete') {
+      event.preventDefault()
+    }
+  })
 
   const phoneInput = document.querySelector('#phone')
 
   phoneInput.addEventListener('input', function () {
     const phoneNumber = phoneInput.value,
-      validInput = /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber);
+      validInput = /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
     if (validInput) {
       phoneInput.style.borderColor = 'green'
     } else {
@@ -977,7 +986,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   })
 
-  // Додамо обробник події для відправки форми
   const callMeForm = document.querySelector("form[action='sendorder.php']")
 
   callMeForm.addEventListener("submit", (event) => {
@@ -988,6 +996,17 @@ window.addEventListener("DOMContentLoaded", function () {
       showToast("Введіть коректний номер телефону", "info", 5000)
       event.preventDefault()
       return
+    }
+
+    const userInput = inputField.value.trim()
+
+    if (userInput.length < minLength || userInput.length > maxLength) {
+      event.preventDefault()
+      if (userInput.length < minLength) {
+        showToast('Мінімальна кількість символів для імені: 3')
+      } else {
+        showToast('Максимальна кількість символів для імені: 30')
+      }
     }
   })
 
