@@ -93,10 +93,10 @@ window.addEventListener("DOMContentLoaded", function () {
           const decreases = Math.floor(timePassed / timeToNextUpdate)
 
           let remainder = parseInt(maxQuantity[key].remainder)
-          
+
           // Вираховуємо залишок після зменшень
           remainder -= decreases
-          
+
           const min = parseInt(jsonData[key].min)
           const max = parseInt(jsonData[key].remainder)
           // Перевірка на мінімальне та максимальне значення
@@ -968,15 +968,32 @@ window.addEventListener("DOMContentLoaded", function () {
 
   phoneInput.addEventListener('input', function () {
     const phoneNumber = phoneInput.value,
-      phoneRegex = /\b\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})\b/g
-
-    if (phoneRegex.test(phoneNumber)) {
+      validInput = /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber);
+    if (validInput) {
       phoneInput.style.borderColor = 'green'
     } else {
       phoneInput.style.borderColor = 'red'
       showToast("Введіть вірний номер телефону")
     }
   })
+
+  // Додамо обробник події для відправки форми
+  const callMeForm = document.querySelector("form[action='sendorder.php']")
+
+  callMeForm.addEventListener("submit", (event) => {
+    const phoneInput = callMeForm.querySelector("input[name='userPhone']"),
+      phoneNumber = phoneInput.value.trim()
+
+    if (!phoneNumber || !isValidPhoneNumber(phoneNumber)) {
+      showToast("Введіть коректний номер телефону", "info", 5000)
+      event.preventDefault()
+      return
+    }
+  })
+
+  function isValidPhoneNumber(phoneNumber) {
+    return /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
+  }
 
   // перемикання карток товару
   const cards = document.querySelectorAll(".slider-card"),

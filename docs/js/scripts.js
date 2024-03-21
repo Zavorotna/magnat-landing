@@ -67,65 +67,63 @@ window.addEventListener("DOMContentLoaded", function () {
       .catch(error => console.error("Помилка завантаження даних:", error))
   }
 
-  let lastUpdate;
+  let lastUpdate
 
   function updateLocalStorage(jsonData) {
-    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData;
-    lastUpdate = parseInt(localStorage.getItem('lastUpdate'));
-    const currentTime = Date.now();
+    let maxQuantity = JSON.parse(localStorage.getItem('maxQuantity')) || jsonData
+    lastUpdate = parseInt(localStorage.getItem('lastUpdate'))
+    const currentTime = Date.now()
 
     if (!lastUpdate) {
-      // Якщо lastUpdate є пустим або не існує, встановлюємо поточний час
-      localStorage.setItem('lastUpdate', currentTime);
-      lastUpdate = currentTime; // Оновлюємо lastUpdate для подальшого використання
+      localStorage.setItem('lastUpdate', currentTime)
     }
 
     // Час, який пройшов з останнього оновлення
-    let timePassed = currentTime - lastUpdate;
+    let timePassed = currentTime - lastUpdate
     console.log(timePassed);
-    let updated = false; // Прапорець для визначення, чи відбулося фактичне оновлення залишків
+    let updated = false // Прапорець для визначення, чи відбулося фактичне оновлення залишків
 
     for (const key in maxQuantity) {
       if (maxQuantity.hasOwnProperty(key)) {
-        const fr = parseInt(maxQuantity[key].fr);
-        const timeToNextUpdate = fr * 3600000;
+        const fr = parseInt(maxQuantity[key].fr)
+        const timeToNextUpdate = fr * 3600000
 
         // Перевірка, чи пройшов час для оновлення залишків
         if (timePassed >= timeToNextUpdate) {
-          const decreases = Math.floor(timePassed / timeToNextUpdate);
+          const decreases = Math.floor(timePassed / timeToNextUpdate)
 
-          let remainder = parseInt(maxQuantity[key].remainder);
-          
+          let remainder = parseInt(maxQuantity[key].remainder)
+
           // Вираховуємо залишок після зменшень
-          remainder -= decreases;
-          
-          const min = parseInt(jsonData[key].min);
-          const max = parseInt(jsonData[key].remainder);
+          remainder -= decreases
+
+          const min = parseInt(jsonData[key].min)
+          const max = parseInt(jsonData[key].remainder)
           // Перевірка на мінімальне та максимальне значення
           if (remainder <= min) {
-            remainder = max;
+            remainder = max
           } else if (remainder > max) {
-            remainder = min;
+            remainder = min
           }
 
-          maxQuantity[key].remainder = remainder;
-          jsonData[key].remainder = remainder;
+          maxQuantity[key].remainder = remainder
+          jsonData[key].remainder = remainder
 
           // Встановлюємо флаг оновлення
-          updated = true;
+          updated = true
         }
       }
     }
 
     if (updated) {
       // Якщо відбулося фактичне оновлення залишків, оновлюємо lastUpdate до поточного часу
-      localStorage.setItem('lastUpdate', currentTime);
+      localStorage.setItem('lastUpdate', currentTime)
     }
 
     // Оновлюємо локальне сховище з новими значеннями
-    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity));
+    localStorage.setItem('maxQuantity', JSON.stringify(maxQuantity))
 
-    return jsonData;
+    return jsonData
   }
 
 
@@ -970,15 +968,32 @@ window.addEventListener("DOMContentLoaded", function () {
 
   phoneInput.addEventListener('input', function () {
     const phoneNumber = phoneInput.value,
-      phoneRegex = /\b\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})\b/g
-
-    if (phoneRegex.test(phoneNumber)) {
+      validInput = /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber);
+    if (validInput) {
       phoneInput.style.borderColor = 'green'
     } else {
       phoneInput.style.borderColor = 'red'
       showToast("Введіть вірний номер телефону")
     }
   })
+
+  // Додамо обробник події для відправки форми
+  const callMeForm = document.querySelector("form[action='sendorder.php']")
+
+  callMeForm.addEventListener("submit", (event) => {
+    const phoneInput = callMeForm.querySelector("input[name='userPhone']"),
+      phoneNumber = phoneInput.value.trim()
+
+    if (!phoneNumber || !isValidPhoneNumber(phoneNumber)) {
+      showToast("Введіть коректний номер телефону", "info", 5000)
+      event.preventDefault()
+      return
+    }
+  })
+
+  function isValidPhoneNumber(phoneNumber) {
+    return /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
+  }
 
   // перемикання карток товару
   const cards = document.querySelectorAll(".slider-card"),

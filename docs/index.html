@@ -311,14 +311,14 @@ for($i=1; $i <= count($data); $i++) {
       <section class="cart-product dark-bg" id="cart">
         <h2 class="white-head head">замовлення товару</h2>
         <div class="cart"> 
-          <form action="sendorder.php" method="post">
+          <form id="sendForm" action="sendorder.php" method="post">
             <div class="contact-name">
               <p class="cart-head">ваші контактні дані:</p>
               <input type="hidden" name="orderProducts" id="orderProductsObject">
               <div class="flex-between input-flex">
                 <div class="name">
                   <label for="name"> </label>
-                  <input type="text" id="name" name="userName" placeholder="введіть ваше імʼя*" required>
+                  <input type="text" id="name" name="userName" placeholder="введіть ваше імʼя*" required min="3" max="30">
                 </div>
                 <div class="phone">
                   <label for="phone"> </label>

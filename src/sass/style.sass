@@ -426,12 +426,14 @@ p.haracteristic-name
     +media(1440)
         font-size: 24rem
 
-.instruction-size_block
+div.instruction-size_block
     padding: 15rem 0
     column-gap: 13rem
     row-gap: 20rem
+    justify-content: center
     +media(768)
         padding: 50rem 0
+        flex-wrap: nowrap
 
 .size-img
     position: relative
@@ -497,7 +499,9 @@ div.catalog-card
     border: 1px solid #000
 
 .hover-img
-    display: inline-block
+    display: flex
+    justify-content: center
+    align-items: center
     height: 290rem
     min-width: 255rem
 
