@@ -949,18 +949,10 @@ window.addEventListener("DOMContentLoaded", function () {
     })
   }
   window.onresize = function () {
-    comment.init()
-    Object.keys(sliders).forEach(sliderKey => {
-      sliders[sliderKey].init()
-      // sliderKey.init()
-    })
+    initSlider()
   }
   setTimeout(function () {
     initSlider()
-    Object.keys(sliders).forEach(sliderKey => {
-      sliders[sliderKey].init()
-      // sliderKey.init()
-    })
   }, 1000);
   //перевірка відправки форми для телефону і імені
   const inputField = document.getElementById('name'),
@@ -1045,12 +1037,9 @@ window.addEventListener("DOMContentLoaded", function () {
       event.preventDefault()
       showNextCard(index)
       pointerNone()
-      initSlider()
-      Object.keys(sliders).forEach(sliderKey => {
-        sliders[sliderKey].init()
-        // sliderKey.init()
-      })
-
+      setTimeout(function () {
+        initSlider()
+      }, 500); 
     })
   })
 
@@ -1059,11 +1048,9 @@ window.addEventListener("DOMContentLoaded", function () {
       event.preventDefault()
       showPreviousCard(index)
       pointerNone()
-      initSlider()
-      Object.keys(sliders).forEach(sliderKey => {
-        sliders[sliderKey].init()
-        // sliderKey.init()
-      })
+      setTimeout(function () {
+        initSlider()
+      }, 500); 
     })
   })
 

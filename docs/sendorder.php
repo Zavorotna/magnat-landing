@@ -12,10 +12,10 @@ if($_POST) {
         $userName = "ERROR IN MESSAGE";
     }
     
-    // $token = "6955843433:AAHq4PsIKlhlh9ED95MXctOJxMHziCney1Y"; // api телеграм бота
-    // $chat_id = "-1001904336913";
-    $token = "6502486274:AAFqSGBvtvutHB8be-wTlsK3ETbssmLSEWo"; // api телеграм бота
-    $chat_id = "1066741091";
+    $token = "6955843433:AAHq4PsIKlhlh9ED95MXctOJxMHziCney1Y"; // api телеграм бота
+    $chat_id = "-1001904336913";
+    // $token = "6502486274:AAFqSGBvtvutHB8be-wTlsK3ETbssmLSEWo"; // api телеграм бота
+    // $chat_id = "1066741091";
     
     
     $userPhone = urlencode("$userPhone");
