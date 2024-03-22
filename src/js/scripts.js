@@ -893,6 +893,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     touchSlider(e) {
+      clearInterval(sliderInterval);
       if ((this.touchPoint + 20) < e.touches[0].pageX) {
         this.changeSlide('left');
         this.slider.removeEventListener('touchmove', this.touchSlider);
