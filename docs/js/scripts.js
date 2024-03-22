@@ -951,9 +951,76 @@ window.addEventListener("DOMContentLoaded", function () {
   window.onresize = function () {
     initSlider()
   }
-  setTimeout(function () {
+  let sliderInterval = setTimeout(function () {
     initSlider()
   }, 1000);
+  
+  // перемикання карток товару
+  const cards = document.querySelectorAll(".slider-card"),
+  nextButtons = document.querySelectorAll(".next"),
+  prevButtons = document.querySelectorAll(".prev"),
+  pointer = document.querySelectorAll(".pointer")
+  
+  let currentCardIndex = 0
+  
+  function pointerNone() {
+    pointer.forEach(items => {
+      items.style.display = "none"
+    })
+  }
+
+  function showNextCard(index) {
+    cards[currentCardIndex].classList.remove("active")
+    currentCardIndex = (currentCardIndex + 1) % cards.length
+    cards[currentCardIndex].classList.add("active")
+  }
+  
+  function showPreviousCard() {
+    cards[currentCardIndex].classList.remove("active")
+    currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
+    cards[currentCardIndex].classList.add("active")
+  }
+
+  nextButtons.forEach((button, index) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault()
+      showNextCard(index)
+      pointerNone()
+      clearInterval(sliderInterval);
+      sliderInterval = setTimeout(function () {
+        initSlider()
+      }, 500); 
+    })
+  })
+  
+  prevButtons.forEach((button, index) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault()
+      showPreviousCard(index)
+      pointerNone()
+      clearInterval(sliderInterval);
+      sliderInterval = setTimeout(function () {
+        initSlider()
+      }, 500); 
+    })
+  })
+  
+  cards[currentCardIndex].classList.add("active")
+  
+  const popapPrivacy = document.querySelector(".privacy-police"),
+  openPopapPrivacy = document.querySelector(".popups-outline"),
+  closePrivacy = document.querySelector(".cancel-privacy")
+  
+  popapPrivacy.addEventListener("click", function (e) {
+    e.preventDefault()
+    openPopapPrivacy.style.display = "block"
+  })
+  
+  closePrivacy.addEventListener("click", function (e) {
+    e.preventDefault()
+    openPopapPrivacy.style.display = "none"
+  })
+  
   //перевірка відправки форми для телефону і імені
   const inputField = document.getElementById('name'),
     maxLength = 30,
@@ -964,9 +1031,9 @@ window.addEventListener("DOMContentLoaded", function () {
       event.preventDefault()
     }
   })
-
+  
   const phoneInput = document.querySelector('#phone')
-
+  
   phoneInput.addEventListener('input', function () {
     const phoneNumber = phoneInput.value,
       validInput = /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
@@ -982,7 +1049,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   callMeForm.addEventListener("submit", (event) => {
     const phoneInput = callMeForm.querySelector("input[name='userPhone']"),
-      phoneNumber = phoneInput.value.trim()
+    phoneNumber = phoneInput.value.trim()
 
     if (!phoneNumber || !isValidPhoneNumber(phoneNumber)) {
       showToast("Введіть коректний номер телефону", "info", 5000)
@@ -1005,71 +1072,6 @@ window.addEventListener("DOMContentLoaded", function () {
   function isValidPhoneNumber(phoneNumber) {
     return /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
   }
-
-  // перемикання карток товару
-  const cards = document.querySelectorAll(".slider-card"),
-    nextButtons = document.querySelectorAll(".next"),
-    prevButtons = document.querySelectorAll(".prev"),
-    pointer = document.querySelectorAll(".pointer")
-
-  let currentCardIndex = 0
-
-  function pointerNone() {
-    pointer.forEach(items => {
-      items.style.display = "none"
-    })
-  }
-
-  function showNextCard(index) {
-    cards[currentCardIndex].classList.remove("active")
-    currentCardIndex = (currentCardIndex + 1) % cards.length
-    cards[currentCardIndex].classList.add("active")
-  }
-
-  function showPreviousCard() {
-    cards[currentCardIndex].classList.remove("active")
-    currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
-    cards[currentCardIndex].classList.add("active")
-  }
-
-  nextButtons.forEach((button, index) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault()
-      showNextCard(index)
-      pointerNone()
-      setTimeout(function () {
-        initSlider()
-      }, 500); 
-    })
-  })
-
-  prevButtons.forEach((button, index) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault()
-      showPreviousCard(index)
-      pointerNone()
-      setTimeout(function () {
-        initSlider()
-      }, 500); 
-    })
-  })
-
-  cards[currentCardIndex].classList.add("active")
-
-  const popapPrivacy = document.querySelector(".privacy-police"),
-    openPopapPrivacy = document.querySelector(".popups-outline"),
-    closePrivacy = document.querySelector(".cancel-privacy")
-
-  popapPrivacy.addEventListener("click", function (e) {
-    e.preventDefault()
-    openPopapPrivacy.style.display = "block"
-  })
-
-  closePrivacy.addEventListener("click", function (e) {
-    e.preventDefault()
-    openPopapPrivacy.style.display = "none"
-  })
-
 })
 // function sliderGalery(carouselBlock, carouselItems, buttonArrow, gap, left, right) {
   //   if (!carouselBlock) {
