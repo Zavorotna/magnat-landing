@@ -688,6 +688,7 @@ window.addEventListener("DOMContentLoaded", function () {
       this.sliderDots = document.querySelectorAll('.slider-dot');
       this.sliderDots.forEach(element => {
         element.onclick = () => {
+          clearInterval(sliderInterval);
           clearInterval(localStorage[this.slider.id + "Interval"]);
           for (let index = 0; index < this.realCardsLength; index++) {
             this.sliderDots[index].classList.remove("activeFade");
@@ -698,10 +699,12 @@ window.addEventListener("DOMContentLoaded", function () {
         }
       });
       if (this.settings.isAutoplay && this.realCardsLength > this.cardsCount) {
+        clearInterval(sliderInterval);
         this.startAutoPlay();
       }
       this.slider.addEventListener('touchend', () => {
         if (this.settings.isAutoplay && this.realCardsLength > this.cardsCount) {
+          clearInterval(sliderInterval);
           this.startAutoPlay();
         }
       });
@@ -709,6 +712,7 @@ window.addEventListener("DOMContentLoaded", function () {
       this.touchSlider = this.touchSlider.bind(this);
 
       this.slider.addEventListener('touchstart', (e) => {
+        clearInterval(sliderInterval);
         this.touchPoint = e.touches[0].pageX;
         this.slider.addEventListener('touchmove', this.touchSlider);
         clearInterval(localStorage[this.slider.id + "Interval"]);
