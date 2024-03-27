@@ -486,7 +486,7 @@ window.addEventListener("DOMContentLoaded", function () {
           cardSalePrice.innerText = discountedPrice.toFixed(2)
 
           fullPrice.innerText = selectedProduct.saleprice
-          salePrice.innerText = parseFloat(selectedProduct.saleprice) - parseFloat(cardSalePrice.innerText)
+          salePrice.innerText = (parseFloat(selectedProduct.saleprice) - parseFloat(cardSalePrice.innerText)).toFixed(2)
           let totalPrice = parseFloat(selectedProduct.saleprice)
 
           if (parseFloat(cardSalePrice.innerText) > 0) {
