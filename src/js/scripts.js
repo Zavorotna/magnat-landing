@@ -229,7 +229,7 @@ window.addEventListener("DOMContentLoaded", function () {
       const cardContainer = mainCard[index],
         catalogCardContainer = catalogCard[index]
       if (!cardContainer || !catalogCardContainer) return
-
+      console.log(product);
       let productNameElement = cardContainer.querySelector('.product'),
         priceElement = cardContainer.querySelector('.price-card .blue-text'),
         numberCard = cardContainer.querySelector('.number'),
@@ -334,7 +334,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
 
       // Розміри
-      const sizes = ["38", "39", "40", "41", "42", "43", "44", "45"]
+      const sizes = ["39", "40", "41", "42", "43", "44", "45", "46"]
 
       sizes.forEach((size, sizeIndex) => {
         const input = document.createElement('input'),
@@ -576,6 +576,8 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   fetchData()
+
+  let isSlideTransitionComplete = true;
   //slider
   class InfinitySlider {
     constructor(selector, settings = {}) {
@@ -897,15 +899,42 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     touchSlider(e) {
-      clearInterval(sliderInterval);
-      if ((this.touchPoint + 20) < e.touches[0].pageX) {
-        this.changeSlide('left');
-        this.slider.removeEventListener('touchmove', this.touchSlider);
-      } else if ((this.touchPoint - 20) > e.touches[0].pageX) {
-        this.changeSlide('right');
-        this.slider.removeEventListener('touchmove', this.touchSlider);
+      clearInterval(sliderInterval)
+      if (!isSlideTransitionComplete) {
+        return
       }
+
+      const touchX = e.touches[0].pageX
+
+      if ((this.touchPoint + 20) < touchX) {
+        this.changeSlide('left')
+        isSlideTransitionComplete = false
+        this.slider.removeEventListener('touchmove', this.touchSlider)
+        setTimeout(() => {
+          isSlideTransitionComplete = true
+        }, 500)
+      } else if ((this.touchPoint - 20) > touchX) {
+        this.changeSlide('right')
+        isSlideTransitionComplete = false
+        this.slider.removeEventListener('touchmove', this.touchSlider)
+        setTimeout(() => {
+          isSlideTransitionComplete = true
+        }, 500)
+      }
+
+      this.touchPoint = touchX
     }
+
+    // touchSlider(e) {
+    //   clearInterval(sliderInterval);
+    //   if ((this.touchPoint + 20) < e.touches[0].pageX) {
+    //     this.changeSlide('left');
+    //     this.slider.removeEventListener('touchmove', this.touchSlider);
+    //   } else if ((this.touchPoint - 20) > e.touches[0].pageX) {
+    //     this.changeSlide('right');
+    //     this.slider.removeEventListener('touchmove', this.touchSlider);
+    //   }
+    // }
   }
 
   const comment = new InfinitySlider(".slider-comment", {
@@ -935,13 +964,13 @@ window.addEventListener("DOMContentLoaded", function () {
       baseCardWidthImg = "550px";
     }
     sliders["img-key" + (i + 1)] = new InfinitySlider("#product" + (i + 1), {
-      isArrows: false,
+      isArrows: true,
       isSlidesToScrollAll: false,
       baseCardWidth: baseCardWidthImg,
       gap: 50,
       isAutoplay: true,
-      autoplaySpeed: 5000,
-      transitionCard: "all 1.5s ease-in-out",
+      autoplaySpeed: 10000,
+      transitionCard: "all .5s ease-in-out",
     })
   })
   // console.log(sliders);
@@ -959,15 +988,15 @@ window.addEventListener("DOMContentLoaded", function () {
   let sliderInterval = setTimeout(function () {
     initSlider()
   }, 1000);
-  
+
   // перемикання карток товару
   const cards = document.querySelectorAll(".slider-card"),
-  nextButtons = document.querySelectorAll(".next"),
-  prevButtons = document.querySelectorAll(".prev"),
-  pointer = document.querySelectorAll(".pointer")
-  
+    nextButtons = document.querySelectorAll(".next"),
+    prevButtons = document.querySelectorAll(".prev"),
+    pointer = document.querySelectorAll(".pointer")
+
   let currentCardIndex = 0
-  
+
   function pointerNone() {
     pointer.forEach(items => {
       items.style.display = "none"
@@ -979,7 +1008,7 @@ window.addEventListener("DOMContentLoaded", function () {
     currentCardIndex = (currentCardIndex + 1) % cards.length
     cards[currentCardIndex].classList.add("active")
   }
-  
+
   function showPreviousCard() {
     cards[currentCardIndex].classList.remove("active")
     currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length
@@ -994,10 +1023,10 @@ window.addEventListener("DOMContentLoaded", function () {
       clearInterval(sliderInterval);
       sliderInterval = setTimeout(function () {
         initSlider()
-      }, 500); 
+      }, 500);
     })
   })
-  
+
   prevButtons.forEach((button, index) => {
     button.addEventListener("click", (event) => {
       event.preventDefault()
@@ -1006,26 +1035,26 @@ window.addEventListener("DOMContentLoaded", function () {
       clearInterval(sliderInterval);
       sliderInterval = setTimeout(function () {
         initSlider()
-      }, 500); 
+      }, 500);
     })
   })
-  
+
   cards[currentCardIndex].classList.add("active")
-  
+
   const popapPrivacy = document.querySelector(".privacy-police"),
-  openPopapPrivacy = document.querySelector(".popups-outline"),
-  closePrivacy = document.querySelector(".cancel-privacy")
-  
+    openPopapPrivacy = document.querySelector(".popups-outline"),
+    closePrivacy = document.querySelector(".cancel-privacy")
+
   popapPrivacy.addEventListener("click", function (e) {
     e.preventDefault()
     openPopapPrivacy.style.display = "block"
   })
-  
+
   closePrivacy.addEventListener("click", function (e) {
     e.preventDefault()
     openPopapPrivacy.style.display = "none"
   })
-  
+
   //перевірка відправки форми для телефону і імені
   const inputField = document.getElementById('name'),
     maxLength = 30,
@@ -1036,17 +1065,25 @@ window.addEventListener("DOMContentLoaded", function () {
       event.preventDefault()
     }
   })
-  
+
   const phoneInput = document.querySelector('#phone')
-  
+
   phoneInput.addEventListener('input', function () {
-    const phoneNumber = phoneInput.value,
-      validInput = /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
+    let phoneNumber = phoneInput.value.trim();
+    const mask = "+380";
+
+    // Видаляємо маску з введеного номера
+    if (phoneNumber.startsWith(mask)) {
+      phoneNumber = phoneNumber.slice(mask.length - 1);
+    }
+
+    const validInput = isValidPhoneNumber(phoneNumber);
+
     if (validInput) {
-      phoneInput.style.borderColor = 'green'
+      phoneInput.style.borderColor = 'green';
     } else {
-      phoneInput.style.borderColor = 'red'
-      showToast("Введіть вірний номер телефону")
+      phoneInput.style.borderColor = 'red';
+      showToast("Введіть вірний номер телефону");
     }
   })
 
@@ -1054,7 +1091,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   callMeForm.addEventListener("submit", (event) => {
     const phoneInput = callMeForm.querySelector("input[name='userPhone']"),
-    phoneNumber = phoneInput.value.trim()
+      phoneNumber = phoneInput.value.trim()
 
     if (!phoneNumber || !isValidPhoneNumber(phoneNumber)) {
       showToast("Введіть коректний номер телефону", "info", 5000)
@@ -1077,4 +1114,30 @@ window.addEventListener("DOMContentLoaded", function () {
   function isValidPhoneNumber(phoneNumber) {
     return /^\+?(\d{2})?([(]?\d{3}[)]?)\s?[-]?\s?(?:\d{3})\s?[-]?(?:\s?\d{2})\s?[-]?(?:\s?\d{2})$/.test(phoneNumber)
   }
+
+  const inputMasks = document.querySelectorAll(".inputMask");
+
+  inputMasks.forEach(function (inputMask) {
+    inputMask.addEventListener("click", function () {
+      if (!inputMask.value) {
+        inputMask.value = "+380";
+      }
+    });
+
+    inputMask.addEventListener("input", function () {
+      let inputValue = inputMask.value;
+      let cleanedValue = inputValue.replace(/[^\d+]/g, "");
+
+      inputMask.value = cleanedValue;
+
+      if (cleanedValue.length > 13) {
+        inputMask.value = cleanedValue.slice(0, 13);
+      }
+
+      if (!cleanedValue.startsWith("+380")) {
+        inputMask.value = "+380" + cleanedValue.slice(3);
+      }
+    });
+  });
+
 })

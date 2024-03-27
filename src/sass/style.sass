@@ -82,7 +82,7 @@ header
     background-size: 200% 100%
     &:hover
         background-position: 100% 0
-.logo 
+.logo
     svg
         width: 80rem
         height: 80rem
@@ -91,12 +91,14 @@ header
             height: 100rem
 
 .social
-    svg > path
-        transition: all .5s ease
-        fill: #4E98B6
+    svg
+        > path
+            transition: all .5s ease
+            fill: #4E98B6
     &:hover
-        svg > path 
-            fill: #00D589
+        svg
+            > path
+                fill: #00D589
 
 .header-menu
     width: 100%
@@ -236,16 +238,18 @@ header
 
 .prev, .next
     transition: all .25s ease
-    svg > path 
-        fill: #fff
+    svg
+        > path
+            fill: #fff
     &:hover
         border: 1px solid #4E98B6
         background-color: #4E98B6
     &:hover
-        svg > path
-            fill: #fff
+        svg
+            > path
+                fill: #fff
 
-.prev, .next, .left, .right
+.prev, .next
     display: block
     min-width: 100rem
     max-width: 200rem
@@ -270,6 +274,45 @@ header
         50%
             transform: scale(1.15)
             filter: drop-shadow(0 0 5px rgb(158, 156, 156))
+
+.product-img
+    position: relative
+    .right.slider_navigation,
+    .left.slider_navigation
+        width: 30rem
+        height: 30rem
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        border: 1px solid #000
+        box-sizing: border-box
+        z-index: 5
+        &::before,
+        &::after
+            content: ""
+            position: absolute
+            top: 50%
+        &::after
+            width: 3rem
+            height: 3rem
+            border-top: 1px solid #000
+            border-left: 1px solid #000
+        &::before
+            width: 15rem
+            height: 1px
+            left: 50%
+            background-color: #000
+            transform: translate(-50%, -50%)
+    .right.slider_navigation
+        left: calc(100% - 30rem)
+        &::after
+            right: 7px
+            transform: translateY(-50%) rotate(135deg)
+    .left.slider_navigation
+        left: 0
+        &::after
+            left: 7px
+            transform: translateY(-50%) rotate(-45deg)
 
 .image-block
     flex-wrap: nowrap
@@ -545,6 +588,7 @@ div.catalog-card
         border-top-color: #25445E
 
 .name-card
+    min-height: 50rem
     padding: 30rem 0 20rem
     color: #000
     font-family: "Kharkiv Tone"
@@ -914,7 +958,7 @@ p.sale-numb
     border: 1px solid #000
     box-sizing: border-box
 
-.img-comment 
+.img-comment
     max-width: 300rem
     height: 150rem
     overflow: hidden
@@ -931,7 +975,7 @@ p.sale-numb
 
 .star-comment
     padding-bottom: 18rem
-    svg 
+    svg
         > path
             fill: #eac83e
 
@@ -949,37 +993,40 @@ p.sale-numb
 
 .text-comment
     min-height: 145rem
-
-.left.slider_navigation,
-.right.slider_navigation
-    position: absolute
-    bottom: 0rem
-    display: block
-    padding: 20rem 10rem
-    transition: all .25s ease
-    border: 1px solid #4E98B6
-    box-sizing: border-box
-    z-index: 4
-
-.left.slider_navigation
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E") center/cover
-    right: 55%
-    cursor: pointer
-    background-size: 150%
-    &:hover
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
+.comment-slider
+    .left.slider_navigation,
+    .right.slider_navigation
+        min-width: 100rem
+        max-width: 200rem
+        position: absolute
+        bottom: 0rem
+        display: block
+        padding: 20rem 10rem
+        transition: all .25s ease
+        border: 1px solid #4E98B6
+        box-sizing: border-box
+        z-index: 4
+.comment-slider,
+.button
+    .left.slider_navigation
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E") center/cover
+        right: 55%
+        cursor: pointer
         background-size: 150%
-        background-color: #4E98B6
+        &:hover
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M49.6464 19.6464C49.4512 19.8417 49.4512 20.1583 49.6464 20.3535L52.8284 23.5355C53.0237 23.7308 53.3403 23.7308 53.5355 23.5355C53.7308 23.3403 53.7308 23.0237 53.5355 22.8284L50.7071 20L53.5355 17.1716C53.7308 16.9763 53.7308 16.6597 53.5355 16.4645C53.3403 16.2692 53.0237 16.2692 52.8284 16.4645L49.6464 19.6464ZM150 19.5L50 19.5L50 20.5L150 20.5L150 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
+            background-size: 150%
+            background-color: #4E98B6
 
-.right.slider_navigation
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E") center/cover
-    background-size: 150%
-    cursor: pointer
-    left: 55%
-    &:hover
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
+    .right.slider_navigation
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%234E98B6'/%3E%3C/svg%3E") center/cover
         background-size: 150%
-        background-color: #4E98B6
+        cursor: pointer
+        left: 55%
+        &:hover
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' viewBox='0 0 200 40' fill='none'%3E%3Cpath d='M150.354 19.6464C150.549 19.8417 150.549 20.1583 150.354 20.3535L147.172 23.5355C146.976 23.7308 146.66 23.7308 146.464 23.5355C146.269 23.3403 146.269 23.0237 146.464 22.8284L149.293 20L146.464 17.1716C146.269 16.9763 146.269 16.6597 146.464 16.4645C146.66 16.2692 146.976 16.2692 147.172 16.4645L150.354 19.6464ZM50 19.5L150 19.5L150 20.5L50 20.5L50 19.5Z' fill='%23ffffff'/%3E%3C/svg%3E") center/cover
+            background-size: 150%
+            background-color: #4E98B6
 
 .footer
     padding: 63rem 0 57rem
@@ -1039,7 +1086,7 @@ p.sale-numb
         color: #1E1E1E
         font-size: 20rem
         text-align: left
-.info-popup 
+.info-popup
     padding: 30rem 0
     p, ul
         padding: 10rem 0
@@ -1048,10 +1095,10 @@ p.sale-numb
         text-align: left
     ul
         padding: 0
-        font-size: 12rem 
+        font-size: 12rem
         text-transform: none
 
-.popup-footer 
+.popup-footer
     width: 100%
     padding: 20rem 0
     a
@@ -1059,14 +1106,13 @@ p.sale-numb
         color: #fff
         font-size: 20rem
 
-
 .footer-bottom
     padding-top: 16rem
     text-align: center
     span
         display: inline-block
 
-.bg-order-popup 
+.bg-order-popup
     width: 100vw
     height: 100vh
 
